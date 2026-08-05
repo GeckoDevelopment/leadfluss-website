@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import { Poppins, Inter, Geist_Mono } from "next/font/google";
+import { Jost, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-// Inter für Fließtext, Poppins für Headlines (Leadfluss-Markenschrift).
-const inter = Inter({
+// Jost für die gesamte Website (Headlines + Fließtext), Variable Font.
+const jost = Jost({
   variable: "--font-sans",
   subsets: ["latin"],
-  display: "swap",
-});
-
-const poppins = Poppins({
-  variable: "--font-heading",
-  subsets: ["latin"],
-  weight: ["500", "600", "700"],
   display: "swap",
 });
 
@@ -35,7 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="de"
-      className={`${inter.variable} ${poppins.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${jost.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <body

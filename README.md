@@ -11,7 +11,7 @@ Blog über Sanity CMS.
 - **shadcn** in der **Base-UI-Variante** (`style: base-nova`) – Komponenten in
   `src/components/ui`. Wichtig: `render`-Prop statt `asChild`.
 - **Sanity** (`next-sanity`) – Blog/CMS, Studio unter `/studio`
-- **Lucide** Icons, **Poppins** (Headlines) + **Inter** (Fließtext)
+- **Lucide** Icons, **Jost** (Headlines + Fließtext)
 
 ## Entwicklung
 
