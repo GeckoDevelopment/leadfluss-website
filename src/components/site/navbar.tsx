@@ -8,10 +8,10 @@ import { Logo } from "@/components/site/logo";
 import { cn } from "@/lib/utils";
 
 const NAV_LINKS = [
-  { href: "/leistungen", label: "Leistungen" },
-  { href: "/fallstudien", label: "Fallstudien" },
   { href: "/ueber-uns", label: "Über uns" },
+  { href: "/fallstudien", label: "Fallstudien" },
   { href: "/blog", label: "Blog" },
+  { href: "/karriere", label: "Karriere" },
   { href: "/faq", label: "FAQ" },
 ];
 
@@ -20,7 +20,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-header/90 backdrop-blur supports-[backdrop-filter]:bg-header/70">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
         <Link href="/" aria-label="Leadfluss Startseite">
           <Logo />
         </Link>
@@ -38,7 +38,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button render={<Link href="/kontakt">Termin anfragen</Link>} />
+          <Button render={<Link href="/kontakt">Leadfluss anfragen</Link>} />
         </div>
 
         <button
@@ -58,7 +58,7 @@ export function Navbar() {
           open ? "block" : "hidden"
         )}
       >
-        <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-4 sm:px-6">
+        <nav className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4 sm:px-6">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
@@ -73,7 +73,7 @@ export function Navbar() {
             className="mt-2 w-full"
             render={
               <Link href="/kontakt" onClick={() => setOpen(false)}>
-                Termin anfragen
+                Leadfluss anfragen
               </Link>
             }
           />

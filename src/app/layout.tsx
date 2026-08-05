@@ -24,11 +24,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://leadfluss.de"),
   title: {
-    default: "Leadfluss – Planbar neue Kunden für Handwerk & Mittelstand",
+    default: "Leadfluss – Mit Videomarketing zur Nummer 1 in deiner Branche",
     template: "%s · Leadfluss",
   },
   description:
-    "Leadfluss generiert planbar qualifizierte Anfragen für Handwerksbetriebe und den Mittelstand – über performante Kampagnen und optimierte Landingpages.",
+    "Leadfluss ist die Videomarketing-Agentur für den Mittelstand: Professionelle Werbevideos, die neue Kunden gewinnen und Arbeitsplätze attraktiver machen.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

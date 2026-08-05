@@ -98,7 +98,7 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
         </p>
         <Link
           href="/kontakt"
-          className="mt-6 inline-flex h-11 items-center justify-center bg-signal px-6 text-sm font-medium text-[color:var(--signal-foreground)] transition-colors hover:bg-signal/85"
+          className="mt-6 inline-flex h-11 items-center justify-center bg-signal px-6 text-sm font-medium text-white transition-colors hover:bg-signal/85"
         >
           Termin anfragen
         </Link>

@@ -34,7 +34,7 @@ export default function FallstudienPage() {
         title="Ergebnisse, die für sich sprechen"
         description="Ein Auszug aus Betrieben, die mit Leadfluss planbar neue Kunden gewinnen."
       />
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="grid gap-6 md:grid-cols-3">
           {CASES.map((c) => (
             <div key={c.branch} className="border border-border bg-card p-8">

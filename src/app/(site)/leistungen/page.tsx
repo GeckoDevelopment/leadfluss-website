@@ -41,7 +41,7 @@ export default function LeistungenPage() {
         title="Alles für deinen planbaren Anfragenfluss"
         description="Wir übernehmen den kompletten Prozess – von der Strategie bis zur laufenden Optimierung."
       />
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="grid gap-6 sm:grid-cols-2">
           {SERVICES.map((s) => (
             <div key={s.title} className="border border-border bg-card p-8">

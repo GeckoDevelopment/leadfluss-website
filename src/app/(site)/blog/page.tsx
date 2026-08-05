@@ -14,7 +14,7 @@ export default async function BlogPage() {
   const posts = await getPosts();
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24">
+    <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-24">
       <header className="max-w-2xl">
         <p className="text-sm font-semibold uppercase tracking-wider text-signal">
           Blog

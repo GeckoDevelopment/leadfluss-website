@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import { PageHeader } from "@/components/site/page-header";
 import { ContactForm } from "./contact-form";
 
@@ -10,9 +10,10 @@ export const metadata: Metadata = {
 };
 
 const CONTACT_ITEMS = [
-  { icon: Mail, label: "E-Mail", value: "hallo@leadfluss.de", href: "mailto:hallo@leadfluss.de" },
-  { icon: Phone, label: "Telefon", value: "+49 (0) 123 456789", href: "tel:+49123456789" },
-  { icon: MapPin, label: "Standort", value: "Deutschland – deutschlandweit tätig" },
+  { icon: Mail, label: "E-Mail", value: "info@leadfluss.de", href: "mailto:info@leadfluss.de" },
+  { icon: Phone, label: "Telefon", value: "+49 341 60823338", href: "tel:+4934160823338" },
+  { icon: Clock, label: "Geschäftszeiten", value: "Mo–Fr, 8:00 bis 18:00 Uhr" },
+  { icon: MapPin, label: "Standort", value: "Leipzig – deutschlandweit im Einsatz" },
 ];
 
 export default function KontaktPage() {
@@ -23,7 +24,7 @@ export default function KontaktPage() {
         title="Lass uns über deinen Anfragenfluss sprechen"
         description="Kostenloses Erstgespräch, ehrliche Einschätzung, keine Verpflichtung. Wir melden uns innerhalb von 24 Stunden."
       />
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr]">
           <div>
             <h2 className="text-2xl font-semibold">Direkt erreichbar</h2>

@@ -3,11 +3,10 @@ import { Logo } from "@/components/site/logo";
 
 const FOOTER_COLUMNS = [
   {
-    title: "Leadfluss",
+    title: "Unternehmen",
     links: [
-      { href: "/leistungen", label: "Leistungen" },
-      { href: "/fallstudien", label: "Fallstudien" },
       { href: "/ueber-uns", label: "Über uns" },
+      { href: "/fallstudien", label: "Fallstudien" },
       { href: "/karriere", label: "Karriere" },
     ],
   },
@@ -32,14 +31,30 @@ export function Footer() {
   const year = 2026;
   return (
     <footer className="border-t border-border bg-muted/40">
-      <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
         <div className="grid gap-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div className="max-w-xs">
             <Logo />
             <p className="mt-4 text-sm text-muted-foreground">
-              Planbar neue Kunden für Handwerk und Mittelstand – über
-              performante Kampagnen und optimierte Landingpages.
+              Videomarketing für den Mittelstand – professionelle Werbevideos,
+              die neue Kunden gewinnen und Arbeitsplätze attraktiver machen.
             </p>
+            <div className="mt-5 space-y-1 text-sm text-muted-foreground">
+              <p>Standort Leipzig</p>
+              <p>
+                <a
+                  href="mailto:info@leadfluss.de"
+                  className="hover:text-foreground"
+                >
+                  info@leadfluss.de
+                </a>
+              </p>
+              <p>
+                <a href="tel:+4934160823338" className="hover:text-foreground">
+                  +49 341 60823338
+                </a>
+              </p>
+            </div>
           </div>
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title}>
