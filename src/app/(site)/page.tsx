@@ -3,11 +3,10 @@ import Script from "next/script";
 import {
   ArrowRight,
   Check,
+  ThumbsDown,
+  Activity,
   TrendingDown,
-  Users,
-  ShieldAlert,
-  Wallet,
-  LineChart,
+  UserX,
   MapPin,
   Phone,
   Mail,
@@ -27,26 +26,33 @@ const HERO_BENEFITS = [
   "Besetze deine wichtigsten Stellen, indem du als Top-Arbeitgeber regional hervorstichst",
 ];
 
-const CHALLENGES = [
+type Problem = {
+  icon: typeof ThumbsDown;
+  title: string;
+  text: string;
+  bg?: string;
+};
+
+const PROBLEMS: Problem[] = [
+  {
+    icon: ThumbsDown,
+    title: "Schlechte Leadqualität bei Portalen",
+    text: "Teuer eingekaufte Leads, die selten zu echten Aufträgen führen.",
+  },
+  {
+    icon: Activity,
+    title: "Auftragslage schwankt ständig",
+    text: "Mal Überstunden, mal Funkstille – keine planbare Auslastung.",
+  },
   {
     icon: TrendingDown,
-    text: "Der Preiskampf wird größer und die Margen werden immer kleiner.",
+    title: "Aufträge kommen, aber schlechte Marge",
+    text: "Viel Aufwand, wenig Ertrag – der Preiskampf drückt die Gewinne.",
   },
   {
-    icon: Users,
-    text: "Du möchtest gern Aufträge annehmen, aber dir fehlen die richtigen Mitarbeiter.",
-  },
-  {
-    icon: ShieldAlert,
-    text: "Du hast oft Angst, von deiner Konkurrenz abgehängt zu werden.",
-  },
-  {
-    icon: Wallet,
-    text: "Interessenten wollen sich nur informieren oder haben kein Budget.",
-  },
-  {
-    icon: LineChart,
-    text: "Die Auftragslage verschlechtert sich spürbar.",
+    icon: UserX,
+    title: "Findest kein kompetentes Personal",
+    text: "Offene Stellen bleiben unbesetzt, gute Fachkräfte sind rar.",
   },
 ];
 
@@ -144,6 +150,51 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Problemsituation (rot signalisiert) */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-wider text-red-600">
+              Kennst du das?
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+              Diese Probleme kosten dich täglich Umsatz
+            </h2>
+          </div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            {PROBLEMS.map((p) => (
+              <div
+                key={p.title}
+                className="relative flex min-h-56 items-start gap-4 overflow-hidden border border-border border-l-4 border-l-red-500 bg-red-50/60 p-7"
+              >
+                {p.bg && (
+                  <Image
+                    src={p.bg}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 100vw, 600px"
+                    className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.08]"
+                  />
+                )}
+                <div className="relative z-10 flex items-start gap-4">
+                  <span className="flex size-11 shrink-0 items-center justify-center bg-red-100 text-red-600">
+                    <p.icon className="size-5" />
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">
+                      {p.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {p.text}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Google Reviews (Elfsight) */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
@@ -160,28 +211,6 @@ export default async function HomePage() {
               className="elfsight-app-5f36dae6-b272-4162-b8ea-0cd8a57ce074"
               data-elfsight-app-lazy
             />
-          </div>
-        </div>
-      </section>
-
-      {/* Herausforderungen */}
-      <section className="border-b border-border bg-muted/40">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-          <h2 className="max-w-2xl text-3xl font-bold tracking-tight sm:text-4xl">
-            Steht dein Unternehmen auch vor diesen Herausforderungen?
-          </h2>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {CHALLENGES.map((c) => (
-              <div
-                key={c.text}
-                className="flex gap-4 border border-border bg-card p-6"
-              >
-                <span className="flex size-11 shrink-0 items-center justify-center bg-icon-bg text-signal">
-                  <c.icon className="size-5" />
-                </span>
-                <p className="text-foreground/90">{c.text}</p>
-              </div>
-            ))}
           </div>
         </div>
       </section>
