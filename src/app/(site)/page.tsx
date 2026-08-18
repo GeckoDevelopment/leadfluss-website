@@ -157,11 +157,11 @@ export default async function HomePage() {
       {/* Problemsituation (rot signalisiert) */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-          <div className="max-w-2xl">
+          <div>
             <p className="text-sm font-semibold uppercase tracking-wider text-red-600">
               Kennst du das?
             </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl xl:whitespace-nowrap">
               Diese Probleme kosten dich täglich Umsatz
             </h2>
           </div>
