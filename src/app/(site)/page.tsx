@@ -183,14 +183,14 @@ export default async function HomePage() {
                 {/* Schwarzes Overlay für Lesbarkeit der weißen Schrift */}
                 <div className="pointer-events-none absolute inset-0 z-0 bg-black/65" />
                 <div className="relative z-10 flex items-start gap-4">
-                  <span className="flex size-11 shrink-0 items-center justify-center bg-red-500/20 text-red-400">
-                    <p.icon className="size-5" />
+                  <span className="flex size-12 shrink-0 items-center justify-center bg-red-600 text-white">
+                    <p.icon className="size-6" />
                   </span>
                   <div>
-                    <h3 className="text-lg font-semibold text-white">
+                    <h3 className="text-xl font-semibold text-white sm:text-2xl">
                       {p.title}
                     </h3>
-                    <p className="mt-1 text-sm text-white/70">{p.text}</p>
+                    <p className="mt-1.5 text-lg text-white/80">{p.text}</p>
                   </div>
                 </div>
               </div>
