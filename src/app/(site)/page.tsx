@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 import Script from "next/script";
 import {
   ArrowRight,
+  Check,
   TrendingDown,
   Users,
   ShieldAlert,
@@ -15,7 +15,17 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PostCard } from "@/components/site/post-card";
+import Image from "next/image";
 import { getPosts } from "@/sanity/lib/posts";
+import { getTeam } from "@/sanity/lib/team";
+import { getCaseStudies } from "@/sanity/lib/case-studies";
+
+const HERO_BENEFITS = [
+  "Mache dich unabhängig von der schlechten Qualität der Leads über Portale und Leadhändler",
+  "Stabilisiere deine schwankende Auftragslage und werde Monate im Voraus ausgebucht",
+  "Suche dir die besten Aufträge aus, mit denen du die beste Marge verdienen kannst",
+  "Besetze deine wichtigsten Stellen, indem du als Top-Arbeitgeber regional hervorstichst",
+];
 
 const CHALLENGES = [
   {
@@ -40,65 +50,6 @@ const CHALLENGES = [
   },
 ];
 
-const CASES = [
-  {
-    name: "SoNachhaltig GmbH",
-    role: "Regionaler Solarfachbetrieb",
-    location: "Speyer",
-    category: "Photovoltaik",
-    text: "Für den regionalen Fachbetrieb SoNachhaltig generieren wir pro Monat über 50 Solar Leads zusätzlich über Videomarketing und Brandingkampagnen.",
-    result: "50+ Leads pro Monat zusätzlich",
-  },
-  {
-    name: "Solarzentrum Rheingau",
-    role: "Regionaler PV-Fachbetrieb",
-    location: "Rheingau-Taunus Kreis",
-    category: "Photovoltaik",
-    text: "Durch unsere Online-Strategien gewinnt das Solarzentrum Rheingau seit 2024 verlässlich monatlich 30 zusätzliche qualifizierte Interessenten.",
-    result: "30+ Leads pro Monat",
-  },
-  {
-    name: "Commodus GmbH",
-    role: "Dienstleister für barrierefreie Bäder",
-    location: "Krefeld",
-    category: "Barrierefreie Bäder",
-    text: 'Speziell für das Thema „Wanne zu Dusche in 24 Stunden" generieren wir für die Firma Commodus GmbH aus Krefeld über 200 Leads pro Monat. Auch sorgen die produzierten Kundeninterviews für bessere Abschlussquoten.',
-    result: "200 Leads pro Monat",
-  },
-  {
-    name: "Attendorner Dachtechnik",
-    role: "Dachdeckerbetrieb aus Attendorn",
-    location: "Attendorn (Sauerland)",
-    category: "Dachsanierung und PV",
-    text: "Zusammen mit Inhaber Janik Bauer haben wir einen stetigen Leadfluss von 40+ Leads pro Monat aufgebaut, dank authentischen Einblicken von Baustellen und Kundenstimmen-Videos.",
-    result: "40 Leads pro Monat",
-  },
-  {
-    name: "Viterma Neustadt",
-    role: "Luxus Vollbadsanierung",
-    location: "Neustadt a. d. Weinstraße",
-    category: "Vollbadsanierung",
-    text: "Mit dem Viterma Standort aus der Pfalz haben wir gemeinsam eine Videomarketing-Strategie entwickelt, mit der kaufwillige Hausbesitzer auf den Badanbieter aus Neustadt aufmerksam werden und direkt ihre Anfrage stellen können.",
-    result: "80 Leads pro Monat",
-  },
-  {
-    name: "Energietechnik Schermuly",
-    role: "Photovoltaik Fachbetrieb aus Gießen",
-    location: "Gießen",
-    category: "Photovoltaik",
-    text: "Zuvor hat die Gießener Solarfirma ihre Aufträge nur über Empfehlungen und Google gewonnen. Das haben wir innerhalb von nur 14 Tagen geändert. Sobald ein Eigenheimbesitzer in Hessen über eine Solaranlage nachdenkt, bekommt er Anzeigen von Energietechnik Schermuly präsentiert.",
-    result: "50 Leads pro Monat",
-  },
-];
-
-const TEAM = [
-  { name: "Armin Hirschfeld", role: "Strategieberater" },
-  { name: "Peer Joeressen", role: "Kundenbetreuer" },
-  { name: "Jonas Gernhardt", role: "Videoproduzent" },
-  { name: "Anna Kischkat", role: "Marketing Expertin" },
-  { name: "Daniel Kreutzer", role: "Expansion Advisor" },
-];
-
 function initials(name: string) {
   return name
     .split(" ")
@@ -108,53 +59,45 @@ function initials(name: string) {
 }
 
 export default async function HomePage() {
-  const posts = await getPosts(3);
+  const [posts, team, caseStudies] = await Promise.all([
+    getPosts(3),
+    getTeam(),
+    getCaseStudies(),
+  ]);
 
   return (
     <>
+      {/* Elfsight Platform – einmal für alle Google-Reviews-Widgets */}
+      <Script
+        src="https://elfsightcdn.com/platform.js"
+        strategy="lazyOnload"
+      />
+
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_50%_0%,color-mix(in_oklch,var(--signal),transparent_88%),transparent)]" />
-        {/* Großes Logo-Icon als dezentes Hintergrund-Design */}
-        <Image
-          src="/leadfluss-mark.png"
-          alt=""
-          aria-hidden
-          width={515}
-          height={515}
-          priority
-          className="pointer-events-none absolute left-1/2 top-[46%] -z-10 w-[420px] max-w-none -translate-x-1/2 -translate-y-1/2 opacity-[0.06] select-none sm:w-[620px]"
-        />
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-          <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-4xl font-bold leading-[1.1] tracking-tight sm:text-6xl">
-              Mit Videomarketing zur{" "}
-              <span className="text-signal">Nummer 1 in deiner Branche</span>
-            </h1>
-            <p className="mx-auto mt-6 max-w-xl text-lg text-muted-foreground">
-              Dank professionellen Werbevideos wird dein Angebot interessanter
-              für Neukunden und deine Arbeitsplätze attraktiver für Mitarbeiter.
+          {/* Kopfblock über volle Breite */}
+          <div className="mx-auto max-w-7xl text-center">
+            <p className="text-sm font-bold uppercase tracking-wider text-foreground">
+              Branchenpartner für Photovoltaik, Badsanierung, Treppenlifte und
+              Bauelemente
             </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Button
-                size="lg"
-                render={
-                  <Link href="/kontakt">
-                    Jetzt kostenlose Anfrage stellen
-                    <ArrowRight className="size-4" />
-                  </Link>
-                }
-              />
-              <Button
-                size="lg"
-                variant="outline"
-                render={<Link href="/fallstudien">Fallstudien ansehen</Link>}
-              />
-            </div>
+            <h1 className="mt-4 text-4xl font-bold leading-[1.1] tracking-tight sm:text-[3.25rem]">
+              Die finale Lösung für{" "}
+              <span className="text-signal">planbar mehr Aufträge</span> und
+              qualifiziertes Personal als Handwerksbetrieb
+            </h1>
+            <p className="mx-auto mt-3 max-w-[49.5rem] text-lg font-semibold leading-snug text-foreground sm:text-xl">
+              In 4 Wochen implementieren wir einen neuen Weg für täglich neue
+              Anfragen und Bewerbungen, um weiter zu wachsen, ohne das
+              Tagesgeschäft zu vernachlässigen.
+            </p>
           </div>
 
-          {/* Werbefilm (Wistia) */}
-          <div className="mx-auto mt-14 max-w-3xl">
+          {/* Zweigeteilter Abschnitt: Video links, Text + CTA rechts */}
+          <div className="mt-11 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            {/* Werbefilm (Wistia) */}
             <div className="relative aspect-video w-full overflow-hidden bg-muted">
               <iframe
                 src="https://fast.wistia.net/embed/iframe/x1h8o61b7b?seo=true&videoFoam=false"
@@ -164,20 +107,59 @@ export default async function HomePage() {
                 className="absolute inset-0 h-full w-full"
               />
             </div>
-          </div>
 
-          {/* 75+ Partnerbetriebe */}
-          <div className="mx-auto mt-16 flex max-w-2xl flex-col items-center gap-4 border border-border bg-card p-8 text-center sm:flex-row sm:text-left">
-            <div className="font-heading text-5xl font-bold text-signal">
-              75+
+            {/* Text + CTA */}
+            <div className="text-center lg:text-left">
+              <ul className="space-y-1.5 text-left">
+                {HERO_BENEFITS.map((benefit) => (
+                  <li key={benefit} className="flex items-start gap-3">
+                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-icon-bg text-signal">
+                      <Check className="size-4" />
+                    </span>
+                    <span className="text-foreground">{benefit}</span>
+                  </li>
+                ))}
+              </ul>
+              <div className="mt-5 flex flex-col items-center gap-3 sm:flex-row lg:justify-start">
+                <Button
+                  size="lg"
+                  render={
+                    <Link href="/kontakt">
+                      Jetzt kostenlose Anfrage stellen
+                      <ArrowRight className="size-4" />
+                    </Link>
+                  }
+                />
+              </div>
+
+              {/* Google Bewertungen (Elfsight) – direkt unter dem CTA */}
+              <div className="mt-6 flex justify-center lg:justify-start">
+                <div
+                  className="elfsight-app-3b70a598-9f73-4528-87fb-305d274a75ba"
+                  data-elfsight-app-lazy
+                />
+              </div>
             </div>
-            <div>
-              <div className="font-semibold">Partnerbetriebe</div>
-              <p className="mt-1 text-sm text-muted-foreground">
-                Aktuell helfen wir über 75 Partnerfirmen im Mittelstand bei der
-                Vermarktung durch Werbevideos.
-              </p>
-            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Google Reviews (Elfsight) */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Das sagen unsere Kunden
+            </h2>
+            <p className="mx-auto mt-4 text-lg text-muted-foreground">
+              Echte Google-Bewertungen aus über 75 Partnerbetrieben.
+            </p>
+          </div>
+          <div className="mt-12">
+            <div
+              className="elfsight-app-5f36dae6-b272-4162-b8ea-0cd8a57ce074"
+              data-elfsight-app-lazy
+            />
           </div>
         </div>
       </section>
@@ -218,14 +200,14 @@ export default async function HomePage() {
           </p>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {CASES.map((c) => (
+          {caseStudies.map((c) => (
             <div
-              key={c.name}
+              key={c._id}
               className="flex flex-col border border-border bg-card p-6"
             >
               <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
                 <MapPin className="size-3.5 text-signal" />
-                {c.location} · {c.category}
+                {c.location} · {c.branch}
               </div>
               <h3 className="mt-3 text-lg font-semibold">{c.name}</h3>
               <div className="text-sm text-muted-foreground">{c.role}</div>
@@ -258,14 +240,26 @@ export default async function HomePage() {
             </p>
           </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-3 lg:grid-cols-5">
-            {TEAM.map((m) => (
+            {team.map((m) => (
               <div
-                key={m.name}
+                key={m._id}
                 className="flex flex-col items-center border border-border bg-card p-6 text-center"
               >
-                <div className="flex size-16 items-center justify-center bg-signal font-heading text-lg font-bold text-[color:var(--signal-foreground)]">
-                  {initials(m.name)}
-                </div>
+                {m.imageUrl ? (
+                  <div className="relative size-20 overflow-hidden bg-muted">
+                    <Image
+                      src={m.imageUrl}
+                      alt={m.name}
+                      fill
+                      sizes="80px"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="flex size-20 items-center justify-center bg-signal font-heading text-lg font-bold text-white">
+                    {initials(m.name)}
+                  </div>
+                )}
                 <div className="mt-4 font-semibold">{m.name}</div>
                 <div className="text-sm text-muted-foreground">{m.role}</div>
               </div>

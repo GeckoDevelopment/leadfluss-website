@@ -57,6 +57,18 @@ export default function KontaktPage() {
                 </li>
               ))}
             </ul>
+
+            {/* Google Maps – Standort Leadfluss */}
+            <div className="mt-10 aspect-[4/3] w-full overflow-hidden border border-border bg-muted">
+              <iframe
+                loading="lazy"
+                src="https://www.google.com/maps/embed?origin=mfe&pb=!1m4!2m1!1sLeadfluss!5e0!6i12"
+                title="Leadfluss"
+                aria-label="Leadfluss"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="h-full w-full border-0"
+              />
+            </div>
           </div>
           <div className="border border-border bg-card p-6 sm:p-8">
             <ContactForm />
