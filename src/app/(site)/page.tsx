@@ -37,22 +37,26 @@ const PROBLEMS: Problem[] = [
   {
     icon: ThumbsDown,
     title: "Schlechte Leadqualität bei Portalen",
-    text: "Teuer eingekaufte Leads, die selten zu echten Aufträgen führen.",
+    text: "Du erhältst Leads, bei denen vor dir schon fünf andere angerufen haben.",
+    bg: "/problems/leadqualitaet.png",
   },
   {
     icon: Activity,
     title: "Auftragslage schwankt ständig",
-    text: "Mal Überstunden, mal Funkstille – keine planbare Auslastung.",
+    text: "Mal laufen dir die Kunden die Tür ein, mal wochenlang niemand.",
+    bg: "/problems/auftragslage.png",
   },
   {
     icon: TrendingDown,
     title: "Aufträge kommen, aber schlechte Marge",
-    text: "Viel Aufwand, wenig Ertrag – der Preiskampf drückt die Gewinne.",
+    text: "Du erhältst zwar regelmäßig Aufträge, aber verdienst effektiv kein Geld.",
+    bg: "/problems/marge.png",
   },
   {
     icon: UserX,
-    title: "Findest kein kompetentes Personal",
-    text: "Offene Stellen bleiben unbesetzt, gute Fachkräfte sind rar.",
+    title: "Unbesetzte Stellen im Unternehmen",
+    text: "Schlüsselrollen bleiben bei dir unbesetzt, weil passende Kandidaten fehlen.",
+    bg: "/problems/personal.png",
   },
 ];
 
@@ -165,7 +169,7 @@ export default async function HomePage() {
             {PROBLEMS.map((p) => (
               <div
                 key={p.title}
-                className="relative flex min-h-56 items-start gap-4 overflow-hidden border border-border border-l-4 border-l-red-500 bg-red-50/60 p-7"
+                className="relative flex min-h-56 items-start gap-4 overflow-hidden border border-border border-l-4 border-l-red-500 bg-card p-7"
               >
                 {p.bg && (
                   <Image
@@ -173,7 +177,7 @@ export default async function HomePage() {
                     alt=""
                     fill
                     sizes="(max-width: 640px) 100vw, 600px"
-                    className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.08]"
+                    className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.22]"
                   />
                 )}
                 <div className="relative z-10 flex items-start gap-4">
