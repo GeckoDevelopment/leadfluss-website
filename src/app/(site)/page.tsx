@@ -85,6 +85,17 @@ export default async function HomePage() {
 
       {/* Hero */}
       <section className="relative overflow-hidden border-b border-border">
+        {/* Team-Bild ganz dezent im Hintergrund */}
+        <Image
+          src="/hero-team.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="pointer-events-none absolute inset-0 -z-20 object-cover opacity-[0.16]"
+        />
+        {/* Weicher Weiß-Verlauf, damit das Bild dezent durchscheint und der Text lesbar bleibt */}
+        <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-background/55 via-background/30 to-background/85" />
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_50%_0%,color-mix(in_oklch,var(--signal),transparent_88%),transparent)]" />
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
           {/* Kopfblock über volle Breite */}
