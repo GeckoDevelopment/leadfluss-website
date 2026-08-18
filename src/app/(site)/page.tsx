@@ -169,7 +169,7 @@ export default async function HomePage() {
             {PROBLEMS.map((p) => (
               <div
                 key={p.title}
-                className="relative flex min-h-56 items-start gap-4 overflow-hidden border border-border border-l-4 border-l-red-500 bg-card p-7"
+                className="relative flex min-h-56 items-start gap-4 overflow-hidden border border-border border-l-4 border-l-red-500 bg-neutral-900 p-7"
               >
                 {p.bg && (
                   <Image
@@ -177,20 +177,20 @@ export default async function HomePage() {
                     alt=""
                     fill
                     sizes="(max-width: 640px) 100vw, 600px"
-                    className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.22]"
+                    className="pointer-events-none absolute inset-0 z-0 object-cover"
                   />
                 )}
+                {/* Schwarzes Overlay für Lesbarkeit der weißen Schrift */}
+                <div className="pointer-events-none absolute inset-0 z-0 bg-black/65" />
                 <div className="relative z-10 flex items-start gap-4">
-                  <span className="flex size-11 shrink-0 items-center justify-center bg-red-100 text-red-600">
+                  <span className="flex size-11 shrink-0 items-center justify-center bg-red-500/20 text-red-400">
                     <p.icon className="size-5" />
                   </span>
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground">
+                    <h3 className="text-lg font-semibold text-white">
                       {p.title}
                     </h3>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {p.text}
-                    </p>
+                    <p className="mt-1 text-sm text-white/70">{p.text}</p>
                   </div>
                 </div>
               </div>
