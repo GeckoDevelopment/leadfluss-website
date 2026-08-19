@@ -111,7 +111,7 @@ function ComparisonCard({
   const iconBg = isProblem ? "bg-red-600" : "bg-signal";
   // Problem = dunkel (weiße Schrift), Lösung = hell (schwarze Schrift).
   const baseBg = isProblem ? "bg-neutral-900" : "bg-white";
-  const overlay = isProblem ? "bg-black/70" : "bg-white/60";
+  const overlay = isProblem ? "bg-black/70" : "bg-white/70";
   const titleColor = isProblem ? "text-white" : "text-foreground";
   const textColor = isProblem ? "text-white/90" : "text-foreground";
   return (
