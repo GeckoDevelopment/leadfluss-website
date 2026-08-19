@@ -109,9 +109,14 @@ function ComparisonCard({
   const isProblem = variant === "problem";
   const accentBorder = isProblem ? "border-l-red-500" : "border-l-signal";
   const iconBg = isProblem ? "bg-red-600" : "bg-signal";
+  // Problem = dunkel (weiße Schrift), Lösung = hell (schwarze Schrift).
+  const baseBg = isProblem ? "bg-neutral-900" : "bg-white";
+  const overlay = isProblem ? "bg-black/80" : "bg-white/70";
+  const titleColor = isProblem ? "text-white" : "text-foreground";
+  const textColor = isProblem ? "text-white/80" : "text-foreground/70";
   return (
     <div
-      className={`relative flex min-h-56 items-start gap-4 overflow-hidden border border-border border-l-4 ${accentBorder} bg-neutral-900 p-7`}
+      className={`relative flex min-h-56 items-start gap-4 overflow-hidden border border-border border-l-4 ${accentBorder} ${baseBg} p-7`}
     >
       {item.bg && (
         <Image
@@ -122,8 +127,8 @@ function ComparisonCard({
           className="pointer-events-none absolute inset-0 z-0 object-cover"
         />
       )}
-      {/* Schwarzes Overlay für Lesbarkeit der weißen Schrift */}
-      <div className="pointer-events-none absolute inset-0 z-0 bg-black/80" />
+      {/* Overlay für Lesbarkeit (dunkel bei Problemen, hell bei Lösungen) */}
+      <div className={`pointer-events-none absolute inset-0 z-0 ${overlay}`} />
       <div className="relative z-10 flex items-start gap-4">
         <span
           className={`flex size-12 shrink-0 items-center justify-center text-white ${iconBg}`}
@@ -131,10 +136,10 @@ function ComparisonCard({
           <item.icon className="size-6" />
         </span>
         <div>
-          <h3 className="text-xl font-semibold text-white sm:text-2xl">
+          <h3 className={`text-xl font-semibold sm:text-2xl ${titleColor}`}>
             {item.title}
           </h3>
-          <p className="mt-1.5 text-lg text-white/80">{item.text}</p>
+          <p className={`mt-1.5 text-lg ${textColor}`}>{item.text}</p>
         </div>
       </div>
     </div>
