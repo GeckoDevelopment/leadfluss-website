@@ -50,7 +50,7 @@ const COMPARISON: { problem: CompareItem; solution: CompareItem }[] = [
     },
     solution: {
       icon: Sparkles,
-      title: "System für exklusive & vorqualifizierte Leads",
+      title: "System für exklusive Kundenanfragen",
       text: "Du wirst die erste Anlaufstelle für zahlungskräftige Kunden in deiner Region.",
       bg: "/solutions/leads.png",
     },
@@ -123,7 +123,7 @@ function ComparisonCard({
         />
       )}
       {/* Schwarzes Overlay für Lesbarkeit der weißen Schrift */}
-      <div className="pointer-events-none absolute inset-0 z-0 bg-black/65" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-black/55" />
       <div className="relative z-10 flex items-start gap-4">
         <span
           className={`flex size-12 shrink-0 items-center justify-center text-white ${iconBg}`}
