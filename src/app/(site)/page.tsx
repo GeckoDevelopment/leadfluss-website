@@ -203,51 +203,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Problemsituation (rot signalisiert) */}
-      <section className="border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-wider text-red-600">
-              Kennst du das?
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl xl:whitespace-nowrap">
-              Diese Probleme kosten dich täglich Umsatz
-            </h2>
-          </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {PROBLEMS.map((p) => (
-              <div
-                key={p.title}
-                className="relative flex min-h-56 items-start gap-4 overflow-hidden border border-border border-l-4 border-l-red-500 bg-neutral-900 p-7"
-              >
-                {p.bg && (
-                  <Image
-                    src={p.bg}
-                    alt=""
-                    fill
-                    sizes="(max-width: 640px) 100vw, 600px"
-                    className="pointer-events-none absolute inset-0 z-0 object-cover"
-                  />
-                )}
-                {/* Schwarzes Overlay für Lesbarkeit der weißen Schrift */}
-                <div className="pointer-events-none absolute inset-0 z-0 bg-black/65" />
-                <div className="relative z-10 flex items-start gap-4">
-                  <span className="flex size-12 shrink-0 items-center justify-center bg-red-600 text-white">
-                    <p.icon className="size-6" />
-                  </span>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white sm:text-2xl">
-                      {p.title}
-                    </h3>
-                    <p className="mt-1.5 text-lg text-white/80">{p.text}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Lösung */}
       <section className="border-b border-border bg-muted/40">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
@@ -384,6 +339,51 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Problemsituation (rot signalisiert) */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wider text-red-600">
+              Kennst du das?
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl xl:whitespace-nowrap">
+              Diese Probleme kosten dich täglich Umsatz
+            </h2>
+          </div>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
+            {PROBLEMS.map((p) => (
+              <div
+                key={p.title}
+                className="relative flex min-h-56 items-start gap-4 overflow-hidden border border-border border-l-4 border-l-red-500 bg-neutral-900 p-7"
+              >
+                {p.bg && (
+                  <Image
+                    src={p.bg}
+                    alt=""
+                    fill
+                    sizes="(max-width: 640px) 100vw, 600px"
+                    className="pointer-events-none absolute inset-0 z-0 object-cover"
+                  />
+                )}
+                {/* Schwarzes Overlay für Lesbarkeit der weißen Schrift */}
+                <div className="pointer-events-none absolute inset-0 z-0 bg-black/65" />
+                <div className="relative z-10 flex items-start gap-4">
+                  <span className="flex size-12 shrink-0 items-center justify-center bg-red-600 text-white">
+                    <p.icon className="size-6" />
+                  </span>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white sm:text-2xl">
+                      {p.title}
+                    </h3>
+                    <p className="mt-1.5 text-lg text-white/80">{p.text}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Standort Leipzig */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
         <div className="grid items-center gap-12 lg:grid-cols-2">
@@ -419,13 +419,12 @@ export default async function HomePage() {
             </div>
           </div>
           <div className="relative aspect-[4/3] w-full overflow-hidden border border-border bg-muted">
-            <iframe
-              src="https://maps.google.com/maps?q=R%C3%BCckertstra%C3%9Fe+4,+04157+Leipzig&t=m&z=15&output=embed&iwloc=near"
-              title="Leadfluss Standort Leipzig"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="absolute inset-0 h-full w-full"
-              style={{ border: 0 }}
+            <Image
+              src="/leipzig.webp"
+              alt="Leipzig aus der Vogelperspektive mit dem Neuen Rathaus"
+              fill
+              sizes="(max-width: 1024px) 100vw, 600px"
+              className="object-cover"
             />
           </div>
         </div>
@@ -464,7 +463,20 @@ export default async function HomePage() {
       {/* Kontakt / CTA */}
       <section className="border-t border-border bg-primary text-primary-foreground">
         <div className="mx-auto max-w-5xl px-4 py-20 sm:px-6 sm:py-24">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-start">
+            {/* Links: hochkant-Karte */}
+            <div className="relative aspect-[3/4] w-full overflow-hidden border border-white/15 bg-white/5">
+              <iframe
+                src="https://maps.google.com/maps?q=Leadfluss+Leipzig&t=m&z=15&output=embed&iwloc=near"
+                title="Leadfluss Standort Leipzig"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="absolute inset-0 h-full w-full"
+                style={{ border: 0 }}
+              />
+            </div>
+
+            {/* Rechts: Text + Button, darunter die Infos */}
             <div>
               <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
                 Kontaktiere uns jetzt!
@@ -483,41 +495,41 @@ export default async function HomePage() {
                   }
                 />
               </div>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-1">
-              <div className="flex items-center gap-4 border border-white/15 p-5">
-                <Clock className="size-5 shrink-0 text-signal" />
-                <div>
-                  <div className="text-sm text-primary-foreground/60">
-                    Geschäftszeiten
+              <div className="mt-8 grid gap-4">
+                <div className="flex items-center gap-4 border border-white/15 p-5">
+                  <Clock className="size-5 shrink-0 text-signal" />
+                  <div>
+                    <div className="text-sm text-primary-foreground/60">
+                      Geschäftszeiten
+                    </div>
+                    <div className="font-medium">Mo–Fr, 8:00 bis 18:00 Uhr</div>
                   </div>
-                  <div className="font-medium">Mo–Fr, 8:00 bis 18:00 Uhr</div>
                 </div>
+                <a
+                  href="mailto:info@leadfluss.de"
+                  className="flex items-center gap-4 border border-white/15 p-5 transition-colors hover:border-signal"
+                >
+                  <Mail className="size-5 shrink-0 text-signal" />
+                  <div>
+                    <div className="text-sm text-primary-foreground/60">
+                      E-Mail
+                    </div>
+                    <div className="font-medium">info@leadfluss.de</div>
+                  </div>
+                </a>
+                <a
+                  href="tel:+4934160823338"
+                  className="flex items-center gap-4 border border-white/15 p-5 transition-colors hover:border-signal"
+                >
+                  <Phone className="size-5 shrink-0 text-signal" />
+                  <div>
+                    <div className="text-sm text-primary-foreground/60">
+                      Telefon
+                    </div>
+                    <div className="font-medium">+49 341 60823338</div>
+                  </div>
+                </a>
               </div>
-              <a
-                href="mailto:info@leadfluss.de"
-                className="flex items-center gap-4 border border-white/15 p-5 transition-colors hover:border-signal"
-              >
-                <Mail className="size-5 shrink-0 text-signal" />
-                <div>
-                  <div className="text-sm text-primary-foreground/60">
-                    E-Mail
-                  </div>
-                  <div className="font-medium">info@leadfluss.de</div>
-                </div>
-              </a>
-              <a
-                href="tel:+4934160823338"
-                className="flex items-center gap-4 border border-white/15 p-5 transition-colors hover:border-signal"
-              >
-                <Phone className="size-5 shrink-0 text-signal" />
-                <div>
-                  <div className="text-sm text-primary-foreground/60">
-                    Telefon
-                  </div>
-                  <div className="font-medium">+49 341 60823338</div>
-                </div>
-              </a>
             </div>
           </div>
         </div>
