@@ -225,22 +225,28 @@ export default async function HomePage() {
       {/* Lösung */}
       <section className="border-b border-border bg-muted/40">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-wider text-signal">
-              Die Lösung
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Willst du auch täglich solche Anfragen bekommen?
             </h2>
           </div>
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
+          <div className="mx-auto mt-14 grid max-w-5xl gap-12 md:grid-cols-3">
             {SOLUTIONS.map((s) => (
-              <div key={s.title} className="border border-border bg-card p-8">
-                <span className="flex size-12 items-center justify-center bg-icon-bg text-signal">
-                  <s.icon className="size-6" />
-                </span>
-                <h3 className="mt-5 text-xl font-semibold">{s.title}</h3>
-                <p className="mt-3 text-muted-foreground">{s.text}</p>
+              <div
+                key={s.title}
+                className="flex flex-col items-center text-center"
+              >
+                {/* Platzhalter für Animation (später Lottie/Video) */}
+                <div className="flex size-28 flex-col items-center justify-center gap-1 border border-dashed border-border bg-card text-muted-foreground">
+                  <s.icon className="size-7 text-signal/70" />
+                  <span className="text-[10px] font-medium uppercase tracking-wider">
+                    Animation
+                  </span>
+                </div>
+                <h3 className="mt-6 text-2xl font-semibold">{s.title}</h3>
+                <p className="mt-3 max-w-sm text-lg text-muted-foreground">
+                  {s.text}
+                </p>
               </div>
             ))}
           </div>
