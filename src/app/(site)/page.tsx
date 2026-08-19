@@ -444,11 +444,11 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="mt-4 space-y-6">
+          <div className="mt-8">
             {COMPARISON.map((row) => (
               <div
                 key={row.problem.title}
-                className="grid items-stretch gap-4 md:grid-cols-[1fr_2.5rem_1fr]"
+                className="grid items-stretch gap-4 md:grid-cols-[1fr_2.5rem_1fr] [&:not(:first-child)]:mt-8 [&:not(:first-child)]:border-t [&:not(:first-child)]:border-border [&:not(:first-child)]:pt-8 md:[&:not(:first-child)]:mt-6 md:[&:not(:first-child)]:border-t-0 md:[&:not(:first-child)]:pt-0"
               >
                 <ComparisonCard item={row.problem} variant="problem" />
                 <div className="flex items-center justify-center text-signal">

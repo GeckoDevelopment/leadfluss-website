@@ -81,7 +81,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-muted/40">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
           <div className="max-w-xs">
             <Logo />
             <p className="mt-4 text-sm text-muted-foreground">
@@ -119,11 +119,12 @@ export function Footer() {
               ))}
             </div>
           </div>
-          {FOOTER_COLUMNS.map((col) => (
-            <div key={col.title}>
-              <h4 className="text-sm font-semibold text-foreground">
-                {col.title}
-              </h4>
+          <div className="grid grid-cols-3 gap-x-4 gap-y-8 lg:contents">
+            {FOOTER_COLUMNS.map((col) => (
+              <div key={col.title}>
+                <h4 className="text-sm font-semibold text-foreground">
+                  {col.title}
+                </h4>
               <ul className="mt-4 space-y-2.5">
                 {col.links.map((link) => (
                   <li key={link.href}>
@@ -148,7 +149,8 @@ export function Footer() {
                 ))}
               </ul>
             </div>
-          ))}
+            ))}
+          </div>
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
