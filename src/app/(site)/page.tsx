@@ -72,7 +72,7 @@ const SOLUTIONS = [
   {
     icon: UserCheck,
     title: "Passende Fachkräfte finden",
-    text: "Mit unserer RVM Methode wirst du lokal als attraktiver Arbeitgeber wahrgenommen, sodass du selbst schwierige Stellen wie zum Beispiel Dachdecker oder Heizungsmonteure besetzen kannst.",
+    text: "Mit unserer RVM Methode wirst du lokal als attraktiver Arbeitgeber wahrgenommen, sodass du selbst schwierige Stellen wie Dachdecker, Elektriker oder Heizungsmonteure besetzen wirst.",
   },
   {
     icon: Megaphone,
