@@ -7,9 +7,7 @@ import {
   Activity,
   TrendingDown,
   UserX,
-  BadgeEuro,
-  UserCheck,
-  Megaphone,
+  MessageSquare,
   MapPin,
   Phone,
   Mail,
@@ -65,21 +63,49 @@ const PROBLEMS: Problem[] = [
 
 const SOLUTIONS = [
   {
-    icon: BadgeEuro,
     title: "Kaufkräftige Kunden gewinnen",
     text: "Wir machen dich in deiner Region online so bekannt, dass sich kaufbereite Interessenten von selbst bei dir melden. Das Budget klären wir vorab – damit du dich nur noch um die lukrativen Aufträge kümmerst.",
+    notif: {
+      app: "Leadfluss · Webseiten-Formular",
+      body: "Neue Anfrage für ein Terrassendach · Budget 32.000 €",
+    },
   },
   {
-    icon: UserCheck,
     title: "Passende Fachkräfte finden",
     text: "Mit unserer RVM Methode wirst du lokal als attraktiver Arbeitgeber wahrgenommen, sodass du selbst schwierige Stellen wie Dachdecker, Elektriker oder Heizungsmonteure besetzen wirst.",
+    notif: {
+      app: "Leadfluss · Karriere-Seite",
+      body: "Neue Bewerbung · Elektriker (7 Jahre Erfahrung)",
+    },
   },
   {
-    icon: Megaphone,
     title: "Regionale Bekanntheit",
     text: "Wir sorgen dafür, dass du systematisch in deiner Region als bester Anbieter für deine Produktkategorie angesehen wirst, sodass die hochwertigsten Kunden als allererstes bei dir anfragen.",
+    notif: {
+      app: "Leadfluss · Webseiten-Formular",
+      body: "Neue Anfrage über die Webseite für eine Haustür",
+    },
   },
 ];
+
+function NotificationCard({ app, body }: { app: string; body: string }) {
+  return (
+    <div className="flex items-start gap-3 rounded-[18px] bg-muted p-4 shadow-sm ring-1 ring-black/5">
+      <span className="flex size-11 shrink-0 items-center justify-center rounded-[13px] bg-signal text-white">
+        <MessageSquare className="size-6" />
+      </span>
+      <div className="min-w-0 flex-1">
+        <div className="flex items-baseline justify-between gap-2">
+          <span className="truncate text-sm font-semibold text-foreground">
+            {app}
+          </span>
+          <span className="shrink-0 text-xs text-muted-foreground">jetzt</span>
+        </div>
+        <p className="mt-0.5 text-sm text-muted-foreground">{body}</p>
+      </div>
+    </div>
+  );
+}
 
 function initials(name: string) {
   return name
@@ -230,25 +256,26 @@ export default async function HomePage() {
               Willst du auch täglich solche Anfragen bekommen?
             </h2>
           </div>
-          <div className="mx-auto mt-14 grid max-w-5xl gap-12 md:grid-cols-3">
-            {SOLUTIONS.map((s) => (
-              <div
-                key={s.title}
-                className="flex flex-col items-center text-center"
-              >
-                {/* Platzhalter für Animation (später Lottie/Video) */}
-                <div className="flex size-28 flex-col items-center justify-center gap-1 border border-dashed border-border bg-card text-muted-foreground">
-                  <s.icon className="size-7 text-signal/70" />
-                  <span className="text-[10px] font-medium uppercase tracking-wider">
-                    Animation
-                  </span>
+          <div className="mx-auto mt-16 max-w-5xl space-y-16">
+            {SOLUTIONS.map((s, i) => {
+              const notifFirst = i % 2 === 1; // 2. Reihe: Benachrichtigung links
+              return (
+                <div
+                  key={s.title}
+                  className="grid items-center gap-8 md:grid-cols-2 md:gap-12"
+                >
+                  <div className={notifFirst ? "md:order-2" : undefined}>
+                    <h3 className="text-2xl font-semibold">{s.title}</h3>
+                    <p className="mt-3 text-lg text-muted-foreground">
+                      {s.text}
+                    </p>
+                  </div>
+                  <div className={notifFirst ? "md:order-1" : undefined}>
+                    <NotificationCard {...s.notif} />
+                  </div>
                 </div>
-                <h3 className="mt-6 text-2xl font-semibold">{s.title}</h3>
-                <p className="mt-3 max-w-sm text-lg text-muted-foreground">
-                  {s.text}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
