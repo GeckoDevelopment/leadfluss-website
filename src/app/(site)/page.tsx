@@ -66,7 +66,7 @@ const COMPARISON: { problem: CompareItem; solution: CompareItem }[] = [
       icon: CalendarCheck,
       title: "Planbare und konstante Auftragsgewinnung",
       text: "Mit unserem System bist du dauerhaft Monate im Voraus ausgebucht.",
-      bg: "/solutions/auftraege.png",
+      bg: "/solutions/auftraege.jpg",
     },
   },
   {
