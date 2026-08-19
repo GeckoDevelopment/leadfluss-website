@@ -7,6 +7,9 @@ import {
   Activity,
   TrendingDown,
   UserX,
+  BadgeEuro,
+  UserCheck,
+  Megaphone,
   MapPin,
   Phone,
   Mail,
@@ -57,6 +60,24 @@ const PROBLEMS: Problem[] = [
     title: "Unbesetzte Stellen im Unternehmen",
     text: "Schlüsselrollen bleiben bei dir unbesetzt, weil passende Kandidaten fehlen.",
     bg: "/problems/personal.png",
+  },
+];
+
+const SOLUTIONS = [
+  {
+    icon: BadgeEuro,
+    title: "Kaufkräftige Kunden gewinnen",
+    text: "Wir machen dich in deiner Region online so bekannt, dass sich kaufbereite Interessenten von selbst bei dir melden. Das Budget klären wir vorab – damit du dich nur noch um die lukrativen Aufträge kümmerst.",
+  },
+  {
+    icon: UserCheck,
+    title: "Passende Fachkräfte finden",
+    text: "Wir finden wechselbereite Fachkräfte aus deiner Region und sprechen sie gezielt an. Zu dir kommen nur passende Bewerber – denn ihre Erfahrung fragen wir schon vorab ab.",
+  },
+  {
+    icon: Megaphone,
+    title: "Regionale Bekanntheit",
+    text: "Wir setzen auf eine eigene Software, die wir speziell für Handwerksbetriebe entwickelt haben. So wird deine Marke in der Region bekannter – und du bekommst regelmäßig hochwertige Kundenanfragen.",
   },
 ];
 
@@ -193,6 +214,31 @@ export default async function HomePage() {
                     <p className="mt-1.5 text-lg text-white/80">{p.text}</p>
                   </div>
                 </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Lösung */}
+      <section className="border-b border-border bg-muted/40">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-wider text-signal">
+              Die Lösung
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+              Willst du auch täglich solche Anfragen bekommen?
+            </h2>
+          </div>
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {SOLUTIONS.map((s) => (
+              <div key={s.title} className="border border-border bg-card p-8">
+                <span className="flex size-12 items-center justify-center bg-icon-bg text-signal">
+                  <s.icon className="size-6" />
+                </span>
+                <h3 className="mt-5 text-xl font-semibold">{s.title}</h3>
+                <p className="mt-3 text-muted-foreground">{s.text}</p>
               </div>
             ))}
           </div>
