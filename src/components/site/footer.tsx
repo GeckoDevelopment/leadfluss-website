@@ -85,8 +85,8 @@ export function Footer() {
           <div className="max-w-xs">
             <Logo />
             <p className="mt-4 text-sm text-muted-foreground">
-              Videomarketing für den Mittelstand – professionelle Werbevideos,
-              die neue Kunden gewinnen und Arbeitsplätze attraktiver machen.
+              Wachstum für deinen Fachbetrieb durch einen starken Leadfluss.
+              Buche jetzt dein kostenfreies Erstgespräch!
             </p>
             <div className="mt-5 space-y-1 text-sm text-muted-foreground">
               <p>Standort Leipzig</p>
