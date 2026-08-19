@@ -320,29 +320,31 @@ export default async function HomePage() {
               in über 100 Projekten bewiesen.
             </p>
           </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-3 lg:grid-cols-5">
+          <div className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:grid-cols-5">
             {team.map((m) => (
               <div
                 key={m._id}
-                className="flex flex-col items-center border border-border bg-card p-6 text-center"
+                className="border border-border bg-card"
               >
                 {m.imageUrl ? (
-                  <div className="relative size-20 overflow-hidden bg-muted">
+                  <div className="relative aspect-[4/5] w-full overflow-hidden bg-muted">
                     <Image
                       src={m.imageUrl}
                       alt={m.name}
                       fill
-                      sizes="80px"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                       className="object-cover"
                     />
                   </div>
                 ) : (
-                  <div className="flex size-20 items-center justify-center bg-signal font-heading text-lg font-bold text-white">
+                  <div className="flex aspect-[4/5] w-full items-center justify-center bg-signal font-heading text-4xl font-bold text-white">
                     {initials(m.name)}
                   </div>
                 )}
-                <div className="mt-4 font-semibold">{m.name}</div>
-                <div className="text-sm text-muted-foreground">{m.role}</div>
+                <div className="p-4 text-center">
+                  <div className="font-semibold">{m.name}</div>
+                  <div className="text-sm text-muted-foreground">{m.role}</div>
+                </div>
               </div>
             ))}
           </div>
