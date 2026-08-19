@@ -89,6 +89,8 @@ function initials(name: string) {
     .join("");
 }
 
+export const revalidate = 60;
+
 export default async function HomePage() {
   const [posts, team, caseStudies] = await Promise.all([
     getPosts(3),
