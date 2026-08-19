@@ -61,7 +61,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button render={<Link href="/analyse">Leadfluss anfragen</Link>} />
+          <Button render={<Link href="/anfrage">Leadfluss anfragen</Link>} />
         </div>
 
         <button
@@ -108,7 +108,7 @@ export function Navbar() {
           <Button
             className="mt-2 w-full"
             render={
-              <Link href="/analyse" onClick={() => setOpen(false)}>
+              <Link href="/anfrage" onClick={() => setOpen(false)}>
                 Leadfluss anfragen
               </Link>
             }
