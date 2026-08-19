@@ -123,7 +123,7 @@ function ComparisonCard({
         />
       )}
       {/* Schwarzes Overlay für Lesbarkeit der weißen Schrift */}
-      <div className="pointer-events-none absolute inset-0 z-0 bg-black/70" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-black/80" />
       <div className="relative z-10 flex items-start gap-4">
         <span
           className={`flex size-12 shrink-0 items-center justify-center text-white ${iconBg}`}
