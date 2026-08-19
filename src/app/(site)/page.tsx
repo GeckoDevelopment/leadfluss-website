@@ -113,7 +113,7 @@ function ComparisonCard({
   const baseBg = isProblem ? "bg-neutral-900" : "bg-white";
   const overlay = isProblem ? "bg-black/70" : "bg-white/60";
   const titleColor = isProblem ? "text-white" : "text-foreground";
-  const textColor = isProblem ? "text-white/80" : "text-foreground/70";
+  const textColor = isProblem ? "text-white/90" : "text-foreground";
   return (
     <div
       className={`relative flex min-h-56 items-start gap-4 overflow-hidden border border-border border-l-4 ${accentBorder} ${baseBg} p-7`}
