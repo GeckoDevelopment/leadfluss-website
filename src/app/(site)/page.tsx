@@ -393,45 +393,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Rezensionen (Google, via Elfsight) */}
-      <section className="border-t border-border">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-          <div className="max-w-2xl">
-            <p className="text-sm font-semibold uppercase tracking-wider text-signal">
-              Rezensionen
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              Rezensionen, die für Leadfluss sprechen
-            </h2>
-            <p className="mt-4 text-lg text-muted-foreground">
-              Im Laufe der letzten Jahre durften wir eng mit dutzenden
-              Unternehmen aus dem Mittelstand zusammenarbeiten. Hier teilen
-              einige ihre persönliche Erfahrung in der Zusammenarbeit mit uns.
-              Überzeuge dich selbst.
-            </p>
-          </div>
-          {/* Elfsight platform.js einmal laden – bedient beide Widgets. */}
-          <Script
-            src="https://elfsightcdn.com/platform.js"
-            strategy="afterInteractive"
-          />
-          {/* Zusammenfassung: Bewertungsschnitt + Anzahl */}
-          <div className="mt-10">
-            <div
-              className="elfsight-app-3b70a598-9f73-4528-87fb-305d274a75ba"
-              data-elfsight-app-lazy=""
-            />
-          </div>
-          {/* Letzte positive Rezensionen */}
-          <div className="mt-8">
-            <div
-              className="elfsight-app-5f36dae6-b272-4162-b8ea-0cd8a57ce074"
-              data-elfsight-app-lazy=""
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Blog-Teaser */}
       {posts.length > 0 && (
         <section className="border-t border-border bg-muted/40">
