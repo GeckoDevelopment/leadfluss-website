@@ -77,7 +77,7 @@ const SOLUTIONS = [
   {
     icon: Megaphone,
     title: "Regionale Bekanntheit",
-    text: "Wir setzen auf eine eigene Software, die wir speziell für Handwerksbetriebe entwickelt haben. So wird deine Marke in der Region bekannter – und du bekommst regelmäßig hochwertige Kundenanfragen.",
+    text: "Wir sorgen dafür, dass du systematisch in deiner Region als bester Anbieter für deine Produktkategorie angesehen wirst, sodass die hochwertigsten Kunden als allererstes bei dir anfragen.",
   },
 ];
 
