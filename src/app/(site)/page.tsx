@@ -418,14 +418,15 @@ export default async function HomePage() {
               />
             </div>
           </div>
-          <div className="flex items-center justify-center border border-border bg-signal/5 p-12">
-            <div className="flex flex-col items-center gap-3 text-center">
-              <MapPin className="size-10 text-signal" />
-              <div className="font-heading text-2xl font-bold">Leipzig</div>
-              <div className="text-sm text-muted-foreground">
-                Deutschlandweit im Einsatz
-              </div>
-            </div>
+          <div className="relative aspect-[4/3] w-full overflow-hidden border border-border bg-muted">
+            <iframe
+              src="https://maps.google.com/maps?q=R%C3%BCckertstra%C3%9Fe+4,+04157+Leipzig&t=m&z=15&output=embed&iwloc=near"
+              title="Leadfluss Standort Leipzig"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="absolute inset-0 h-full w-full"
+              style={{ border: 0 }}
+            />
           </div>
         </div>
       </section>
