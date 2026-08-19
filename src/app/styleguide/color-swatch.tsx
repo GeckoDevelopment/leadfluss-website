@@ -12,7 +12,7 @@ function CopyValue({ value }: { value: string }) {
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1200);
     } catch {
-      /* Clipboard nicht verfügbar */
+      /* Clipboard unavailable */
     }
   }
 
@@ -20,7 +20,7 @@ function CopyValue({ value }: { value: string }) {
     <button
       type="button"
       onClick={copy}
-      title={`${value} kopieren`}
+      title={`Copy ${value}`}
       className="group flex w-full items-center justify-between gap-2 border border-border bg-muted/40 px-2 py-1 text-left transition-colors hover:border-signal"
     >
       <code className="text-xs text-muted-foreground">{value}</code>

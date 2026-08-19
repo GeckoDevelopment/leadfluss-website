@@ -11,23 +11,23 @@ import { Separator } from "@/components/ui/separator";
 import { ColorSwatch } from "./color-swatch";
 
 export const metadata: Metadata = {
-  title: "Styleguide",
+  title: "Style Guide",
   robots: { index: false, follow: false },
 };
 
-/* ---- Farb-Tokens ---- */
+/* ---- Color tokens ---- */
 const BRAND_COLORS = [
-  { name: "Signal-Grün", token: "--signal", hex: "#00C281", cls: "bg-signal", fg: "text-white" },
-  { name: "Signal-Foreground", token: "--signal-foreground", hex: "#05271C", cls: "bg-[var(--signal-foreground)]", fg: "text-white" },
-  { name: "Marken-Navy", token: "--foreground", hex: "#232D44", cls: "bg-foreground", fg: "text-white" },
-  { name: "Icon-Fläche", token: "--icon-bg", hex: "#E3F8EF", cls: "bg-icon-bg", fg: "text-signal" },
+  { name: "Signal Green", token: "--signal", hex: "#00C281", cls: "bg-signal", fg: "text-white" },
+  { name: "Signal Foreground", token: "--signal-foreground", hex: "#05271C", cls: "bg-[var(--signal-foreground)]", fg: "text-white" },
+  { name: "Brand Navy", token: "--foreground", hex: "#232D44", cls: "bg-foreground", fg: "text-white" },
+  { name: "Icon Surface", token: "--icon-bg", hex: "#E3F8EF", cls: "bg-icon-bg", fg: "text-signal" },
 ];
 
 const NEUTRAL_COLORS = [
   { name: "Background", token: "--background", cls: "bg-background", fg: "text-foreground", border: true },
   { name: "Card", token: "--card", cls: "bg-card", fg: "text-foreground", border: true },
   { name: "Muted", token: "--muted", cls: "bg-muted", fg: "text-foreground" },
-  { name: "Muted-Foreground", token: "--muted-foreground", cls: "bg-muted-foreground", fg: "text-white" },
+  { name: "Muted Foreground", token: "--muted-foreground", cls: "bg-muted-foreground", fg: "text-white" },
   { name: "Secondary", token: "--secondary", cls: "bg-secondary", fg: "text-secondary-foreground" },
   { name: "Border", token: "--border", cls: "bg-border", fg: "text-foreground" },
   { name: "Primary", token: "--primary", cls: "bg-primary", fg: "text-primary-foreground" },
@@ -61,7 +61,7 @@ function Section({
 export default function StyleguidePage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
-      {/* Kopf */}
+      {/* Header */}
       <header>
         <div className="flex items-center justify-between">
           <Logo />
@@ -69,15 +69,15 @@ export default function StyleguidePage() {
             href="/"
             className="text-sm font-medium text-muted-foreground hover:text-foreground"
           >
-            ← Zur Website
+            ← Back to site
           </Link>
         </div>
         <h1 className="mt-10 text-4xl font-bold tracking-tight sm:text-5xl">
-          Styleguide
+          Style Guide
         </h1>
         <p className="mt-3 max-w-2xl text-lg text-muted-foreground">
-          Das Design-System der Leadfluss-Website: helles Design, Signal-Grün
-          und ein bewusst kantiger Komponenten-Stil (Radius 0).
+          The design system of the Leadfluss website: a light theme, signal
+          green, and a deliberately edgy component style (radius 0).
         </p>
       </header>
 
@@ -85,7 +85,7 @@ export default function StyleguidePage() {
       <Section
         id="logo"
         title="Logo"
-        description="Die offizielle Wortmarke: grüne Doppelwelle plus Schriftzug in Marken-Navy. Auf dunklen Flächen die helle Variante nutzen."
+        description="The official wordmark: green double wave plus lettering in brand navy. Use the light variant on dark surfaces."
       >
         <div className="grid gap-6 sm:grid-cols-2">
           <div className="flex items-center justify-center border border-border bg-card p-10">
@@ -97,19 +97,21 @@ export default function StyleguidePage() {
         </div>
       </Section>
 
-      {/* Farben */}
+      {/* Colors */}
       <Section
-        id="farben"
-        title="Farben"
-        description="Alle Farben liegen als CSS-Variablen in globals.css. Grün ist die Signalfarbe für CTAs und Akzente, Navy die Textfarbe."
+        id="colors"
+        title="Colors"
+        description="All colors live as CSS variables in globals.css. Green is the signal color for CTAs and accents, navy is the text color."
       >
-        <h3 className="mb-4 text-lg font-semibold">Markenfarben</h3>
+        <h3 className="mb-4 text-lg font-semibold">Brand colors</h3>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {BRAND_COLORS.map((c) => (
             <ColorSwatch key={c.token} {...c} />
           ))}
         </div>
-        <h3 className="mb-4 mt-10 text-lg font-semibold">Neutrale & semantische Farben</h3>
+        <h3 className="mb-4 mt-10 text-lg font-semibold">
+          Neutral &amp; semantic colors
+        </h3>
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {NEUTRAL_COLORS.map((c) => (
             <ColorSwatch key={c.token} {...c} />
@@ -117,11 +119,11 @@ export default function StyleguidePage() {
         </div>
       </Section>
 
-      {/* Typografie */}
+      {/* Typography */}
       <Section
-        id="typografie"
-        title="Typografie"
-        description="Jost für die gesamte Website – Headlines und Fließtext."
+        id="typography"
+        title="Typography"
+        description="Jost across the entire site – headlines and body text."
       >
         <div className="space-y-6 border border-border bg-card p-8">
           <div>
@@ -129,7 +131,7 @@ export default function StyleguidePage() {
               font-heading · Jost · H1
             </span>
             <p className="font-heading text-5xl font-bold tracking-tight">
-              Planbar neue Kunden
+              Predictable new customers
             </p>
           </div>
           <div>
@@ -137,7 +139,7 @@ export default function StyleguidePage() {
               font-heading · Jost · H2
             </span>
             <p className="font-heading text-3xl font-bold tracking-tight">
-              Mit Videomarketing zur Nummer 1
+              Become number one with video marketing
             </p>
           </div>
           <div>
@@ -145,7 +147,7 @@ export default function StyleguidePage() {
               font-heading · Jost · H3
             </span>
             <p className="font-heading text-xl font-semibold">
-              Ein System, das Anfragen liefert
+              A system that delivers enquiries
             </p>
           </div>
           <Separator />
@@ -154,8 +156,8 @@ export default function StyleguidePage() {
               font-sans · Jost · Body (large)
             </span>
             <p className="text-lg text-muted-foreground">
-              Dank professionellen Werbevideos wird dein Angebot interessanter
-              für Neukunden und deine Arbeitsplätze attraktiver für Mitarbeiter.
+              Professional promotional videos make your offer more appealing to
+              new customers and your jobs more attractive to employees.
             </p>
           </div>
           <div>
@@ -163,20 +165,20 @@ export default function StyleguidePage() {
               font-sans · Jost · Body
             </span>
             <p className="text-foreground/90">
-              Wir reden nicht über Klicks und Reichweite, sondern über das, was
-              zählt: qualifizierte Anfragen, die zu Aufträgen werden.
+              We don&apos;t talk about clicks and reach, but about what counts:
+              qualified enquiries that turn into orders.
             </p>
           </div>
           <div>
             <span className="text-xs text-muted-foreground">Small / Muted</span>
             <p className="text-sm text-muted-foreground">
-              Kostenloses Erstgespräch · Keine langfristige Bindung
+              Free initial consultation · No long-term commitment
             </p>
           </div>
           <div>
             <span className="text-xs text-muted-foreground">Eyebrow / Label</span>
             <p className="text-sm font-semibold uppercase tracking-wider text-signal">
-              Leistungen
+              Services
             </p>
           </div>
         </div>
@@ -186,7 +188,7 @@ export default function StyleguidePage() {
       <Section
         id="buttons"
         title="Buttons"
-        description="Kantig (kein Rundung), weiße Schrift auf Signal-Grün. Varianten und Größen."
+        description="Edgy (no rounding), white text on signal green. Variants and sizes."
       >
         <div className="space-y-8 border border-border bg-card p-8">
           <div className="flex flex-wrap items-center gap-4">
@@ -209,12 +211,12 @@ export default function StyleguidePage() {
           <Separator />
           <div className="flex flex-wrap items-center gap-4">
             <Button>
-              Jetzt anfragen
+              Request now
               <ArrowRight className="size-4" />
             </Button>
             <Button variant="outline">
               <Play className="size-4" />
-              Video ansehen
+              Watch video
             </Button>
           </div>
         </div>
@@ -224,32 +226,32 @@ export default function StyleguidePage() {
       <Section id="badges" title="Badges">
         <div className="flex flex-wrap items-center gap-4 border border-border bg-card p-8">
           <Badge className="bg-signal/12 text-[color:var(--signal-foreground)]">
-            Photovoltaik
+            Photovoltaics
           </Badge>
-          <Badge>Standard</Badge>
+          <Badge>Default</Badge>
           <Badge variant="secondary">Secondary</Badge>
           <Badge variant="outline">Outline</Badge>
           <Badge className="bg-signal text-white">
             <Star className="size-3" />
-            Top-Bewertung
+            Top rating
           </Badge>
         </div>
       </Section>
 
-      {/* Formularelemente */}
-      <Section id="formulare" title="Formularelemente">
+      {/* Form elements */}
+      <Section id="forms" title="Form elements">
         <div className="grid gap-6 border border-border bg-card p-8 sm:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="sg-name">Name</Label>
-            <Input id="sg-name" placeholder="Max Mustermann" />
+            <Input id="sg-name" placeholder="John Doe" />
           </div>
           <div className="space-y-2">
-            <Label htmlFor="sg-mail">E-Mail</Label>
-            <Input id="sg-mail" type="email" placeholder="max@betrieb.de" />
+            <Label htmlFor="sg-mail">Email</Label>
+            <Input id="sg-mail" type="email" placeholder="john@company.com" />
           </div>
           <div className="space-y-2 sm:col-span-2">
-            <Label htmlFor="sg-msg">Nachricht</Label>
-            <Textarea id="sg-msg" rows={3} placeholder="Deine Nachricht …" />
+            <Label htmlFor="sg-msg">Message</Label>
+            <Textarea id="sg-msg" rows={3} placeholder="Your message …" />
           </div>
         </div>
       </Section>
@@ -258,33 +260,33 @@ export default function StyleguidePage() {
       <Section
         id="cards"
         title="Cards"
-        description="Flächen mit dünner Border, kantig, Hover-Akzent in Grün."
+        description="Surfaces with a thin border, edgy, green hover accent."
       >
         <div className="grid gap-6 sm:grid-cols-3">
           <div className="border border-border bg-card p-6 transition-colors hover:border-signal">
             <span className="flex size-11 items-center justify-center bg-icon-bg text-signal">
               <Check className="size-5" />
             </span>
-            <h3 className="mt-5 text-lg font-semibold">Feature-Card</h3>
+            <h3 className="mt-5 text-lg font-semibold">Feature card</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Icon-Fläche in Grün, Titel, Beschreibung.
+              Green icon surface, title, description.
             </p>
           </div>
           <div className="border border-border bg-card p-6">
             <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
               <Mail className="size-3.5 text-signal" />
-              Speyer · Photovoltaik
+              Speyer · Photovoltaics
             </div>
-            <h3 className="mt-3 text-lg font-semibold">Fallstudien-Card</h3>
+            <h3 className="mt-3 text-lg font-semibold">Case study card</h3>
             <div className="mt-4 border-t border-border pt-3">
               <div className="font-heading text-xl font-bold text-signal">
-                50+ Leads / Monat
+                50+ leads / month
               </div>
             </div>
           </div>
           <div className="border border-border bg-signal/5 p-6">
             <blockquote className="font-medium">
-              „Endlich planbar neue Anfragen."
+              &ldquo;Finally predictable new enquiries.&rdquo;
             </blockquote>
             <div className="mt-4 flex items-center gap-3">
               <div className="flex size-10 items-center justify-center bg-signal font-heading text-sm font-bold text-white">
@@ -292,26 +294,26 @@ export default function StyleguidePage() {
               </div>
               <div className="text-sm">
                 <div className="font-semibold">Markus K.</div>
-                <div className="text-muted-foreground">Dachdeckerbetrieb</div>
+                <div className="text-muted-foreground">Roofing company</div>
               </div>
             </div>
           </div>
         </div>
       </Section>
 
-      {/* Prinzipien */}
+      {/* Principles */}
       <Section
-        id="prinzipien"
-        title="Design-Prinzipien"
-        description="Die Regeln, die den Look ausmachen."
+        id="principles"
+        title="Design principles"
+        description="The rules that define the look."
       >
         <div className="grid gap-6 sm:grid-cols-2">
           <div className="border border-border bg-card p-6">
-            <h3 className="text-lg font-semibold">Kantig (Radius 0)</h3>
+            <h3 className="text-lg font-semibold">Edgy (radius 0)</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Alle Ecken sind rechtwinklig – <code>--radius: 0</code>. Selbst
-              <code> rounded-full</code> wird global auf eckig überschrieben.
-              Ausnahme: Porträts (<code>.avatar-round</code>).
+              All corners are square – <code>--radius: 0</code>. Even
+              <code> rounded-full</code> is globally overridden to square.
+              Exception: portraits (<code>.avatar-round</code>).
             </p>
             <div className="mt-4 flex gap-3">
               <div className="size-12 bg-signal" />
@@ -320,22 +322,22 @@ export default function StyleguidePage() {
             </div>
           </div>
           <div className="border border-border bg-card p-6">
-            <h3 className="text-lg font-semibold">Grün als Signal</h3>
+            <h3 className="text-lg font-semibold">Green as a signal</h3>
             <p className="mt-2 text-sm text-muted-foreground">
-              Grün ist reserviert für Aktionen und Akzente (CTAs, Highlights,
-              Icons). Fließtext bleibt Navy, Flächen bleiben hell und ruhig.
+              Green is reserved for actions and accents (CTAs, highlights,
+              icons). Body text stays navy, surfaces stay light and calm.
             </p>
             <div className="mt-4 flex items-center gap-3">
               <Button size="sm">CTA</Button>
-              <span className="text-sm text-signal">Akzent-Link</span>
+              <span className="text-sm text-signal">Accent link</span>
             </div>
           </div>
         </div>
       </Section>
 
       <p className="mt-14 border-t border-border pt-8 text-sm text-muted-foreground">
-        Dieser Styleguide nutzt dieselben Tokens und Komponenten wie die Website
-        und bleibt damit automatisch aktuell.
+        This style guide uses the same tokens and components as the website, so
+        it always stays up to date.
       </p>
     </div>
   );
