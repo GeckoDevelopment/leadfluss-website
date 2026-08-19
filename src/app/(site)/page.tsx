@@ -7,6 +7,10 @@ import {
   Activity,
   TrendingDown,
   UserX,
+  Sparkles,
+  CalendarCheck,
+  Filter,
+  Magnet,
   MessageSquare,
   MapPin,
   Phone,
@@ -27,39 +31,111 @@ const HERO_BENEFITS = [
   "Besetze deine wichtigsten Stellen, indem du als Top-Arbeitgeber regional hervorstichst",
 ];
 
-type Problem = {
+type CompareItem = {
   icon: typeof ThumbsDown;
   title: string;
   text: string;
   bg?: string;
 };
 
-const PROBLEMS: Problem[] = [
+// Gegenüberstellung: je Zeile links das Problem, rechts die passende Lösung.
+// Die Lösungs-Hintergründe (bg) werden noch nachgereicht → aktuell Platzhalter.
+const COMPARISON: { problem: CompareItem; solution: CompareItem }[] = [
   {
-    icon: ThumbsDown,
-    title: "Schlechte Leadqualität bei Portalen",
-    text: "Du erhältst Leads, bei denen vor dir schon fünf andere angerufen haben.",
-    bg: "/problems/leadqualitaet.png",
+    problem: {
+      icon: ThumbsDown,
+      title: "Schlechte Leadqualität bei Portalen",
+      text: "Du erhältst Leads, bei denen vor dir schon fünf andere angerufen haben.",
+      bg: "/problems/leadqualitaet.png",
+    },
+    solution: {
+      icon: Sparkles,
+      title: "System für exklusive & vorqualifizierte Leads",
+      text: "Du wirst die erste Anlaufstelle für zahlungskräftige Kunden in deiner Region.",
+    },
   },
   {
-    icon: Activity,
-    title: "Auftragslage schwankt ständig",
-    text: "Mal laufen dir die Kunden die Tür ein, mal wochenlang niemand.",
-    bg: "/problems/auftragslage.png",
+    problem: {
+      icon: Activity,
+      title: "Auftragslage schwankt ständig",
+      text: "Mal laufen dir die Kunden die Tür ein, mal wochenlang niemand.",
+      bg: "/problems/auftragslage.png",
+    },
+    solution: {
+      icon: CalendarCheck,
+      title: "Planbare und konstante Auftragsgewinnung",
+      text: "Mit unserem System bist du dauerhaft Monate im Voraus ausgebucht.",
+    },
   },
   {
-    icon: TrendingDown,
-    title: "Aufträge kommen, aber schlechte Marge",
-    text: "Du erhältst zwar regelmäßig Aufträge, aber verdienst effektiv kein Geld.",
-    bg: "/problems/marge.png",
+    problem: {
+      icon: TrendingDown,
+      title: "Aufträge kommen, aber schlechte Marge",
+      text: "Du erhältst zwar regelmäßig Aufträge, aber verdienst effektiv kein Geld.",
+      bg: "/problems/marge.png",
+    },
+    solution: {
+      icon: Filter,
+      title: "Filterprozess für Hochpreiskunden",
+      text: "Erlaube es dir aufgrund der erhöhten Nachfrage, nur lukrative Projekte anzunehmen.",
+    },
   },
   {
-    icon: UserX,
-    title: "Unbesetzte Stellen im Unternehmen",
-    text: "Schlüsselrollen bleiben bei dir unbesetzt, weil passende Kandidaten fehlen.",
-    bg: "/problems/personal.png",
+    problem: {
+      icon: UserX,
+      title: "Unbesetzte Stellen im Unternehmen",
+      text: "Schlüsselrollen bleiben bei dir unbesetzt, weil passende Kandidaten fehlen.",
+      bg: "/problems/personal.png",
+    },
+    solution: {
+      icon: Magnet,
+      title: "Firmeninterner Fachkräfte-Magnet",
+      text: "Stelle regelmäßig neue Fachkräfte in Schlüsselpositionen ein, die langfristig bleiben.",
+    },
   },
 ];
+
+function ComparisonCard({
+  item,
+  variant,
+}: {
+  item: CompareItem;
+  variant: "problem" | "solution";
+}) {
+  const isProblem = variant === "problem";
+  const accentBorder = isProblem ? "border-l-red-500" : "border-l-signal";
+  const iconBg = isProblem ? "bg-red-600" : "bg-signal";
+  return (
+    <div
+      className={`relative flex min-h-56 items-start gap-4 overflow-hidden border border-border border-l-4 ${accentBorder} bg-neutral-900 p-7`}
+    >
+      {item.bg && (
+        <Image
+          src={item.bg}
+          alt=""
+          fill
+          sizes="(max-width: 768px) 100vw, 500px"
+          className="pointer-events-none absolute inset-0 z-0 object-cover"
+        />
+      )}
+      {/* Schwarzes Overlay für Lesbarkeit der weißen Schrift */}
+      <div className="pointer-events-none absolute inset-0 z-0 bg-black/65" />
+      <div className="relative z-10 flex items-start gap-4">
+        <span
+          className={`flex size-12 shrink-0 items-center justify-center text-white ${iconBg}`}
+        >
+          <item.icon className="size-6" />
+        </span>
+        <div>
+          <h3 className="text-xl font-semibold text-white sm:text-2xl">
+            {item.title}
+          </h3>
+          <p className="mt-1.5 text-lg text-white/80">{item.text}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 const SOLUTIONS = [
   {
@@ -339,45 +415,37 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Problemsituation (rot signalisiert) */}
+      {/* Gegenüberstellung: Problem → Lösung */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-wider text-red-600">
-              Kennst du das?
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl xl:whitespace-nowrap">
-              Diese Probleme kosten dich täglich Umsatz
+          <div className="text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Diese Probleme lösen wir für dich
             </h2>
           </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2">
-            {PROBLEMS.map((p) => (
+
+          {/* Spaltenüberschriften (nur Desktop) */}
+          <div className="mt-12 hidden grid-cols-[1fr_2.5rem_1fr] gap-4 md:grid">
+            <div className="text-sm font-semibold uppercase tracking-wider text-red-600">
+              Das Problem
+            </div>
+            <div />
+            <div className="text-sm font-semibold uppercase tracking-wider text-signal">
+              Unsere Lösung
+            </div>
+          </div>
+
+          <div className="mt-4 space-y-6">
+            {COMPARISON.map((row) => (
               <div
-                key={p.title}
-                className="relative flex min-h-56 items-start gap-4 overflow-hidden border border-border border-l-4 border-l-red-500 bg-neutral-900 p-7"
+                key={row.problem.title}
+                className="grid items-stretch gap-4 md:grid-cols-[1fr_2.5rem_1fr]"
               >
-                {p.bg && (
-                  <Image
-                    src={p.bg}
-                    alt=""
-                    fill
-                    sizes="(max-width: 640px) 100vw, 600px"
-                    className="pointer-events-none absolute inset-0 z-0 object-cover"
-                  />
-                )}
-                {/* Schwarzes Overlay für Lesbarkeit der weißen Schrift */}
-                <div className="pointer-events-none absolute inset-0 z-0 bg-black/65" />
-                <div className="relative z-10 flex items-start gap-4">
-                  <span className="flex size-12 shrink-0 items-center justify-center bg-red-600 text-white">
-                    <p.icon className="size-6" />
-                  </span>
-                  <div>
-                    <h3 className="text-xl font-semibold text-white sm:text-2xl">
-                      {p.title}
-                    </h3>
-                    <p className="mt-1.5 text-lg text-white/80">{p.text}</p>
-                  </div>
+                <ComparisonCard item={row.problem} variant="problem" />
+                <div className="flex items-center justify-center text-signal">
+                  <ArrowRight className="size-6 rotate-90 md:rotate-0" />
                 </div>
+                <ComparisonCard item={row.solution} variant="solution" />
               </div>
             ))}
           </div>
