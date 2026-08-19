@@ -16,6 +16,8 @@ import {
   HeartHandshake,
   Check,
 } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 type IconType = React.ComponentType<{ className?: string }>;
 type Option = { label: string; icon: IconType };
@@ -97,9 +99,6 @@ const STEPS: Step[] = [
   },
 ];
 
-const TILE_BASE =
-  "group flex flex-col items-center justify-center gap-4 rounded-[16px] p-6 text-center ring-1 transition-all";
-
 export function Funnel() {
   const [step, setStep] = React.useState(0);
   const [answers, setAnswers] = React.useState<Record<string, string>>({});
@@ -115,9 +114,7 @@ export function Funnel() {
 
   const total = STEPS.length;
   const current = STEPS[step];
-  const progress = done
-    ? 100
-    : Math.round(((step + 1) / total) * 100);
+  const progress = done ? 100 : Math.round(((step + 1) / total) * 100);
 
   function choose(value: string) {
     setAnswers((a) => ({ ...a, [current.id]: value }));
@@ -141,14 +138,16 @@ export function Funnel() {
   const selected = answers[current.id];
 
   return (
-    <div className="relative flex min-h-screen flex-col bg-[radial-gradient(125%_125%_at_50%_0%,#1c3b30_0%,#0e211b_55%,#081310_100%)] text-white">
+    <div className="relative flex min-h-screen flex-col bg-background text-foreground">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(55%_45%_at_50%_0%,color-mix(in_oklch,var(--signal),transparent_90%),transparent)]" />
+
       {/* Kopf: Zurück */}
       <div className="px-5 py-6 sm:px-8">
         {step === 0 && !done ? (
           <Link
             href="/"
             aria-label="Zurück zur Startseite"
-            className="inline-flex text-signal transition-transform hover:-translate-x-0.5"
+            className="inline-flex text-muted-foreground transition-colors hover:text-signal"
           >
             <ArrowLeft className="size-7" />
           </Link>
@@ -157,7 +156,7 @@ export function Funnel() {
             type="button"
             onClick={() => (done ? setDone(false) : back())}
             aria-label="Zurück"
-            className="inline-flex text-signal transition-transform hover:-translate-x-0.5"
+            className="inline-flex text-muted-foreground transition-colors hover:text-signal"
           >
             <ArrowLeft className="size-7" />
           </button>
@@ -169,32 +168,31 @@ export function Funnel() {
         <div className="w-full max-w-3xl">
           {done ? (
             <div className="flex flex-col items-center text-center">
-              <span className="flex size-16 items-center justify-center rounded-[999px] bg-signal text-[color:var(--signal-foreground)]">
+              <span className="flex size-16 items-center justify-center bg-signal text-white">
                 <Check className="size-8" />
               </span>
-              <h1 className="mt-6 font-heading text-3xl font-bold sm:text-4xl">
+              <h1 className="mt-6 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
                 Danke für deine Angaben!
               </h1>
-              <p className="mt-4 max-w-md text-white/70">
+              <p className="mt-4 max-w-md text-muted-foreground">
                 Wir melden uns in Kürze telefonisch bei dir, um deine kostenlose
                 Potenzialanalyse zu besprechen.
               </p>
-              <Link
-                href="/"
-                className="mt-8 inline-flex items-center justify-center rounded-[999px] bg-white px-8 py-3.5 text-sm font-semibold uppercase tracking-wide text-neutral-900 transition-colors hover:bg-white/90"
-              >
-                Zur Startseite
-              </Link>
+              <Button
+                size="lg"
+                className="mt-8"
+                render={<Link href="/">Zur Startseite</Link>}
+              />
             </div>
           ) : (
             <>
-              <h1 className="text-center font-heading text-3xl font-bold leading-tight sm:text-4xl">
+              <h1 className="text-center font-heading text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
                 {current.lead}{" "}
                 <span className="text-signal">{current.highlight}</span>
               </h1>
 
               {current.type === "contact" && (
-                <p className="mx-auto mt-4 max-w-xl text-center text-white/70">
+                <p className="mx-auto mt-4 max-w-xl text-center text-lg text-muted-foreground">
                   {current.subtitle}
                 </p>
               )}
@@ -208,13 +206,21 @@ export function Funnel() {
                         key={opt.label}
                         type="button"
                         onClick={() => choose(opt.label)}
-                        className={`${TILE_BASE} ${
+                        className={`group flex flex-col items-center justify-center gap-4 border p-6 text-center transition-colors ${
                           isSel
-                            ? "bg-gradient-to-br from-white via-emerald-100 to-signal text-neutral-900 ring-signal"
-                            : "bg-[#0f3529] text-white ring-white/10 hover:ring-signal/60"
+                            ? "border-signal bg-signal/5"
+                            : "border-border bg-card hover:border-signal"
                         }`}
                       >
-                        <opt.icon className="size-10 sm:size-12" />
+                        <span
+                          className={`flex size-14 items-center justify-center transition-colors ${
+                            isSel
+                              ? "bg-signal text-white"
+                              : "bg-icon-bg text-signal"
+                          }`}
+                        >
+                          <opt.icon className="size-7" />
+                        </span>
                         <span className="text-sm font-semibold sm:text-base">
                           {opt.label}
                         </span>
@@ -233,27 +239,23 @@ export function Funnel() {
                         key={label}
                         type="button"
                         onClick={() => choose(label)}
-                        className={`flex items-center gap-4 rounded-[999px] px-5 py-4 text-left ring-1 transition-all ${
+                        className={`flex items-center gap-4 border px-5 py-4 text-left transition-colors ${
                           isSel
-                            ? "bg-[#134334] ring-signal"
-                            : "bg-[#0f3529] ring-white/10 hover:ring-signal/60"
+                            ? "border-signal bg-signal/5"
+                            : "border-border bg-card hover:border-signal"
                         }`}
                       >
                         <span
-                          className={`flex size-6 shrink-0 items-center justify-center rounded-[999px] border-2 ${
-                            isSel
-                              ? "border-signal"
-                              : "border-white/25"
+                          className={`flex size-5 shrink-0 items-center justify-center border-2 ${
+                            isSel ? "border-signal" : "border-border"
                           }`}
                         >
-                          {isSel && (
-                            <span className="size-3 rounded-[999px] bg-signal" />
-                          )}
+                          {isSel && <span className="size-2.5 bg-signal" />}
                         </span>
                         <span className="flex-1 text-center font-semibold">
                           {label}
                         </span>
-                        <span className="size-6 shrink-0" />
+                        <span className="size-5 shrink-0" />
                       </button>
                     );
                   })}
@@ -266,46 +268,39 @@ export function Funnel() {
                   className="mx-auto mt-10 flex max-w-xl flex-col gap-4"
                 >
                   <div className="grid gap-4 sm:grid-cols-2">
-                    <input
-                      name="name"
-                      placeholder="Name"
-                      className="rounded-[999px] bg-[#0f3529] px-6 py-4 text-white ring-1 ring-white/10 placeholder:text-white/40 focus:ring-2 focus:ring-signal focus:outline-none"
-                    />
-                    <input
+                    <Input name="name" placeholder="Name" />
+                    <Input
                       name="email"
                       type="email"
                       placeholder="Email-Adresse"
-                      className="rounded-[999px] bg-[#0f3529] px-6 py-4 text-white ring-1 ring-white/10 placeholder:text-white/40 focus:ring-2 focus:ring-signal focus:outline-none"
                     />
                   </div>
-                  <input
+                  <Input
                     name="phone"
                     type="tel"
                     required
                     placeholder="Handynummer (wo Sie am besten zu erreichen sind) *"
-                    className="rounded-[999px] bg-[#0f3529] px-6 py-4 text-white ring-1 ring-white/10 placeholder:text-white/40 focus:ring-2 focus:ring-signal focus:outline-none"
                   />
-                  <label className="flex items-center gap-3 py-1 text-sm text-white/80">
+                  <label className="flex items-center gap-3 py-1 text-sm text-muted-foreground">
                     <input
                       type="checkbox"
                       required
                       className="size-5 shrink-0 accent-[#00c281]"
                     />
-                    Hiermit akzeptiere ich die{" "}
-                    <Link
-                      href="/datenschutz"
-                      className="underline hover:text-white"
-                    >
-                      Datenschutzbestimmungen
-                    </Link>{" "}
-                    *
+                    <span>
+                      Hiermit akzeptiere ich die{" "}
+                      <Link
+                        href="/datenschutz"
+                        className="text-signal underline underline-offset-2 hover:text-foreground"
+                      >
+                        Datenschutzbestimmungen
+                      </Link>{" "}
+                      *
+                    </span>
                   </label>
-                  <button
-                    type="submit"
-                    className="mt-2 rounded-[999px] bg-white py-4 text-sm font-semibold uppercase tracking-wide text-neutral-900 transition-colors hover:bg-white/90"
-                  >
+                  <Button type="submit" size="lg" className="mt-2 w-full">
                     Nächste
-                  </button>
+                  </Button>
                 </form>
               )}
             </>
@@ -315,9 +310,9 @@ export function Funnel() {
 
       {/* Fortschrittsbalken */}
       <div className="px-4 pb-10 sm:px-6">
-        <div className="mx-auto max-w-3xl rounded-[8px] border border-white/15 p-1">
+        <div className="mx-auto max-w-3xl border border-border p-1">
           <div
-            className="h-3 rounded-[6px] bg-signal transition-all duration-300"
+            className="h-3 bg-signal transition-all duration-300"
             style={{ width: `${progress}%` }}
           />
         </div>
