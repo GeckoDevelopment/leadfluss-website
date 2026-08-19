@@ -72,7 +72,7 @@ const SOLUTIONS = [
   {
     icon: UserCheck,
     title: "Passende Fachkräfte finden",
-    text: "Wir finden wechselbereite Fachkräfte aus deiner Region und sprechen sie gezielt an. Zu dir kommen nur passende Bewerber – denn ihre Erfahrung fragen wir schon vorab ab.",
+    text: "Mit unserer RVM Methode wirst du lokal als attraktiver Arbeitgeber wahrgenommen, sodass du selbst schwierige Stellen wie zum Beispiel Dachdecker oder Heizungsmonteure besetzen kannst.",
   },
   {
     icon: Megaphone,
