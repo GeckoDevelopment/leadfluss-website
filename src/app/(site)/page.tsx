@@ -52,6 +52,7 @@ const COMPARISON: { problem: CompareItem; solution: CompareItem }[] = [
       icon: Sparkles,
       title: "System für exklusive & vorqualifizierte Leads",
       text: "Du wirst die erste Anlaufstelle für zahlungskräftige Kunden in deiner Region.",
+      bg: "/solutions/leads.png",
     },
   },
   {
@@ -65,6 +66,7 @@ const COMPARISON: { problem: CompareItem; solution: CompareItem }[] = [
       icon: CalendarCheck,
       title: "Planbare und konstante Auftragsgewinnung",
       text: "Mit unserem System bist du dauerhaft Monate im Voraus ausgebucht.",
+      bg: "/solutions/auftraege.png",
     },
   },
   {
@@ -78,6 +80,7 @@ const COMPARISON: { problem: CompareItem; solution: CompareItem }[] = [
       icon: Filter,
       title: "Filterprozess für Hochpreiskunden",
       text: "Erlaube es dir aufgrund der erhöhten Nachfrage, nur lukrative Projekte anzunehmen.",
+      bg: "/solutions/hochpreis.png",
     },
   },
   {
@@ -91,6 +94,7 @@ const COMPARISON: { problem: CompareItem; solution: CompareItem }[] = [
       icon: Magnet,
       title: "Firmeninterner Fachkräfte-Magnet",
       text: "Stelle regelmäßig neue Fachkräfte in Schlüsselpositionen ein, die langfristig bleiben.",
+      bg: "/solutions/fachkraefte.png",
     },
   },
 ];
