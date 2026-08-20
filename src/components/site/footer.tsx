@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import { Logo } from "@/components/site/logo";
+import { Button } from "@/components/ui/button";
 
 type FooterLink = { href: string; label: string; external?: boolean };
 
@@ -64,7 +66,7 @@ const FOOTER_COLUMNS: { title: string; links: FooterLink[] }[] = [
     links: [
       { href: "/blog", label: "Blog" },
       { href: "/faq", label: "FAQ" },
-      { href: "/kontakt", label: "Kontakt" },
+      { href: "/anfrage", label: "Kontakt" },
     ],
   },
   {
@@ -88,8 +90,18 @@ export function Footer() {
               Wachstum für deinen Fachbetrieb durch einen starken Leadfluss.
               Buche jetzt dein kostenfreies Erstgespräch!
             </p>
-            <div className="mt-5 space-y-1 text-sm text-muted-foreground">
-              <p>Standort Leipzig</p>
+            <Button
+              size="sm"
+              className="mt-5"
+              render={
+                <Link href="/anfrage">
+                  Erstgespräch buchen
+                  <ArrowRight />
+                </Link>
+              }
+            />
+            <div className="mt-6 space-y-1 text-sm text-muted-foreground">
+              <p>Leadfluss GmbH</p>
               <p>
                 <a
                   href="mailto:info@leadfluss.de"
@@ -103,20 +115,6 @@ export function Footer() {
                   +49 341 60823338
                 </a>
               </p>
-            </div>
-            <div className="mt-6 flex items-center gap-3">
-              {SOCIALS.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Leadfluss auf ${s.label}`}
-                  className="flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-signal hover:text-signal"
-                >
-                  <s.icon className="size-5" />
-                </a>
-              ))}
             </div>
           </div>
           <div className="grid grid-cols-3 gap-x-4 gap-y-8 lg:contents">
@@ -153,9 +151,22 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-3 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
           <p>© {year} Leadfluss. Alle Rechte vorbehalten.</p>
-          <p>Made in Germany 🇩🇪</p>
+          <div className="flex items-center gap-3">
+            {SOCIALS.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Leadfluss auf ${s.label}`}
+                className="flex size-9 items-center justify-center border border-border text-muted-foreground transition-colors hover:border-signal hover:text-signal"
+              >
+                <s.icon className="size-5" />
+              </a>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

@@ -2,37 +2,14 @@
 
 import * as React from "react";
 import Link from "next/link";
-import {
-  ArrowLeft,
-  Wrench,
-  Handshake,
-  Box,
-  HelpCircle,
-  Users,
-  Smartphone,
-  Clock,
-  TrendingUp,
-  Scale,
-  HeartHandshake,
-  Check,
-} from "lucide-react";
+import { ArrowLeft, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
-type IconType = React.ComponentType<{ className?: string }>;
-type Option = { label: string; icon: IconType };
 
 type Step =
   | {
       id: string;
-      type: "cards";
-      lead: string;
-      highlight: string;
-      options: Option[];
-    }
-  | {
-      id: string;
-      type: "list";
+      type: "choice";
       lead: string;
       highlight: string;
       options: string[];
@@ -48,46 +25,36 @@ type Step =
 const STEPS: Step[] = [
   {
     id: "betrieb",
-    type: "cards",
+    type: "choice",
     lead: "Welche Art von",
     highlight: "Betrieb bist du?",
-    options: [
-      { label: "Fachbetrieb", icon: Wrench },
-      { label: "Vertriebsfirma", icon: Handshake },
-      { label: "Händler / Hersteller", icon: Box },
-      { label: "Etwas anderes", icon: HelpCircle },
-    ],
+    options: ["Fachbetrieb", "Vertriebsfirma", "Händler / Hersteller", "Etwas anderes"],
   },
   {
     id: "auftraege",
-    type: "list",
+    type: "choice",
     lead: "Wie viele Aufträge schließt du aktuell",
     highlight: "pro Monat ab (im Schnitt)?",
     options: ["Weniger als 10", "11 bis 20", "21 bis 50", "mehr als 50"],
   },
   {
     id: "problem",
-    type: "cards",
+    type: "choice",
     lead: "Was ist dein aktuell",
     highlight: "größtes Problem?",
     options: [
-      { label: "Zu wenig Kundenanfragen", icon: Users },
-      { label: "Schlechte Anfragenqualität", icon: Smartphone },
-      { label: "Keine Zeit für Marketing", icon: Clock },
-      { label: "Etwas anderes", icon: HelpCircle },
+      "Zu wenig Kundenanfragen",
+      "Schlechte Anfragenqualität",
+      "Keine Zeit für Marketing",
+      "Etwas anderes",
     ],
   },
   {
     id: "ziel",
-    type: "cards",
+    type: "choice",
     lead: "Was ist dein",
     highlight: "unternehmerisches Ziel?",
-    options: [
-      { label: "Wachstum", icon: TrendingUp },
-      { label: "Stabilität", icon: Scale },
-      { label: "Höhere Abschlussrate", icon: HeartHandshake },
-      { label: "Etwas anderes", icon: HelpCircle },
-    ],
+    options: ["Wachstum", "Stabilität", "Höhere Abschlussrate", "Etwas anderes"],
   },
   {
     id: "kontakt",
@@ -103,14 +70,8 @@ export function Funnel() {
   const [step, setStep] = React.useState(0);
   const [answers, setAnswers] = React.useState<Record<string, string>>({});
   const [done, setDone] = React.useState(false);
-  const timer = React.useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  React.useEffect(
-    () => () => {
-      if (timer.current) clearTimeout(timer.current);
-    },
-    []
-  );
+  const [submitting, setSubmitting] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
 
   const total = STEPS.length;
   const current = STEPS[step];
@@ -118,11 +79,7 @@ export function Funnel() {
 
   function choose(value: string) {
     setAnswers((a) => ({ ...a, [current.id]: value }));
-    if (timer.current) clearTimeout(timer.current);
-    timer.current = setTimeout(
-      () => setStep((s) => Math.min(s + 1, total - 1)),
-      320
-    );
+    setStep((s) => Math.min(s + 1, total - 1));
   }
 
   function back() {
@@ -133,10 +90,32 @@ export function Funnel() {
     setStep((s) => Math.max(0, s - 1));
   }
 
-  function submitContact(e: React.FormEvent<HTMLFormElement>) {
+  async function submitContact(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    // TODO: an echten Endpunkt anbinden (Resend / Sanity / CRM).
-    setDone(true);
+    const fd = new FormData(e.currentTarget);
+    setSubmitting(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/anfrage", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: fd.get("name"),
+          email: fd.get("email"),
+          phone: fd.get("phone"),
+          ...answers,
+        }),
+      });
+      const json = await res.json().catch(() => ({}));
+      if (!res.ok || !json.ok) throw new Error(json.error || "Fehler");
+      setDone(true);
+    } catch {
+      setError(
+        "Beim Absenden ist etwas schiefgelaufen. Bitte versuche es erneut.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   const selected = answers[current.id];
@@ -199,67 +178,40 @@ export function Funnel() {
               </p>
             )}
 
-            {current.type === "cards" && (
-              <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
-                {current.options.map((opt) => {
-                  const isSel = selected === opt.label;
-                  return (
-                    <button
-                      key={opt.label}
-                      type="button"
-                      onClick={() => choose(opt.label)}
-                      className={`group flex flex-col items-center justify-center gap-4 border p-6 text-center transition-colors ${
-                        isSel
-                          ? "border-signal bg-signal/5"
-                          : "border-border bg-card hover:border-signal"
-                      }`}
-                    >
-                      <span
-                        className={`flex size-14 items-center justify-center transition-colors ${
+            {current.type === "choice" && (
+              <>
+                <div className="mt-10 grid gap-4 sm:grid-cols-2">
+                  {current.options.map((label) => {
+                    const isSel = selected === label;
+                    return (
+                      <button
+                        key={label}
+                        type="button"
+                        onClick={() => choose(label)}
+                        className={`flex items-center justify-between gap-4 border p-5 text-left transition-colors ${
                           isSel
-                            ? "bg-signal text-white"
-                            : "bg-icon-bg text-signal"
+                            ? "border-signal bg-signal/5"
+                            : "border-border bg-card hover:border-signal"
                         }`}
                       >
-                        <opt.icon className="size-7" />
-                      </span>
-                      <span className="text-sm font-semibold">{opt.label}</span>
-                    </button>
-                  );
-                })}
-              </div>
-            )}
-
-            {current.type === "list" && (
-              <div className="mx-auto mt-10 flex max-w-xl flex-col gap-3">
-                {current.options.map((label) => {
-                  const isSel = selected === label;
-                  return (
-                    <button
-                      key={label}
-                      type="button"
-                      onClick={() => choose(label)}
-                      className={`flex items-center gap-4 border px-5 py-4 text-left transition-colors ${
-                        isSel
-                          ? "border-signal bg-signal/5"
-                          : "border-border bg-card hover:border-signal"
-                      }`}
-                    >
-                      <span
-                        className={`flex size-5 shrink-0 items-center justify-center border-2 ${
-                          isSel ? "border-signal" : "border-border"
-                        }`}
-                      >
-                        {isSel && <span className="size-2.5 bg-signal" />}
-                      </span>
-                      <span className="flex-1 text-center font-semibold">
-                        {label}
-                      </span>
-                      <span className="size-5 shrink-0" />
-                    </button>
-                  );
-                })}
-              </div>
+                        <span className="font-semibold">{label}</span>
+                        <span
+                          className={`flex size-6 shrink-0 items-center justify-center rounded-[999px] border-2 ${
+                            isSel ? "border-signal" : "border-border"
+                          }`}
+                        >
+                          {isSel && (
+                            <span className="size-3 rounded-[999px] bg-signal" />
+                          )}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+                <p className="mt-6 text-center text-sm text-muted-foreground">
+                  Tippe auf eine Auswahl
+                </p>
+              </>
             )}
 
             {current.type === "contact" && (
@@ -268,19 +220,51 @@ export function Funnel() {
                 className="mx-auto mt-8 flex max-w-xl flex-col gap-4"
               >
                 <div className="grid gap-4 sm:grid-cols-2">
-                  <Input name="name" placeholder="Name" />
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="name"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      Name *
+                    </label>
+                    <Input
+                      id="name"
+                      name="name"
+                      required
+                      placeholder="Vor- und Nachname"
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="email"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      E-Mail-Adresse *
+                    </label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="name@beispiel.de"
+                    />
+                  </div>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label
+                    htmlFor="phone"
+                    className="text-sm font-medium text-foreground"
+                  >
+                    Handynummer *
+                  </label>
                   <Input
-                    name="email"
-                    type="email"
-                    placeholder="Email-Adresse"
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    required
+                    placeholder="Nummer, unter der wir dich am besten erreichen"
                   />
                 </div>
-                <Input
-                  name="phone"
-                  type="tel"
-                  required
-                  placeholder="Handynummer (wo Sie am besten zu erreichen sind) *"
-                />
                 <label className="flex items-center gap-3 py-1 text-sm text-muted-foreground">
                   <input
                     type="checkbox"
@@ -298,8 +282,18 @@ export function Funnel() {
                     *
                   </span>
                 </label>
-                <Button type="submit" size="lg" className="mt-2 w-full">
-                  Nächste
+                {error && (
+                  <p className="text-center text-sm font-medium text-destructive">
+                    {error}
+                  </p>
+                )}
+                <Button
+                  type="submit"
+                  size="lg"
+                  disabled={submitting}
+                  className="mt-2 w-full"
+                >
+                  {submitting ? "Wird gesendet …" : "Nächste"}
                 </Button>
               </form>
             )}

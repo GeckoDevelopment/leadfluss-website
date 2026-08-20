@@ -23,7 +23,7 @@ export default function KarrierePage() {
           uns über Talente.
         </p>
         <div className="mt-8">
-          <Button render={<Link href="/kontakt">Initiativ bewerben</Link>} />
+          <Button render={<Link href="/anfrage">Initiativ bewerben</Link>} />
         </div>
       </div>
     </>

@@ -11,7 +11,7 @@ export function PostCard({ post }: { post: PostListItem }) {
       href={`/blog/${post.slug}`}
       className="group flex flex-col border border-border bg-card transition-colors hover:border-signal"
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-muted">
+      <div className="relative aspect-square overflow-hidden bg-muted">
         {post.coverUrl ? (
           <Image
             src={post.coverUrl}

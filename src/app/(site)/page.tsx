@@ -2,6 +2,8 @@ import Link from "next/link";
 import Script from "next/script";
 import {
   ArrowRight,
+  ArrowUpRight,
+  Wrench,
   Check,
   ThumbsDown,
   Activity,
@@ -11,18 +13,17 @@ import {
   CalendarCheck,
   Filter,
   Magnet,
-  MessageSquare,
   MapPin,
   Phone,
   Mail,
   Clock,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PostCard } from "@/components/site/post-card";
 import Image from "next/image";
-import { getPosts } from "@/sanity/lib/posts";
+import { SolutionAnimation } from "@/components/site/solution-animation";
 import { getTeam } from "@/sanity/lib/team";
 import { getCaseStudies } from "@/sanity/lib/case-studies";
+import { getCompanyLogos } from "@/sanity/lib/companies";
 
 const HERO_BENEFITS = [
   "Mache dich unabhängig von der schlechten Qualität der Leads über Portale und Leadhändler",
@@ -150,47 +151,23 @@ const SOLUTIONS = [
   {
     title: "Kaufkräftige Kunden gewinnen",
     text: "Wir machen dich in deiner Region online so bekannt, dass sich kaufbereite Interessenten von selbst bei dir melden. Das Budget klären wir vorab – damit du dich nur noch um die lukrativen Aufträge kümmerst.",
-    notif: {
-      app: "Leadfluss · Webseiten-Formular",
-      body: "Neue Anfrage für ein Terrassendach · Budget 32.000 €",
-    },
+    anim: "/animationen/Terrassendach%20Lead.webp",
+    alt: "Eingehende Anfrage für ein Terrassendach",
   },
   {
     title: "Passende Fachkräfte finden",
     text: "Mit unserer RVM Methode wirst du lokal als attraktiver Arbeitgeber wahrgenommen, sodass du selbst schwierige Stellen wie Dachdecker, Elektriker oder Heizungsmonteure besetzen wirst.",
-    notif: {
-      app: "Leadfluss · Karriere-Seite",
-      body: "Neue Bewerbung · Elektriker (7 Jahre Erfahrung)",
-    },
+    anim: "/animationen/BW%20Dachdecker.webp",
+    alt: "Eingehende Bewerbung eines Dachdeckers",
   },
   {
     title: "Regionale Bekanntheit",
     text: "Wir sorgen dafür, dass du systematisch in deiner Region als bester Anbieter für deine Produktkategorie angesehen wirst, sodass die hochwertigsten Kunden als allererstes bei dir anfragen.",
-    notif: {
-      app: "Leadfluss · Webseiten-Formular",
-      body: "Neue Anfrage über die Webseite für eine Haustür",
-    },
+    anim: "/animationen/PV%20Lead%202.webp",
+    alt: "Eingehende Photovoltaik-Anfrage über die Webseite",
   },
 ];
 
-function NotificationCard({ app, body }: { app: string; body: string }) {
-  return (
-    <div className="flex items-start gap-3 rounded-[18px] bg-muted p-4 shadow-sm ring-1 ring-black/5">
-      <span className="flex size-11 shrink-0 items-center justify-center rounded-[13px] bg-signal text-white">
-        <MessageSquare className="size-6" />
-      </span>
-      <div className="min-w-0 flex-1">
-        <div className="flex items-baseline justify-between gap-2">
-          <span className="truncate text-sm font-semibold text-foreground">
-            {app}
-          </span>
-          <span className="shrink-0 text-xs text-muted-foreground">jetzt</span>
-        </div>
-        <p className="mt-0.5 text-sm text-muted-foreground">{body}</p>
-      </div>
-    </div>
-  );
-}
 
 function initials(name: string) {
   return name
@@ -203,10 +180,10 @@ function initials(name: string) {
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const [posts, team, caseStudies] = await Promise.all([
-    getPosts(3),
+  const [team, caseStudies, companyLogos] = await Promise.all([
     getTeam(),
     getCaseStudies(),
+    getCompanyLogos(),
   ]);
 
   return (
@@ -218,9 +195,9 @@ export default async function HomePage() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-border">
+      <section className="relative overflow-hidden" data-no-reveal>
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_60%_at_50%_0%,color-mix(in_oklch,var(--signal),transparent_88%),transparent)]" />
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+        <div className="mx-auto max-w-7xl px-4 pt-20 pb-14 sm:px-6 sm:pt-28 sm:pb-16">
           {/* Kopfblock über volle Breite */}
           <div className="mx-auto max-w-7xl text-center">
             <p className="text-sm font-bold uppercase tracking-wider text-foreground">
@@ -268,7 +245,7 @@ export default async function HomePage() {
                 <Button
                   size="lg"
                   render={
-                    <Link href="/kontakt">
+                    <Link href="/anfrage">
                       Jetzt kostenlose Anfrage stellen
                       <ArrowRight className="size-4" />
                     </Link>
@@ -287,6 +264,30 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Kunden-Logos / Vertrauen */}
+      {companyLogos.length > 0 && (
+        <section className="border-b border-border" data-no-reveal>
+          <div className="mx-auto max-w-7xl px-4 pt-14 pb-16 sm:px-6 sm:pt-16 sm:pb-20">
+            <h2 className="text-center text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              Diese Kunden vertrauen uns
+            </h2>
+            <div className="mt-10 grid grid-cols-3 items-center gap-x-3 gap-y-4 sm:grid-cols-4 sm:gap-x-6 lg:grid-cols-6">
+              {companyLogos.map((c) => (
+                <div key={c._id} className="flex h-12 items-center justify-center">
+                  <Image
+                    src={c.logoUrl}
+                    alt={c.name}
+                    width={220}
+                    height={84}
+                    className="max-h-12 w-auto max-w-[80%] object-contain opacity-70 grayscale transition hover:opacity-100"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Lösung */}
       <section className="border-b border-border bg-muted/40">
@@ -311,7 +312,7 @@ export default async function HomePage() {
                     </p>
                   </div>
                   <div className={notifFirst ? "md:order-1" : undefined}>
-                    <NotificationCard {...s.notif} />
+                    <SolutionAnimation src={s.anim} alt={s.alt} index={i} />
                   </div>
                 </div>
               );
@@ -320,8 +321,114 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Ergebnisse / Fallstudien */}
+      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-wider text-signal">
+            Ergebnisse
+          </p>
+          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+            Lassen wir Ergebnisse sprechen
+          </h2>
+          <p className="mt-4 text-lg text-muted-foreground">
+            Diese Ergebnisse konnten unsere Kunden durch die Zusammenarbeit mit
+            Leadfluss erreichen.
+          </p>
+        </div>
+        <div className="mt-12 space-y-8">
+          {caseStudies.map((c) => (
+            <article
+              key={c._id}
+              className="overflow-hidden rounded-3xl border border-border bg-card p-6 sm:p-10 lg:p-12"
+            >
+              <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
+                {/* Text + Badges + Logo */}
+                <div>
+                  <h3 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                    {c.name}
+                  </h3>
+                  {c.role && (
+                    <p className="mt-3 text-lg font-semibold text-signal">
+                      {c.role}
+                    </p>
+                  )}
+                  {c.text && (
+                    <p className="mt-5 leading-relaxed text-muted-foreground">
+                      {c.text}
+                    </p>
+                  )}
+                  <div className="mt-6 flex flex-wrap gap-3">
+                    {c.location && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-4 py-1.5 text-sm font-medium text-foreground">
+                        <MapPin className="size-4 text-signal" />
+                        {c.location}
+                      </span>
+                    )}
+                    {c.branch && (
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-4 py-1.5 text-sm font-medium text-foreground">
+                        <Wrench className="size-4 text-signal" />
+                        {c.branch}
+                      </span>
+                    )}
+                  </div>
+                  {c.logoUrl && (
+                    <div className="mt-8 h-[72px] w-[315px] max-w-full">
+                      <Image
+                        src={c.logoUrl}
+                        alt={c.name}
+                        width={480}
+                        height={192}
+                        className="h-full w-full object-contain object-left"
+                      />
+                    </div>
+                  )}
+                </div>
+
+                {/* Kundenfoto mit Ergebnis-Overlay */}
+                {c.imageUrl ? (
+                  <div className="relative overflow-hidden rounded-2xl">
+                    <div className="relative aspect-[4/3] w-full">
+                      <Image
+                        src={c.imageUrl}
+                        alt={`Leadfluss vor Ort bei ${c.name}`}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 550px"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="absolute inset-x-3 bottom-3 flex items-center gap-4 rounded-xl border border-white/15 bg-black/40 p-4 backdrop-blur-md sm:inset-x-4 sm:bottom-4 sm:p-5">
+                      <ArrowUpRight className="size-8 shrink-0 text-signal" />
+                      <div>
+                        <div className="text-xs text-white/70">
+                          Ergebnis aus der Zusammenarbeit:
+                        </div>
+                        <div className="font-heading text-lg font-bold text-white sm:text-xl">
+                          {c.result}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-4 rounded-2xl border border-border bg-muted p-6">
+                    <ArrowUpRight className="size-8 shrink-0 text-signal" />
+                    <div>
+                      <div className="text-xs text-muted-foreground">
+                        Ergebnis aus der Zusammenarbeit:
+                      </div>
+                      <div className="font-heading text-xl font-bold text-foreground">
+                        {c.result}
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       {/* Google Reviews (Elfsight) */}
-      <section className="border-b border-border">
+      <section className="border-t border-border">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -340,45 +447,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Ergebnisse / Fallstudien */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-        <div className="max-w-2xl">
-          <p className="text-sm font-semibold uppercase tracking-wider text-signal">
-            Ergebnisse
-          </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-            Lassen wir Ergebnisse sprechen
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            So beschreiben Kunden die Zusammenarbeit mit Leadfluss.
-          </p>
-        </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {caseStudies.map((c) => (
-            <div
-              key={c._id}
-              className="flex flex-col border border-border bg-card p-6"
-            >
-              <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground">
-                <MapPin className="size-3.5 text-signal" />
-                {c.location} · {c.branch}
-              </div>
-              <h3 className="mt-3 text-lg font-semibold">{c.name}</h3>
-              <div className="text-sm text-muted-foreground">{c.role}</div>
-              <p className="mt-3 flex-1 text-sm text-foreground/90">{c.text}</p>
-              <div className="mt-5 border-t border-border pt-4">
-                <div className="text-xs uppercase tracking-wider text-muted-foreground">
-                  Ergebnis
-                </div>
-                <div className="mt-1 font-heading text-xl font-bold text-signal">
-                  {c.result}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* Team */}
       <section className="border-y border-border bg-muted/40">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
@@ -388,7 +456,7 @@ export default async function HomePage() {
             </h2>
             <p className="mt-4 text-lg text-muted-foreground">
               Hinter Leadfluss steht ein Team aus Experten, das die Sprache des
-              Mittelstands spricht und hochwertige Werbevideos mit digitalem
+              Handwerks spricht und hochwertige Werbevideos mit digitalem
               Marketing verbindet. Seit der Gründung im Jahr 2022 haben wir uns
               in über 100 Projekten bewiesen.
             </p>
@@ -487,7 +555,7 @@ export default async function HomePage() {
               <Button
                 size="lg"
                 render={
-                  <Link href="/kontakt">
+                  <Link href="/anfrage">
                     Leadfluss kostenlos anfragen
                     <ArrowRight className="size-4" />
                   </Link>
@@ -506,36 +574,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Blog-Teaser */}
-      {posts.length > 0 && (
-        <section className="border-t border-border bg-muted/40">
-          <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-            <div className="flex flex-wrap items-end justify-between gap-4">
-              <div className="max-w-2xl">
-                <p className="text-sm font-semibold uppercase tracking-wider text-signal">
-                  Aus dem Blog
-                </p>
-                <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-                  Wissen für mehr Sichtbarkeit
-                </h2>
-              </div>
-              <Link
-                href="/blog"
-                className="inline-flex items-center gap-1.5 text-sm font-medium text-signal hover:underline"
-              >
-                Alle Artikel
-                <ArrowRight className="size-4" />
-              </Link>
-            </div>
-            <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {posts.map((post) => (
-                <PostCard key={post._id} post={post} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Kontakt / CTA */}
       <section className="border-t border-border bg-primary text-primary-foreground">
@@ -565,7 +603,7 @@ export default async function HomePage() {
                 <Button
                   size="lg"
                   render={
-                    <Link href="/kontakt">
+                    <Link href="/anfrage">
                       Jetzt Anfrage senden
                       <ArrowRight className="size-4" />
                     </Link>

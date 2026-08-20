@@ -6,27 +6,12 @@ export const caseStudy = defineType({
   type: "document",
   fields: [
     defineField({
-      name: "name",
-      title: "Kunde / Firma",
-      type: "string",
+      name: "company",
+      title: "Firma",
+      type: "reference",
+      to: [{ type: "company" }],
+      description: "Die Firma/Kunde dieser Fallstudie (Name, Logo, Branche, Ort).",
       validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "role",
-      title: "Kurzbeschreibung des Betriebs",
-      type: "string",
-      description: 'z. B. "Regionaler Solarfachbetrieb"',
-    }),
-    defineField({
-      name: "branch",
-      title: "Branche",
-      type: "string",
-      description: 'z. B. "Photovoltaik"',
-    }),
-    defineField({
-      name: "location",
-      title: "Ort / Region",
-      type: "string",
     }),
     defineField({
       name: "result",
@@ -37,14 +22,15 @@ export const caseStudy = defineType({
     }),
     defineField({
       name: "text",
-      title: "Beschreibung",
+      title: "Beschreibung der Zusammenarbeit",
       type: "text",
       rows: 4,
     }),
     defineField({
-      name: "logo",
-      title: "Logo (optional)",
+      name: "image",
+      title: "Kundenfoto (vor Ort)",
       type: "image",
+      description: "Foto vom Vor-Ort-Termin mit dem Kunden.",
       options: { hotspot: true },
     }),
     defineField({
@@ -58,13 +44,10 @@ export const caseStudy = defineType({
     {
       title: "Reihenfolge",
       name: "orderAsc",
-      by: [
-        { field: "order", direction: "asc" },
-        { field: "name", direction: "asc" },
-      ],
+      by: [{ field: "order", direction: "asc" }],
     },
   ],
   preview: {
-    select: { title: "name", subtitle: "result", media: "logo" },
+    select: { title: "company.name", subtitle: "result", media: "image" },
   },
 });

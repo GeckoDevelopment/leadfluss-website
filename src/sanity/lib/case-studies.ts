@@ -10,19 +10,23 @@ export type CaseStudy = {
   location?: string;
   result: string;
   text?: string;
+  imageUrl?: string;
   logoUrl?: string;
 };
 
+// Fallstudie referenziert eine Firma; deren Felder werden hier flach
+// dereferenziert, damit Type und Darstellung unverändert bleiben.
 export const CASE_STUDIES_QUERY = groq`
-  *[_type == "caseStudy"] | order(order asc, name asc) {
+  *[_type == "caseStudy" && defined(company)] | order(order asc) {
     _id,
-    name,
-    role,
-    branch,
-    location,
+    "name": company->name,
+    "role": company->role,
+    "branch": company->branch,
+    "location": company->location,
+    "logoUrl": company->logo.asset->url,
     result,
     text,
-    "logoUrl": logo.asset->url
+    "imageUrl": image.asset->url
   }
 `;
 

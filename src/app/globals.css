@@ -201,3 +201,26 @@
 .avatar-round {
   border-radius: 9999px !important;
 }
+
+/* Scroll-Reveal: Inhalte gleiten beim Herunterscrollen ein (Fade + leichtes
+   Hochschieben, 0,7s) – gesteuert von der ScrollReveal-Komponente, die die
+   Klasse `lf-revealed` setzt, sobald ein Element in den Viewport kommt. */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.7s ease-out,
+    transform 0.7s ease-out;
+  will-change: opacity, transform;
+}
+[data-reveal].lf-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

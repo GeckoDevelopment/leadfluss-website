@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Jost, Geist_Mono } from "next/font/google";
+import { GoogleTagManager } from "@next/third-parties/google";
 import "./globals.css";
 
 // Jost für die gesamte Website (Headlines + Fließtext), Variable Font.
@@ -22,6 +23,7 @@ export const metadata: Metadata = {
   },
   description:
     "Leadfluss ist die Videomarketing-Agentur für den Mittelstand: Professionelle Werbevideos, die neue Kunden gewinnen und Arbeitsplätze attraktiver machen.",
+  manifest: "/site.webmanifest",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -31,6 +33,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${jost.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
+      <GoogleTagManager gtmId="GTM-NQ548643" />
       <body
         className="min-h-full flex flex-col bg-background text-foreground"
         suppressHydrationWarning

@@ -56,7 +56,7 @@ export default async function FallstudienPage() {
         <div className="mt-14 text-center">
           <Button
             size="lg"
-            render={<Link href="/kontakt">Auch solche Ergebnisse wollen</Link>}
+            render={<Link href="/anfrage">Auch solche Ergebnisse wollen</Link>}
           />
         </div>
       </div>
