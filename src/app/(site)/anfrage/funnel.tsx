@@ -193,7 +193,7 @@ export function Funnel() {
                         key={label}
                         type="button"
                         onClick={() => choose(label)}
-                        className={`flex items-center justify-between gap-4 border p-5 text-left transition-colors ${
+                        className={`flex cursor-pointer items-center justify-between gap-4 border p-5 text-left transition-colors ${
                           isSel
                             ? "border-signal bg-signal/5"
                             : "border-border bg-card hover:border-signal"
