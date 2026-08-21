@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/site/navbar";
 import { Footer } from "@/components/site/footer";
 import { ScrollReveal } from "@/components/site/scroll-reveal";
+import { CookieConsent } from "@/components/site/cookie-consent";
 
 export default function SiteLayout({ children }: LayoutProps<"/">) {
   return (
@@ -9,6 +10,7 @@ export default function SiteLayout({ children }: LayoutProps<"/">) {
       <main className="flex-1">{children}</main>
       <Footer />
       <ScrollReveal />
+      <CookieConsent />
     </>
   );
 }

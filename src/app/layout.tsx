@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Jost, Geist_Mono } from "next/font/google";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { ConsentMode } from "@/components/site/consent-mode";
 import "./globals.css";
 
 // Jost für die gesamte Website (Headlines + Fließtext), Variable Font.
@@ -38,6 +39,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         className="min-h-full flex flex-col bg-background text-foreground"
         suppressHydrationWarning
       >
+        {/* Consent Mode v2: setzt per beforeInteractive-Script VOR dem GTM alle
+            Einwilligungs-Signale auf "denied". Next.js hoistet das Script in den
+            <head>; die Ausführung erfolgt garantiert vor dem afterInteractive-
+            GTM-Loader. */}
+        <ConsentMode />
         {children}
       </body>
     </html>
