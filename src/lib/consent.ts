@@ -28,6 +28,8 @@ export const CONSENT_VERSION = 1;
 export const CONSENT_MAX_AGE = 60 * 60 * 24 * 180;
 /** Custom-Event zum erneuten Öffnen des Banners (z. B. Footer-Link). */
 export const CONSENT_OPEN_EVENT = "lf:open-cookie-settings";
+/** Custom-Event nach jeder Einwilligungs-Änderung (z. B. für Meta-CAPI). */
+export const CONSENT_UPDATED_EVENT = "lf:consent-updated";
 
 export const CONSENT_DENIED: ConsentState = { statistik: false, marketing: false };
 export const CONSENT_GRANTED: ConsentState = { statistik: true, marketing: true };
@@ -89,6 +91,10 @@ export function applyConsent(state: ConsentState): void {
     personalization_storage: state.marketing ? "granted" : "denied",
   });
   window.dataLayer.push({ event: "lf_consent_update", lf_consent: state });
+  // DOM-Event für Nicht-GTM-Consumer (z. B. der Meta-CAPI-Tracker).
+  window.dispatchEvent(
+    new CustomEvent(CONSENT_UPDATED_EVENT, { detail: state }),
+  );
 }
 
 declare global {

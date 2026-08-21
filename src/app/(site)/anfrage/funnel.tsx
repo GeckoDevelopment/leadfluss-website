@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { trackMetaEvent } from "@/lib/meta-track";
 
 type Step =
   | {
@@ -93,6 +94,8 @@ export function Funnel() {
   async function submitContact(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const fd = new FormData(e.currentTarget);
+    const email = String(fd.get("email") ?? "");
+    const phone = String(fd.get("phone") ?? "");
     setSubmitting(true);
     setError(null);
     try {
@@ -101,14 +104,16 @@ export function Funnel() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: fd.get("name"),
-          email: fd.get("email"),
-          phone: fd.get("phone"),
+          email,
+          phone,
           ...answers,
         }),
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.ok) throw new Error(json.error || "Fehler");
       setDone(true);
+      // Serverseitiges Lead-Event (Meta CAPI) + Browser-Pixel via GTM.
+      trackMetaEvent("Lead", { email, phone });
     } catch {
       setError(
         "Beim Absenden ist etwas schiefgelaufen. Bitte versuche es erneut.",
