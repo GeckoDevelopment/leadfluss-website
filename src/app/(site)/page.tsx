@@ -429,8 +429,17 @@ export default async function HomePage() {
       </section>
 
       {/* Funnel / Potenzialanalyse */}
-      <section className="border-t border-border bg-muted/40">
-        <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6 sm:py-28">
+      <section className="relative overflow-hidden border-t border-border bg-muted/40">
+        {/* Dezentes Hintergrundbild (Team) */}
+        <Image
+          src="/hero-team.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="pointer-events-none absolute inset-0 z-0 object-cover opacity-20"
+        />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-background/70" />
+        <div className="relative z-10 mx-auto max-w-3xl px-4 py-20 sm:px-6 sm:py-28">
           <div className="text-center">
             <p className="text-sm font-semibold uppercase tracking-wider text-signal">
               Kostenlose Potenzialanalyse
