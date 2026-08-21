@@ -21,6 +21,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { SolutionAnimation } from "@/components/site/solution-animation";
+import { Funnel } from "./anfrage/funnel";
 import { getTeam } from "@/sanity/lib/team";
 import { getCaseStudies } from "@/sanity/lib/case-studies";
 import { getCompanyLogos } from "@/sanity/lib/companies";
@@ -424,6 +425,28 @@ export default async function HomePage() {
               </div>
             </article>
           ))}
+        </div>
+      </section>
+
+      {/* Funnel / Potenzialanalyse */}
+      <section className="border-t border-border bg-muted/40">
+        <div className="mx-auto max-w-3xl px-4 py-20 sm:px-6 sm:py-28">
+          <div className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-wider text-signal">
+              Kostenlose Potenzialanalyse
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+              In 2 Minuten zu deiner Einschätzung
+            </h2>
+            <p className="mx-auto mt-4 text-lg text-muted-foreground">
+              Beantworte ein paar kurze Fragen – im Anschluss meldet sich ein
+              Mitarbeiter mit einer unverbindlichen Potenzialanalyse für deinen
+              Betrieb.
+            </p>
+          </div>
+          <div className="mt-10">
+            <Funnel />
+          </div>
         </div>
       </section>
 
