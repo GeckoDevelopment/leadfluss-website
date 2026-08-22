@@ -207,8 +207,9 @@ export default async function HomePage() {
             </p>
             <h1 className="mt-4 text-4xl font-bold leading-[1.1] tracking-tight sm:text-[3.25rem]">
               Die finale Lösung für{" "}
-              <span className="text-signal">planbar mehr Aufträge</span> und
-              qualifiziertes Personal als Handwerksbetrieb
+              <span className="text-signal">planbar mehr Aufträge</span> und{" "}
+              <span className="text-signal">qualifiziertes Personal</span> als
+              Handwerksbetrieb
             </h1>
             <p className="mx-auto mt-3 max-w-[49.5rem] text-lg font-semibold leading-snug text-foreground sm:text-xl">
               In 4 Wochen implementieren wir einen neuen Weg für täglich neue
