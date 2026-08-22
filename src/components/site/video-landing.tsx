@@ -1,11 +1,7 @@
 import { WistiaPlayer } from "@/components/site/wistia-player";
 import { CalendlyEmbed } from "@/components/site/calendly-embed";
+import { CALENDLY_URL } from "@/lib/calendly";
 import type { VideomarketingPage } from "@/lib/videomarketing";
-
-// Calendly-Buchungslink für das kostenfreie Erstgespräch (identisch auf allen
-// Branchenseiten). primary_color = Signal-Grün.
-const CALENDLY_URL =
-  "https://calendly.com/leadfluss/erstgespraech-leadfluss?primary_color=00c281";
 
 // Gemeinsames Layout aller Videomarketing-Branchenseiten. Der Aufbau
 // (Hero → Schritt 1 mit Video → Schritt 2 mit Calendly-Kalender) ist überall

@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { ArrowLeft, Check } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { trackMetaEvent } from "@/lib/meta-track";
@@ -68,15 +69,15 @@ const STEPS: Step[] = [
 ];
 
 export function Funnel() {
+  const router = useRouter();
   const [step, setStep] = React.useState(0);
   const [answers, setAnswers] = React.useState<Record<string, string>>({});
-  const [done, setDone] = React.useState(false);
   const [submitting, setSubmitting] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
 
   const total = STEPS.length;
   const current = STEPS[step];
-  const progress = done ? 100 : Math.round(((step + 1) / total) * 100);
+  const progress = Math.round(((step + 1) / total) * 100);
 
   function choose(value: string) {
     setAnswers((a) => ({ ...a, [current.id]: value }));
@@ -84,10 +85,6 @@ export function Funnel() {
   }
 
   function back() {
-    if (done) {
-      setDone(false);
-      return;
-    }
     setStep((s) => Math.max(0, s - 1));
   }
 
@@ -111,20 +108,22 @@ export function Funnel() {
       });
       const json = await res.json().catch(() => ({}));
       if (!res.ok || !json.ok) throw new Error(json.error || "Fehler");
-      setDone(true);
       // Serverseitiges Lead-Event (Meta CAPI) + Browser-Pixel via GTM.
+      // Der keepalive-Beacon übersteht den anschließenden Seitenwechsel.
       trackMetaEvent("Lead", { email, phone });
+      // Weiter zur Terminbuchung (Calendly). submitting bleibt aktiv, bis die
+      // Navigation greift, damit der Button nicht zurückspringt.
+      router.push("/terminbuchung");
     } catch {
       setError(
         "Beim Absenden ist etwas schiefgelaufen. Bitte versuche es erneut.",
       );
-    } finally {
       setSubmitting(false);
     }
   }
 
   const selected = answers[current.id];
-  const showBack = done || step > 0;
+  const showBack = step > 0;
 
   return (
     <div className="overflow-hidden border border-border bg-card">
@@ -143,35 +142,14 @@ export function Funnel() {
         ) : (
           <span />
         )}
-        {!done && (
-          <span className="text-sm font-medium text-muted-foreground">
-            Schritt {step + 1} von {total}
-          </span>
-        )}
+        <span className="text-sm font-medium text-muted-foreground">
+          Schritt {step + 1} von {total}
+        </span>
       </div>
 
       {/* Inhalt */}
       <div className="px-5 py-10 sm:px-10 sm:py-14">
-        {done ? (
-          <div className="flex flex-col items-center text-center">
-            <span className="flex size-16 items-center justify-center bg-signal text-white">
-              <Check className="size-8" />
-            </span>
-            <h2 className="mt-6 font-heading text-2xl font-bold tracking-tight sm:text-3xl">
-              Danke für deine Angaben!
-            </h2>
-            <p className="mt-4 max-w-md text-muted-foreground">
-              Wir melden uns in Kürze telefonisch bei dir, um deine kostenlose
-              Potenzialanalyse zu besprechen.
-            </p>
-            <Button
-              size="lg"
-              className="mt-8"
-              render={<Link href="/">Zur Startseite</Link>}
-            />
-          </div>
-        ) : (
-          <>
+        <>
             <h2 className="text-center font-heading text-2xl font-bold leading-tight tracking-tight sm:text-3xl">
               {current.lead}{" "}
               <span className="text-signal">{current.highlight}</span>
@@ -302,8 +280,7 @@ export function Funnel() {
                 </Button>
               </form>
             )}
-          </>
-        )}
+        </>
       </div>
 
       {/* Fortschrittslinie */}

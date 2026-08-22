@@ -8,12 +8,12 @@ const SITE_URL = "https://leadfluss.de";
 const ROUTES = [
   "",
   "/leistungen",
+  "/vor-ort-videodreh",
   "/fallstudien",
   "/ueber-uns",
   "/blog",
   "/faq",
   "/karriere",
-  "/kontakt",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
