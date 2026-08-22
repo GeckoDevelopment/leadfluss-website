@@ -189,7 +189,7 @@ export default function AgbPage() {
             <p className="mt-4">
               Kontakt
               <br />
-              Telefon: +49 341 60823153
+              Telefon: +49 341 60823338
               <br />
               E-Mail: info@leadfluss.de
             </p>
