@@ -9,7 +9,6 @@ const ROUTES = [
   "",
   "/leistungen",
   "/vor-ort-videodreh",
-  "/ueber-uns",
   "/blog",
   "/faq",
 ];

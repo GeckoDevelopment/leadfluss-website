@@ -53,7 +53,6 @@ const FOOTER_COLUMNS: { title: string; links: FooterLink[] }[] = [
   {
     title: "Unternehmen",
     links: [
-      { href: "/ueber-uns", label: "Über uns" },
       { href: "/vor-ort-videodreh", label: "Vor-Ort-Videodreh" },
       {
         href: "https://karriere.leadfluss.de/",

@@ -45,6 +45,8 @@ const nextConfig: NextConfig = {
       },
       // Fallstudien-Seite wird neu gebaut – vorerst auf die Startseite leiten.
       { source: "/fallstudien", destination: "/", permanent: true },
+      // Über-uns-Seite entfernt – auf die Startseite leiten.
+      { source: "/ueber-uns", destination: "/", permanent: true },
       // Alte Tools-Seiten auf den externen Generator umleiten.
       {
         source: "/tools",

@@ -14,7 +14,6 @@ type NavLink = {
 };
 
 const NAV_LINKS: NavLink[] = [
-  { href: "/ueber-uns", label: "Über uns" },
   { href: "/blog", label: "Blog" },
   { href: "https://karriere.leadfluss.de/", label: "Karriere", external: true },
   { href: "/faq", label: "FAQ" },
