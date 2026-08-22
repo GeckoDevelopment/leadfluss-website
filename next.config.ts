@@ -45,6 +45,17 @@ const nextConfig: NextConfig = {
       },
       // Fallstudien-Seite wird neu gebaut – vorerst auf die Startseite leiten.
       { source: "/fallstudien", destination: "/", permanent: true },
+      // Alte Tools-Seiten auf den externen Generator umleiten.
+      {
+        source: "/tools",
+        destination: "https://www.linkedingenerator.de/",
+        permanent: true,
+      },
+      {
+        source: "/tools/auf-linkedin-fett-schreiben",
+        destination: "https://www.linkedingenerator.de/",
+        permanent: true,
+      },
     ];
   },
 };
