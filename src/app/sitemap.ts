@@ -9,11 +9,9 @@ const ROUTES = [
   "",
   "/leistungen",
   "/vor-ort-videodreh",
-  "/fallstudien",
   "/ueber-uns",
   "/blog",
   "/faq",
-  "/karriere",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

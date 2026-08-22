@@ -30,7 +30,7 @@ export function NotFoundContent() {
           size="lg"
           variant="outline"
           render={
-            <Link href="/anfrage">
+            <Link href="/anfrage-stellen">
               Erstgespräch buchen
               <ArrowRight />
             </Link>

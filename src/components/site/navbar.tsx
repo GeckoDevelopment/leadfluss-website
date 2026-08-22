@@ -15,7 +15,6 @@ type NavLink = {
 
 const NAV_LINKS: NavLink[] = [
   { href: "/ueber-uns", label: "Über uns" },
-  { href: "/fallstudien", label: "Fallstudien" },
   { href: "/blog", label: "Blog" },
   { href: "https://karriere.leadfluss.de/", label: "Karriere", external: true },
   { href: "/faq", label: "FAQ" },
@@ -61,7 +60,7 @@ export function Navbar() {
         </nav>
 
         <div className="hidden items-center gap-3 md:flex">
-          <Button render={<Link href="/anfrage">Leadfluss anfragen</Link>} />
+          <Button render={<Link href="/anfrage-stellen">Leadfluss anfragen</Link>} />
         </div>
 
         <button
@@ -108,7 +107,7 @@ export function Navbar() {
           <Button
             className="mt-2 w-full"
             render={
-              <Link href="/anfrage" onClick={() => setOpen(false)}>
+              <Link href="/anfrage-stellen" onClick={() => setOpen(false)}>
                 Leadfluss anfragen
               </Link>
             }

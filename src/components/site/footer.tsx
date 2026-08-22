@@ -55,7 +55,6 @@ const FOOTER_COLUMNS: { title: string; links: FooterLink[] }[] = [
     links: [
       { href: "/ueber-uns", label: "Über uns" },
       { href: "/vor-ort-videodreh", label: "Vor-Ort-Videodreh" },
-      { href: "/fallstudien", label: "Fallstudien" },
       {
         href: "https://karriere.leadfluss.de/",
         label: "Karriere",
@@ -68,7 +67,7 @@ const FOOTER_COLUMNS: { title: string; links: FooterLink[] }[] = [
     links: [
       { href: "/blog", label: "Blog" },
       { href: "/faq", label: "FAQ" },
-      { href: "/anfrage", label: "Kontakt" },
+      { href: "/anfrage-stellen", label: "Kontakt" },
     ],
   },
   {
@@ -76,6 +75,7 @@ const FOOTER_COLUMNS: { title: string; links: FooterLink[] }[] = [
     links: [
       { href: "/impressum", label: "Impressum" },
       { href: "/datenschutz", label: "Datenschutz" },
+      { href: "/agb", label: "AGB" },
     ],
   },
 ];
@@ -96,7 +96,7 @@ export function Footer() {
               size="sm"
               className="mt-5"
               render={
-                <Link href="/anfrage">
+                <Link href="/anfrage-stellen">
                   Erstgespräch buchen
                   <ArrowRight />
                 </Link>

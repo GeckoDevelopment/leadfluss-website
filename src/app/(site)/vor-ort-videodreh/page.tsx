@@ -97,7 +97,7 @@ export default async function VorOrtVideodrehPage() {
             <Button
               size="lg"
               render={
-                <Link href="/anfrage">
+                <Link href="/anfrage-stellen">
                   Jetzt anfragen
                   <ArrowRight className="size-4" />
                 </Link>
@@ -139,7 +139,7 @@ export default async function VorOrtVideodrehPage() {
         <div className="mt-14 text-center">
           <Button
             size="lg"
-            render={<Link href="/anfrage">Jetzt anfragen</Link>}
+            render={<Link href="/anfrage-stellen">Jetzt anfragen</Link>}
           />
         </div>
       </section>
@@ -184,7 +184,7 @@ export default async function VorOrtVideodrehPage() {
             <Button
               size="lg"
               render={
-                <Link href="/anfrage">
+                <Link href="/anfrage-stellen">
                   Jetzt anfragen
                   <ArrowRight className="size-4" />
                 </Link>
@@ -211,7 +211,7 @@ export default async function VorOrtVideodrehPage() {
               <Button
                 size="lg"
                 render={
-                  <Link href="/anfrage">
+                  <Link href="/anfrage-stellen">
                     Jetzt Anfrage stellen
                     <ArrowRight className="size-4" />
                   </Link>
@@ -281,7 +281,7 @@ export default async function VorOrtVideodrehPage() {
             <Button
               size="lg"
               render={
-                <Link href="/anfrage">
+                <Link href="/anfrage-stellen">
                   Jetzt anfragen
                   <ArrowRight className="size-4" />
                 </Link>

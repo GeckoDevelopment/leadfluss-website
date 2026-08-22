@@ -21,7 +21,7 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { SolutionAnimation } from "@/components/site/solution-animation";
-import { Funnel } from "./anfrage/funnel";
+import { Funnel } from "./anfrage-stellen/funnel";
 import { getTeam } from "@/sanity/lib/team";
 import { getCaseStudies } from "@/sanity/lib/case-studies";
 import { getCompanyLogos } from "@/sanity/lib/companies";
@@ -247,7 +247,7 @@ export default async function HomePage() {
                 <Button
                   size="lg"
                   render={
-                    <Link href="/anfrage">
+                    <Link href="/anfrage-stellen">
                       Jetzt kostenlose Anfrage stellen
                       <ArrowRight className="size-4" />
                     </Link>
@@ -594,7 +594,7 @@ export default async function HomePage() {
               <Button
                 size="lg"
                 render={
-                  <Link href="/anfrage">
+                  <Link href="/anfrage-stellen">
                     Leadfluss kostenlos anfragen
                     <ArrowRight className="size-4" />
                   </Link>
@@ -642,7 +642,7 @@ export default async function HomePage() {
                 <Button
                   size="lg"
                   render={
-                    <Link href="/anfrage">
+                    <Link href="/anfrage-stellen">
                       Jetzt Anfrage senden
                       <ArrowRight className="size-4" />
                     </Link>
