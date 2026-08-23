@@ -324,7 +324,10 @@ export default async function HomePage() {
       </section>
 
       {/* Ergebnisse / Fallstudien */}
-      <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+      <section
+        id="kundenergebnisse"
+        className="mx-auto max-w-7xl scroll-mt-20 px-4 py-20 sm:px-6 sm:py-28"
+      >
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-wider text-signal">
             Ergebnisse
@@ -487,7 +490,7 @@ export default async function HomePage() {
       </section>
 
       {/* Team */}
-      <section className="border-y border-border bg-muted/40">
+      <section id="team" className="scroll-mt-20 border-y border-border bg-muted/40">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
           <div className="max-w-2xl">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -621,8 +624,8 @@ export default async function HomePage() {
             {/* Links: hochkant-Karte */}
             <div className="relative aspect-[3/4] w-full overflow-hidden border border-white/15 bg-white/5">
               <iframe
-                src="https://maps.google.com/maps?q=Leadfluss+Leipzig&t=m&z=15&output=embed&iwloc=near"
-                title="Leadfluss Standort Leipzig"
+                src="https://maps.google.com/maps?q=Leadfluss+Leipzig&ll=51.1657,10.4515&t=m&z=6&output=embed&iwloc=near"
+                title="Leadfluss – deutschlandweit im Einsatz"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="absolute inset-0 h-full w-full"
