@@ -66,7 +66,7 @@ const FOOTER_COLUMNS: { title: string; links: FooterLink[] }[] = [
     links: [
       { href: "/blog", label: "Blog" },
       { href: "/faq", label: "FAQ" },
-      { href: "/anfrage-stellen", label: "Kontakt" },
+      { href: "/anfrage", label: "Kontakt" },
     ],
   },
   {
@@ -95,7 +95,7 @@ export function Footer() {
               size="sm"
               className="mt-5"
               render={
-                <Link href="/anfrage-stellen">
+                <Link href="/anfrage">
                   Erstgespräch buchen
                   <ArrowRight />
                 </Link>

@@ -10,9 +10,9 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       // Alte Kontakt-Route zeigt jetzt auf den Anfrage-Funnel.
-      { source: "/kontakt", destination: "/anfrage-stellen", permanent: true },
-      // Alte Anfrage-Route (Slug umbenannt) auf den neuen Slug umleiten.
-      { source: "/anfrage", destination: "/anfrage-stellen", permanent: true },
+      { source: "/kontakt", destination: "/anfrage", permanent: true },
+      // Zwischenzeitlicher Slug /anfrage-stellen zurück auf /anfrage.
+      { source: "/anfrage-stellen", destination: "/anfrage", permanent: true },
       // Alte Franchise-Seite auf den neuen Branchen-Slug umleiten.
       {
         source: "/franchisegeber-videomarketing",

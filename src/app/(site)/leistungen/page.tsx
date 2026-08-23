@@ -54,7 +54,7 @@ export default function LeistungenPage() {
           ))}
         </div>
         <div className="mt-14 text-center">
-          <Button size="lg" render={<Link href="/anfrage-stellen">Termin anfragen</Link>} />
+          <Button size="lg" render={<Link href="/anfrage">Termin anfragen</Link>} />
         </div>
       </div>
     </>
