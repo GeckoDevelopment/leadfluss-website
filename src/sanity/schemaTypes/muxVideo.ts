@@ -26,15 +26,17 @@ export const muxVideo = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
-      name: "industry",
-      title: "Branche (Filter-Tag)",
-      type: "string",
-      description: "Bestimmt, unter welchem Branchen-Filter das Beispiel erscheint.",
+      name: "industries",
+      title: "Branchen (Filter-Tags)",
+      type: "array",
+      of: [{ type: "string" }],
+      description:
+        "Eine oder mehrere Branchen. Das Beispiel erscheint unter jedem gewählten Branchen-Filter (z. B. Photovoltaik + Wärmepumpe).",
       options: {
         list: VIDEO_BRANCHES.map((b) => ({ title: b, value: b })),
-        layout: "dropdown",
       },
-      validation: (rule) => rule.required(),
+      validation: (rule) =>
+        rule.required().min(1).unique().error("Bitte mindestens eine Branche wählen."),
     }),
     defineField({
       name: "mediaType",
@@ -97,16 +99,21 @@ export const muxVideo = defineType({
     select: {
       title: "title",
       company: "company.name",
+      industries: "industries",
       industry: "industry",
       mediaType: "mediaType",
       poster: "poster",
       image: "image",
     },
-    prepare({ title, company, industry, mediaType, poster, image }) {
+    prepare({ title, company, industries, industry, mediaType, poster, image }) {
       const typLabel = mediaType === "grafik" ? "Grafik" : "Video";
+      const branchen =
+        Array.isArray(industries) && industries.length > 0
+          ? industries.join(", ")
+          : industry;
       return {
         title: title || company || "Projektbeispiel",
-        subtitle: [company, industry, typLabel].filter(Boolean).join(" · "),
+        subtitle: [company, branchen, typLabel].filter(Boolean).join(" · "),
         media: mediaType === "grafik" ? image : poster || image,
       };
     },

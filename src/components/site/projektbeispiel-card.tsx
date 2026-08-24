@@ -127,13 +127,16 @@ export function ProjektbeispielCard({ item: v }: { item: Projektbeispiel }) {
       <div className="flex items-center gap-3">
         <div className="min-w-0 flex-1">
           <h3 className="font-semibold leading-snug">{v.title}</h3>
-          <div className="mt-1 flex items-center gap-x-2 text-sm text-muted-foreground">
+          <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
             {v.company?.name && <span>{v.company.name}</span>}
-            {v.industry && (
-              <span className="rounded-full bg-signal/10 px-2 py-0.5 text-xs font-medium text-signal">
-                {v.industry}
+            {(v.industries ?? []).map((b) => (
+              <span
+                key={b}
+                className="rounded-full bg-signal/10 px-2 py-0.5 text-xs font-medium text-signal"
+              >
+                {b}
               </span>
-            )}
+            ))}
           </div>
         </div>
         {v.company?.logoUrl && (

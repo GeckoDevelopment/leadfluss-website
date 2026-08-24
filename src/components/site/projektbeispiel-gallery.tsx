@@ -35,7 +35,9 @@ export function ProjektbeispielGallery({ items }: { items: Projektbeispiel[] }) 
   const branchen = useMemo(() => {
     const counts = new Map<string, number>();
     for (const v of nachTyp) {
-      if (v.industry) counts.set(v.industry, (counts.get(v.industry) ?? 0) + 1);
+      for (const b of v.industries ?? []) {
+        counts.set(b, (counts.get(b) ?? 0) + 1);
+      }
     }
     return VIDEO_BRANCHES.filter((b) => counts.has(b)).map((b) => ({
       name: b,
@@ -45,7 +47,7 @@ export function ProjektbeispielGallery({ items }: { items: Projektbeispiel[] }) 
 
   const matchSuche = (v: Projektbeispiel) => {
     if (!q) return true;
-    const haystack = [v.title, v.company?.name, v.industry, v.company?.branch]
+    const haystack = [v.title, v.company?.name, ...(v.industries ?? []), v.company?.branch]
       .filter(Boolean)
       .join(" ")
       .toLowerCase();
@@ -55,7 +57,10 @@ export function ProjektbeispielGallery({ items }: { items: Projektbeispiel[] }) 
   // Basis für Firmen-Optionen: Typ + Branche + Suche (aber ohne Firmen-Filter),
   // damit das Dropdown die jeweils passenden Firmen mit Anzahl zeigt.
   const firmenBasis = useMemo(
-    () => nachTyp.filter((v) => (branche === ALLE || v.industry === branche) && matchSuche(v)),
+    () =>
+      nachTyp.filter(
+        (v) => (branche === ALLE || (v.industries ?? []).includes(branche)) && matchSuche(v),
+      ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [nachTyp, branche, q],
   );
