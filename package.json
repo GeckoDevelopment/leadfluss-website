@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
+    "@mux/mux-player-react": "^3.13.2",
     "@next/third-parties": "^16.3.1",
     "@portabletext/react": "^7.0.1",
     "@sanity/image-url": "^2.1.1",
@@ -23,6 +24,7 @@
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "sanity": "^6.9.0",
+    "sanity-plugin-mux-input": "^5.0.12",
     "shadcn": "^4.16.1",
     "styled-components": "^6.5.0",
     "tailwind-merge": "^3.6.0",
