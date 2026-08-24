@@ -65,18 +65,6 @@ export function KundenvideoCard({ video: v }: { video: Kundenvideo }) {
                 className="h-full w-full object-cover"
               />
             )}
-            {/* Firmenlogo oben links */}
-            {v.company?.logoUrl && (
-              <span className="absolute left-3 top-3 z-10 flex items-center rounded-lg bg-white/90 px-3 py-2 shadow-md ring-1 ring-black/5 backdrop-blur-sm">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={v.company.logoUrl}
-                  alt={v.company?.name ? `Logo ${v.company.name}` : ""}
-                  loading="lazy"
-                  className="h-10 w-auto max-w-[160px] object-contain"
-                />
-              </span>
-            )}
             {/* Play-Button ohne Overlay */}
             <span className="absolute inset-0 flex items-center justify-center">
               <span className="flex size-14 items-center justify-center rounded-full bg-white/90 text-signal-foreground shadow-lg ring-1 ring-black/5 transition-transform group-hover:scale-110">
@@ -89,12 +77,21 @@ export function KundenvideoCard({ video: v }: { video: Kundenvideo }) {
 
       <div>
         <h3 className="font-semibold leading-snug">{v.title}</h3>
-        <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+        <div className="mt-1 flex items-center gap-x-2 text-sm text-muted-foreground">
           {v.company?.name && <span>{v.company.name}</span>}
           {v.industry && (
             <span className="rounded-full bg-signal/10 px-2 py-0.5 text-xs font-medium text-signal">
               {v.industry}
             </span>
+          )}
+          {v.company?.logoUrl && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={v.company.logoUrl}
+              alt={v.company?.name ? `Logo ${v.company.name}` : ""}
+              loading="lazy"
+              className="ml-auto h-8 w-auto max-w-[120px] shrink-0 object-contain"
+            />
           )}
         </div>
       </div>
