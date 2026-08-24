@@ -73,7 +73,7 @@ export function ProjektbeispielCard({ item: v }: { item: Projektbeispiel }) {
                 loading="lazy"
                 className="h-full w-full object-cover"
               />
-              <span className="absolute right-3 top-3 flex size-9 items-center justify-center rounded-full bg-white/90 text-signal-foreground shadow-md ring-1 ring-black/5 transition-transform group-hover:scale-110">
+              <span className="absolute right-3 top-3 flex size-9 items-center justify-center rounded-full bg-white/90 text-signal-foreground opacity-0 shadow-md ring-1 ring-black/5 transition-opacity duration-150 group-hover:opacity-100">
                 <ZoomIn className="size-5" />
               </span>
             </button>
