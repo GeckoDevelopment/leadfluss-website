@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { Search } from "lucide-react";
-import { MuxVideoPlayer } from "@/components/site/mux-video-player";
+import { KundenvideoCard } from "@/components/site/kundenvideo-card";
 import { VIDEO_BRANCHES } from "@/lib/video-branches";
 import type { Kundenvideo } from "@/sanity/lib/kundenvideos";
 
@@ -89,31 +89,7 @@ export function KundenvideoGallery({ videos }: { videos: Kundenvideo[] }) {
       ) : (
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {gefiltert.map((v) => (
-            <article key={v._id} className="space-y-3">
-              {v.playbackId ? (
-                <MuxVideoPlayer
-                  playbackId={v.playbackId}
-                  title={v.title}
-                  aspectRatio={v.aspectRatio}
-                  poster={v.posterUrl}
-                />
-              ) : (
-                <div className="flex aspect-video items-center justify-center rounded-xl border border-border bg-muted/40 p-4 text-center text-sm text-muted-foreground">
-                  Video wird noch verarbeitet …
-                </div>
-              )}
-              <div>
-                <h3 className="font-semibold leading-snug">{v.title}</h3>
-                <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
-                  {v.company?.name && <span>{v.company.name}</span>}
-                  {v.industry && (
-                    <span className="rounded-full bg-signal/10 px-2 py-0.5 text-xs font-medium text-signal">
-                      {v.industry}
-                    </span>
-                  )}
-                </div>
-              </div>
-            </article>
+            <KundenvideoCard key={v._id} video={v} />
           ))}
         </div>
       )}
