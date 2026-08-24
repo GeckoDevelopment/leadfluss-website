@@ -54,6 +54,29 @@ export const muxVideo = defineType({
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "videoFormat",
+      title: "Videoformat",
+      type: "string",
+      description: "Um welche Art von Video handelt es sich?",
+      options: {
+        list: [
+          { title: "Kundenstimmen-Video", value: "kundenstimme" },
+          { title: "Projektpräsentation", value: "projektpraesentation" },
+          { title: "Firmenvorstellung", value: "firmenvorstellung" },
+        ],
+        layout: "radio",
+      },
+      hidden: ({ parent }) => parent?.mediaType !== "video",
+      validation: (rule) =>
+        rule.custom((value, context) => {
+          const parent = context.parent as { mediaType?: string } | undefined;
+          if (parent?.mediaType === "video" && !value) {
+            return "Bitte ein Videoformat wählen.";
+          }
+          return true;
+        }),
+    }),
+    defineField({
       name: "video",
       title: "Video",
       type: "mux.video",

@@ -7,6 +7,8 @@ export type Projektbeispiel = {
   title: string;
   /** "video" oder "grafik" – steuert Darstellung und Typ-Filter. */
   mediaType?: "video" | "grafik";
+  /** Nur bei Videos: "kundenstimme" | "projektpraesentation" | "firmenvorstellung". */
+  videoFormat?: string;
   /** Branchen-Tags für den Filter (feste Liste, siehe VIDEO_BRANCHES). Ein Video kann mehreren Branchen zugeordnet sein. */
   industries?: string[];
   // Video (Mux)
@@ -32,6 +34,7 @@ export const PROJEKTBEISPIELE_QUERY = groq`
     _id,
     title,
     "mediaType": select(defined(image.asset) && mediaType == "grafik" => "grafik", "video"),
+    videoFormat,
     "industries": select(
       defined(industries) && count(industries) > 0 => industries,
       defined(industry) => [industry],
