@@ -65,9 +65,9 @@ export function KundenvideoCard({ video: v }: { video: Kundenvideo }) {
                 className="h-full w-full object-cover"
               />
             )}
-            {/* Abspiel-Overlay */}
-            <span className="absolute inset-0 flex items-center justify-center bg-black/15 transition-colors group-hover:bg-black/25">
-              <span className="flex size-14 items-center justify-center rounded-full bg-white/90 text-signal-foreground shadow-lg transition-transform group-hover:scale-110">
+            {/* Play-Button ohne Overlay */}
+            <span className="absolute inset-0 flex items-center justify-center">
+              <span className="flex size-14 items-center justify-center rounded-full bg-white/90 text-signal-foreground shadow-lg ring-1 ring-black/5 transition-transform group-hover:scale-110">
                 <Play className="ml-0.5 size-6 fill-current" />
               </span>
             </span>
@@ -78,6 +78,15 @@ export function KundenvideoCard({ video: v }: { video: Kundenvideo }) {
       <div>
         <h3 className="font-semibold leading-snug">{v.title}</h3>
         <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
+          {v.company?.logoUrl && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={v.company.logoUrl}
+              alt={v.company?.name ? `Logo ${v.company.name}` : ""}
+              loading="lazy"
+              className="h-6 w-auto max-w-[120px] object-contain"
+            />
+          )}
           {v.company?.name && <span>{v.company.name}</span>}
           {v.industry && (
             <span className="rounded-full bg-signal/10 px-2 py-0.5 text-xs font-medium text-signal">
