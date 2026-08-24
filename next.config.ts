@@ -9,6 +9,8 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // Kundenvideos-Galerie wurde zu Projektbeispiele (Videos + Grafiken).
+      { source: "/kundenvideos", destination: "/projektbeispiele", permanent: true },
       // Alte Kontakt-Route zeigt jetzt auf den Anfrage-Funnel.
       { source: "/kontakt", destination: "/anfrage", permanent: true },
       // Zwischenzeitlicher Slug /anfrage-stellen zurück auf /anfrage.
