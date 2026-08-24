@@ -75,25 +75,27 @@ export function KundenvideoCard({ video: v }: { video: Kundenvideo }) {
         )}
       </div>
 
-      <div>
-        <h3 className="font-semibold leading-snug">{v.title}</h3>
-        <div className="mt-1 flex items-center gap-x-2 text-sm text-muted-foreground">
-          {v.company?.name && <span>{v.company.name}</span>}
-          {v.industry && (
-            <span className="rounded-full bg-signal/10 px-2 py-0.5 text-xs font-medium text-signal">
-              {v.industry}
-            </span>
-          )}
-          {v.company?.logoUrl && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={v.company.logoUrl}
-              alt={v.company?.name ? `Logo ${v.company.name}` : ""}
-              loading="lazy"
-              className="ml-auto h-8 w-auto max-w-[120px] shrink-0 object-contain"
-            />
-          )}
+      <div className="flex items-center gap-3">
+        <div className="min-w-0 flex-1">
+          <h3 className="font-semibold leading-snug">{v.title}</h3>
+          <div className="mt-1 flex items-center gap-x-2 text-sm text-muted-foreground">
+            {v.company?.name && <span>{v.company.name}</span>}
+            {v.industry && (
+              <span className="rounded-full bg-signal/10 px-2 py-0.5 text-xs font-medium text-signal">
+                {v.industry}
+              </span>
+            )}
+          </div>
         </div>
+        {v.company?.logoUrl && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={v.company.logoUrl}
+            alt={v.company?.name ? `Logo ${v.company.name}` : ""}
+            loading="lazy"
+            className="h-10 w-auto max-w-[120px] shrink-0 object-contain"
+          />
+        )}
       </div>
     </article>
   );
