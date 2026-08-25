@@ -5,6 +5,7 @@ export const VIDEO_BRANCHES = [
   "Bauelemente",
   "Treppenlifte",
   "Badsanierung",
+  "Wanne zu Dusche",
   "Küchenstudios",
   "Hausbaufirmen",
   "Terrassendächer",
