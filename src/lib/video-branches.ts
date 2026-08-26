@@ -11,6 +11,7 @@ export const VIDEO_BRANCHES = [
   "Terrassendächer",
   "Handwerk",
   "Franchisesysteme",
+  "Franchise",
 ] as const;
 
 export type VideoBranche = (typeof VIDEO_BRANCHES)[number];
