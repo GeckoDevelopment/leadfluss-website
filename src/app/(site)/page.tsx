@@ -211,9 +211,9 @@ export default async function HomePage() {
               Handwerksbetrieb
             </h1>
             <p className="mx-auto mt-3 max-w-[49.5rem] text-lg font-semibold leading-snug text-foreground sm:text-xl">
-              In 4 Wochen implementieren wir einen neuen Weg für täglich neue
-              Anfragen und Bewerbungen, um weiter zu wachsen, ohne das
-              Tagesgeschäft zu vernachlässigen.
+              In nur 4 Wochen zu täglich neuen Anfragen und Bewerbungen für mehr
+              Planbarkeit, eine gesicherte Auftragslage für 6+ Monate und
+              stabiles Wachstum.
             </p>
           </div>
 
