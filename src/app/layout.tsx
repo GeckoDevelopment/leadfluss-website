@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://leadfluss.de"),
   title: {
-    default: "Leadfluss – Branchenpartner für Photovoltaik, Badsanierung, Treppenlifte und Bauelemente",
+    default: "Leadfluss – Branchenpartner für Handwerksbetriebe rund ums Haus",
     template: "%s · Leadfluss",
   },
   description:

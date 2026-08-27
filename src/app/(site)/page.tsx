@@ -202,8 +202,7 @@ export default async function HomePage() {
           {/* Kopfblock über volle Breite */}
           <div className="mx-auto max-w-7xl text-center">
             <p className="text-sm font-bold uppercase tracking-wider text-foreground">
-              Branchenpartner für Photovoltaik, Badsanierung, Treppenlifte und
-              Bauelemente
+              Branchenpartner für Handwerksbetriebe rund ums Haus
             </p>
             <h1 className="mt-4 text-4xl font-bold leading-[1.1] tracking-tight sm:text-[3.25rem]">
               Die finale Lösung für{" "}
