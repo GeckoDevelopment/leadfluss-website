@@ -94,9 +94,8 @@ const ENTRIES: Entry[] = [
     metaDescription:
       "Als Anbieter für Bauelemente mit regionalem Videomarketing 5-10 zusätzliche Aufträge pro Monat gewinnen – ohne Portal-Leads.",
     h1: "Als Anbieter für Bauelemente 5-10 zusätzliche Aufträge pro Monat mit regionalem Videomarketing",
-    // TODO: Korrekte Wistia-mediaId für Bauelemente eintragen (aktuell Platzhalter vom Handwerk-Video).
-    mediaId: "irrdzq6a06",
-    ratio: RATIO_A,
+    mediaId: "9ki6a1myre",
+    ratio: RATIO_B,
   },
   {
     slug: "videomarketing-handwerk",
