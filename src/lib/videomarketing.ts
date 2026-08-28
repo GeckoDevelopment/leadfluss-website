@@ -89,21 +89,22 @@ const ENTRIES: Entry[] = [
     ratio: RATIO_B,
   },
   {
+    slug: "videomarketing-bauelemente",
+    metaTitle: "Videomarketing für Bauelemente-Anbieter",
+    metaDescription:
+      "Als Anbieter für Bauelemente mit regionalem Videomarketing 5-10 zusätzliche Aufträge pro Monat gewinnen – ohne Portal-Leads.",
+    h1: "Als Anbieter für Bauelemente 5-10 zusätzliche Aufträge pro Monat mit regionalem Videomarketing",
+    // TODO: Korrekte Wistia-mediaId für Bauelemente eintragen (aktuell Platzhalter vom Handwerk-Video).
+    mediaId: "irrdzq6a06",
+    ratio: RATIO_A,
+  },
+  {
     slug: "videomarketing-handwerk",
     metaTitle: "Videomarketing für Handwerksbetriebe",
     metaDescription:
       "Als Handwerksbetrieb mit regionalem Videomarketing 5-10 zusätzliche Aufträge pro Monat gewinnen – ohne Portal-Leads.",
     h1: "Als Handwerksbetrieb 5-10 zusätzliche Aufträge pro Monat mit regionalem Videomarketing",
     mediaId: "irrdzq6a06",
-    ratio: RATIO_A,
-  },
-  {
-    slug: "videomarketing-hausbaufirmen",
-    metaTitle: "Videomarketing für Hausbaufirmen",
-    metaDescription:
-      "Als Hausbaufirma pro Monat 10-20 zusätzliche Beratungen mit qualifizierten Interessenten – 100% provisionsfrei.",
-    h1: "Als Hausbaufirma pro Monat 10-20 zusätzliche Beratungen mit qualifizierten Interessenten (100% provisionsfrei)",
-    mediaId: "4dmb3bixc2",
     ratio: RATIO_A,
   },
   {

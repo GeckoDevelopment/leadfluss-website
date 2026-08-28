@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { VideoLanding } from "@/components/site/video-landing";
 import { getVideomarketingPage } from "@/lib/videomarketing";
 
-const page = getVideomarketingPage("videomarketing-hausbaufirmen");
+const page = getVideomarketingPage("videomarketing-bauelemente");
 
 export const metadata: Metadata = {
   title: page.metaTitle,
