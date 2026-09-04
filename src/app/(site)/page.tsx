@@ -298,7 +298,7 @@ export default async function HomePage() {
           alt=""
           fill
           sizes="100vw"
-          className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.07]"
+          className="pointer-events-none absolute inset-0 z-0 object-cover opacity-5"
           style={{
             maskImage:
               "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
@@ -514,7 +514,7 @@ export default async function HomePage() {
           alt=""
           fill
           sizes="100vw"
-          className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.07]"
+          className="pointer-events-none absolute inset-0 z-0 object-cover opacity-5"
           style={{
             maskImage:
               "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
