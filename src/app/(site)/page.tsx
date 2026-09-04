@@ -300,7 +300,7 @@ export default async function HomePage() {
           sizes="100vw"
           className="pointer-events-none absolute inset-0 z-0 object-cover"
           style={{
-            opacity: 0.05,
+            opacity: 0.15,
             maskImage:
               "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
             WebkitMaskImage:
@@ -517,7 +517,7 @@ export default async function HomePage() {
           sizes="100vw"
           className="pointer-events-none absolute inset-0 z-0 object-cover"
           style={{
-            opacity: 0.05,
+            opacity: 0.15,
             maskImage:
               "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
             WebkitMaskImage:
