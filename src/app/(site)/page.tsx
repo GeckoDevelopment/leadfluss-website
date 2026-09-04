@@ -291,8 +291,23 @@ export default async function HomePage() {
       )}
 
       {/* Lösung */}
-      <section className="border-b border-border bg-muted/40">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+      <section className="relative overflow-hidden border-b border-border bg-muted/40">
+        {/* Dezentes Hintergrundbild (Armin & Friedrich), oben und unten weich ausgeblendet */}
+        <Image
+          src="/armin-friedrich-plan.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="pointer-events-none absolute inset-0 z-0 object-cover opacity-20"
+          style={{
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+          }}
+        />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-background/70" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Willst du auch täglich solche Anfragen bekommen?
@@ -489,8 +504,26 @@ export default async function HomePage() {
       </section>
 
       {/* Team */}
-      <section id="team" className="scroll-mt-20 border-y border-border bg-muted/40">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+      <section
+        id="team"
+        className="relative scroll-mt-20 overflow-hidden border-y border-border bg-muted/40"
+      >
+        {/* Dezentes Hintergrundbild (Armin & Friedrich im Gespräch), oben und unten weich ausgeblendet */}
+        <Image
+          src="/armin-friedrich-konversation.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="pointer-events-none absolute inset-0 z-0 object-cover opacity-20"
+          style={{
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+          }}
+        />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-background/70" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
           <div className="max-w-2xl">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
               Das Team, das dein Unternehmen versteht und sichtbar macht
