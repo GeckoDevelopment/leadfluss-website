@@ -298,7 +298,7 @@ export default async function HomePage() {
           alt=""
           fill
           sizes="100vw"
-          className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.08]"
+          className="pointer-events-none absolute inset-0 z-0 object-cover opacity-25"
           style={{
             maskImage:
               "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
@@ -306,7 +306,7 @@ export default async function HomePage() {
               "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
           }}
         />
-        <div className="pointer-events-none absolute inset-0 z-0 bg-background/70" />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-background/40" />
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -514,7 +514,7 @@ export default async function HomePage() {
           alt=""
           fill
           sizes="100vw"
-          className="pointer-events-none absolute inset-0 z-0 object-cover opacity-[0.08]"
+          className="pointer-events-none absolute inset-0 z-0 object-cover opacity-25"
           style={{
             maskImage:
               "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
@@ -522,7 +522,7 @@ export default async function HomePage() {
               "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
           }}
         />
-        <div className="pointer-events-none absolute inset-0 z-0 bg-background/70" />
+        <div className="pointer-events-none absolute inset-0 z-0 bg-background/40" />
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
           <div className="max-w-2xl">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
