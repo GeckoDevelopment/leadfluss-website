@@ -328,7 +328,7 @@ export default async function HomePage() {
                 </p>
                 <p>
                   Dabei fehlt dir gar nicht viel, um selber{" "}
-                  <strong className="font-bold">zum lokalen Marktführer</strong>{" "}
+                  <strong className="font-bold">zum lokalen Vorreiter</strong>{" "}
                   zu werden. Es sind nur wenige gezielte Schritte, die gegangen
                   werden müssen.
                 </p>
