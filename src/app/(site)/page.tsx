@@ -325,7 +325,7 @@ export default async function HomePage() {
                   Vielleicht kennst du selber so einen Betrieb, möglicherweise
                   in deiner Stadt oder Region.
                 </p>
-                <p className="font-bold">
+                <p>
                   Ich will, dass du genau zu diesem Betrieb wirst. Zum
                   Vorreiter in deiner Region.
                 </p>
