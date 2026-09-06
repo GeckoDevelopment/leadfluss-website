@@ -352,7 +352,7 @@ export default async function HomePage() {
               </div>
             </div>
             <div className="lg:sticky lg:top-24">
-              <div className="relative aspect-[4/5] w-full overflow-hidden border border-border bg-muted">
+              <div className="relative aspect-[4/5] w-full overflow-hidden border border-border bg-muted shadow-lg">
                 <Image
                   src="/armin-engelbert-strauss.jpg"
                   alt="Armin Hirschfeld, Mitgründer der Leadfluss GmbH"
