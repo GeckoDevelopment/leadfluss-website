@@ -306,7 +306,7 @@ export default async function HomePage() {
                 </p>
                 <p>
                   Woran liegt das? Zu viel Konkurrenz? Wirtschaftskrise? Bist
-                  du sogar zu teuer? Zahlst du nicht genügend Gehalt?
+                  du sogar zu teuer?
                 </p>
                 <p>
                   Gleichzeitig gibt es ein paar Handwerksbetriebe, die haben
