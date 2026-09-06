@@ -290,6 +290,85 @@ export default async function HomePage() {
         </section>
       )}
 
+      {/* Persönlicher Brief vom Gründer */}
+      <section className="border-b border-border">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
+          <div className="grid items-start gap-12 lg:grid-cols-2">
+            <div>
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Lieber Handwerksunternehmer,
+              </h2>
+              <div className="mt-6 space-y-4 text-lg leading-relaxed text-foreground">
+                <p>
+                  Du hast es selber gemerkt: Kunden kaufen nicht mehr so
+                  schnell. Sie wollen viel öfter vergleichen als vor paar
+                  Jahren.
+                </p>
+                <p>
+                  Und wenn mal ein guter Auftrag reinkommt, findet man sowieso
+                  keine Leute in der Region, die sich drum kümmern.
+                </p>
+                <p>
+                  Woran liegt das? Zu viel Konkurrenz? Wirtschaftskrise? Bist
+                  du sogar zu teuer? Zahlst du nicht genügend Gehalt?
+                </p>
+                <p>
+                  Gleichzeitig gibt es ein paar Handwerksbetriebe, die haben
+                  keines dieser Probleme. Bei denen läuft&rsquo;s einfach.
+                  Ständig neue Projekte und jedes Jahr wächst die Mannschaft.
+                </p>
+                <p>
+                  Vielleicht kennst du selber so einen Betrieb, möglicherweise
+                  in deiner Stadt oder Region.
+                </p>
+                <p>
+                  Ich will, dass du genau zu diesem Betrieb wirst. Zum
+                  Vorreiter in deiner Region.
+                </p>
+                <p>
+                  Dabei fehlt dir gar nicht viel, um selber zum lokalen
+                  Marktführer zu werden. Es sind nur wenige gezielte Schritte,
+                  die gegangen werden müssen.
+                </p>
+                <p>
+                  Was du brauchst, ist jemand der mit anpackt. Der das
+                  erledigt, wofür du keine Zeit findest. Jemand der neue Ideen
+                  bringt und sie auch direkt umsetzt.
+                </p>
+                <p className="font-semibold text-foreground">
+                  Herzlichen Glückwunsch, du hast Leadfluss gefunden.
+                </p>
+              </div>
+              <div className="mt-8">
+                <Button
+                  size="lg"
+                  render={
+                    <Link href="/anfrage">
+                      Jetzt unverbindliches Erstgespräch buchen
+                      <ArrowRight className="size-4" />
+                    </Link>
+                  }
+                />
+              </div>
+            </div>
+            <div className="lg:sticky lg:top-24">
+              <div className="relative aspect-[4/5] w-full overflow-hidden border border-border bg-muted">
+                <Image
+                  src="/armin-engelbert-strauss.jpg"
+                  alt="Armin Hirschfeld, Mitgründer der Leadfluss GmbH"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 600px"
+                  className="object-cover object-top"
+                />
+              </div>
+              <p className="mt-4 text-left text-lg font-medium italic text-foreground">
+                Armin Hirschfeld – Mitgründer der Leadfluss GmbH
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Lösung */}
       <section className="relative overflow-hidden border-b border-border bg-muted/40">
         {/* Dezentes Hintergrundbild (Armin & Friedrich), oben und unten weich ausgeblendet */}
