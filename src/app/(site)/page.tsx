@@ -323,13 +323,16 @@ export default async function HomePage() {
                 </p>
                 <p>
                   Bestimmt kennst du selber so ein Unternehmen, möglicherweise
-                  in deiner Nähe. Ich will, dass du genau zu
-                  diesem Betrieb wirst. Zum Vorreiter in deiner Region.
+                  in deiner Nähe. Ich will, dass du genau zu diesem Betrieb
+                  wirst.
                 </p>
                 <p>
-                  Dabei fehlt dir gar nicht viel, um selber zum lokalen
-                  Marktführer zu werden. Es sind nur wenige gezielte Schritte,
-                  die gegangen werden müssen.
+                  Dabei fehlt dir gar nicht viel, um selber{" "}
+                  <strong className="font-bold">
+                    zum lokalen Marktführer zu werden
+                  </strong>
+                  . Es sind nur wenige gezielte Schritte, die gegangen werden
+                  müssen.
                 </p>
                 <p>
                   Was du brauchst, ist jemand der mit anpackt. Der das
