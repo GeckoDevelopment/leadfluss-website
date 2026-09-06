@@ -301,8 +301,8 @@ export default async function HomePage() {
               <div className="mt-6 space-y-4 text-lg leading-relaxed text-foreground">
                 <p>
                   Du hast es selber gemerkt: Kunden kaufen nicht mehr so
-                  schnell. Sie wollen viel öfter vergleichen als vor paar
-                  Jahren.
+                  schnell. Sie wollen viel öfter Angebote vergleichen als vor
+                  paar Jahren.
                 </p>
                 <p>
                   Und wenn mal ein guter Auftrag reinkommt, findet man sowieso
