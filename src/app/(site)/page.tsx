@@ -310,7 +310,7 @@ export default async function HomePage() {
                 <p>
                   Du machst dir viel Aufwand, fährst auf Außentermine,
                   kalkulierst Angebote und führst dutzende Telefonate, nur dass
-                  der Kunde am Ende beim günstigsten kauft.
+                  der Kunde am Ende doch beim günstigsten kauft.
                 </p>
                 <p>
                   Woran liegt das? Zu viel Konkurrenz? Wirtschaftskrise? Bist
