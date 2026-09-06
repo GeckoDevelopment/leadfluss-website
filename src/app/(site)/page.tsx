@@ -205,7 +205,7 @@ export default async function HomePage() {
               Der Branchenpartner für das Handwerk – Für Fachbetriebe rund ums
               Haus
             </p>
-            <h1 className="mt-4 text-4xl font-bold leading-[1.1] tracking-tight sm:text-[3.25rem]">
+            <h1 className="mt-4 text-[1.6875rem] font-bold leading-[1.1] tracking-tight sm:text-[3.25rem]">
               Deine Lösung für{" "}
               <span className="text-signal">planbar mehr Aufträge</span> und{" "}
               <span className="text-signal">qualifiziertes Personal</span> als
