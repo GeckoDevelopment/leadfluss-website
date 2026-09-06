@@ -309,15 +309,18 @@ export default async function HomePage() {
                   du sogar zu teuer?
                 </p>
                 <p>
-                  Gleichzeitig gibt es ein paar Handwerksbetriebe, die haben
-                  keines dieser Probleme. Bei denen läuft&rsquo;s einfach.
-                  Ständig neue Projekte und jedes Jahr wächst die Mannschaft.
+                  Gleichzeitig gibt es{" "}
+                  <strong className="font-bold">
+                    ein paar Handwerksbetriebe, die haben keines dieser Probleme
+                  </strong>
+                  . Bei denen läuft&rsquo;s einfach. Ständig neue Projekte und
+                  jedes Jahr wächst die Mannschaft.
                 </p>
                 <p>
                   Vielleicht kennst du selber so einen Betrieb, möglicherweise
                   in deiner Stadt oder Region.
                 </p>
-                <p>
+                <p className="font-bold">
                   Ich will, dass du genau zu diesem Betrieb wirst. Zum
                   Vorreiter in deiner Region.
                 </p>
@@ -331,9 +334,7 @@ export default async function HomePage() {
                   erledigt, wofür du keine Zeit findest. Jemand der neue Ideen
                   bringt und sie auch direkt umsetzt.
                 </p>
-                <p className="font-semibold text-foreground">
-                  Herzlichen Glückwunsch, du hast Leadfluss gefunden.
-                </p>
+                <p>Herzlichen Glückwunsch, du hast Leadfluss gefunden.</p>
               </div>
               <div className="mt-8">
                 <Button
