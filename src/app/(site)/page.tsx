@@ -323,7 +323,7 @@ export default async function HomePage() {
                 </p>
                 <p>
                   Vielleicht kennst du selber so einen Betrieb, möglicherweise
-                  in deiner Stadt oder Region.
+                  in deiner Nähe.
                 </p>
                 <p>
                   Ich will, dass du genau zu diesem Betrieb wirst. Zum
