@@ -311,7 +311,7 @@ export default async function HomePage() {
                 </p>
                 <p>
                   Woran liegt das? Zu viel Konkurrenz? Wirtschaftskrise? Bist
-                  du sogar zu teuer?
+                  du sogar zu teuer? Sind deine Produkte noch aktuell?
                 </p>
                 <p>
                   Gleichzeitig gibt es{" "}
