@@ -211,7 +211,7 @@ export default async function HomePage() {
               <span className="text-signal">qualifiziertes Personal</span> als
               Handwerksbetrieb
             </h1>
-            <p className="mx-auto mt-3 max-w-[49.5rem] text-[0.9rem] font-semibold leading-snug text-foreground sm:text-xl">
+            <p className="mx-auto mt-3 max-w-[49.5rem] text-[0.99rem] font-semibold leading-snug text-foreground sm:text-xl">
               In nur 4 Wochen zu täglich neuen Anfragen und Bewerbungen für mehr
               Planbarkeit, eine gesicherte Auftragslage für 6+ Monate und
               stabiles Wachstum.
