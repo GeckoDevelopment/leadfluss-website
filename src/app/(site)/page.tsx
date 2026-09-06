@@ -333,9 +333,11 @@ export default async function HomePage() {
                   werden müssen.
                 </p>
                 <p>
-                  Was du brauchst, ist jemand der mit anpackt. Der das
-                  erledigt, wofür du keine Zeit findest. Jemand der neue Ideen
-                  bringt und sie auch direkt umsetzt.
+                  <strong className="font-bold">
+                    Was du brauchst, ist jemand der mit anpackt.
+                  </strong>{" "}
+                  Der das erledigt, wofür du keine Zeit findest. Jemand der
+                  neue Ideen bringt und sie auch direkt umsetzt.
                 </p>
                 <p>Herzlichen Glückwunsch, du hast Leadfluss gefunden.</p>
               </div>
