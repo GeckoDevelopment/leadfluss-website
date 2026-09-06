@@ -323,11 +323,8 @@ export default async function HomePage() {
                 </p>
                 <p>
                   Vielleicht kennst du selber so einen Betrieb, möglicherweise
-                  in deiner Nähe.
-                </p>
-                <p>
-                  Ich will, dass du genau zu diesem Betrieb wirst. Zum
-                  Vorreiter in deiner Region.
+                  in deiner Nähe. Ich will, dass du genau zu diesem Betrieb
+                  wirst. Zum Vorreiter in deiner Region.
                 </p>
                 <p>
                   Dabei fehlt dir gar nicht viel, um selber zum lokalen
