@@ -305,10 +305,6 @@ export default async function HomePage() {
                   paar Jahren.
                 </p>
                 <p>
-                  Und wenn mal ein guter Auftrag reinkommt, findet man sowieso
-                  keine Leute in der Region, die sich drum kümmern.
-                </p>
-                <p>
                   Woran liegt das? Zu viel Konkurrenz? Wirtschaftskrise? Bist
                   du sogar zu teuer? Zahlst du nicht genügend Gehalt?
                 </p>
