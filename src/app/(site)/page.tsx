@@ -322,8 +322,8 @@ export default async function HomePage() {
                   jedes Jahr wächst die Mannschaft.
                 </p>
                 <p>
-                  Vielleicht kennst du selber so ein Unternehmen,
-                  möglicherweise in deiner Nähe. Ich will, dass du genau zu
+                  Bestimmt kennst du selber so ein Unternehmen, möglicherweise
+                  in deiner Nähe. Ich will, dass du genau zu
                   diesem Betrieb wirst. Zum Vorreiter in deiner Region.
                 </p>
                 <p>
