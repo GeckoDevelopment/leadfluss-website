@@ -293,12 +293,31 @@ export default async function HomePage() {
       {/* Persönlicher Brief vom Gründer */}
       <section className="border-b border-border">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28">
-          <div className="grid items-start gap-12 lg:grid-cols-2">
-            <div>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Lieber Handwerksunternehmer,
-              </h2>
-              <div className="mt-6 space-y-4 text-lg leading-relaxed text-foreground">
+          <div className="flex flex-col gap-8 lg:grid lg:grid-cols-2 lg:items-start lg:gap-x-12 lg:gap-y-6">
+            {/* Überschrift */}
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:col-start-1 lg:row-start-1">
+              Lieber Handwerksunternehmer,
+            </h2>
+
+            {/* Bild + Bildunterschrift (auf Mobil zwischen Überschrift und Text) */}
+            <div className="lg:col-start-2 lg:row-start-1 lg:row-span-2 lg:sticky lg:top-24">
+              <div className="relative aspect-[4/5] w-full overflow-hidden border border-border bg-muted shadow-lg">
+                <Image
+                  src="/armin-engelbert-strauss.jpg"
+                  alt="Armin Hirschfeld, Mitgründer der Leadfluss GmbH"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 600px"
+                  className="object-cover object-top"
+                />
+              </div>
+              <p className="mt-4 text-left text-lg font-medium italic text-foreground">
+                Armin Hirschfeld – Mitgründer der Leadfluss GmbH
+              </p>
+            </div>
+
+            {/* Restlicher Text + Button */}
+            <div className="lg:col-start-1 lg:row-start-2">
+              <div className="space-y-4 text-lg leading-relaxed text-foreground">
                 <p>
                   Du hast es selber gemerkt: Kunden kaufen nicht mehr so
                   schnell. Sie{" "}
@@ -355,20 +374,6 @@ export default async function HomePage() {
                   }
                 />
               </div>
-            </div>
-            <div className="lg:sticky lg:top-24">
-              <div className="relative aspect-[4/5] w-full overflow-hidden border border-border bg-muted shadow-lg">
-                <Image
-                  src="/armin-engelbert-strauss.jpg"
-                  alt="Armin Hirschfeld, Mitgründer der Leadfluss GmbH"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 600px"
-                  className="object-cover object-top"
-                />
-              </div>
-              <p className="mt-4 text-left text-lg font-medium italic text-foreground">
-                Armin Hirschfeld – Mitgründer der Leadfluss GmbH
-              </p>
             </div>
           </div>
         </div>
