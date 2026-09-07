@@ -20,6 +20,7 @@ export const metadata: Metadata = {
   title: "Vor-Ort-Videodreh",
   description:
     "Der Vor-Ort-Videodreh für Fachbetriebe: hochwertige, authentische Werbefilme, die deine Wahrnehmung stärken und nachweislich mehr Kundenanfragen bringen.",
+  alternates: { canonical: "/vor-ort-videodreh" },
 };
 
 // Warum ein Videodreh mehr Leads bringt – drei Kernargumente.

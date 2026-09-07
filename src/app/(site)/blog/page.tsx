@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description:
     "Insights, Strategien und Case Studies rund um planbare Leadgenerierung für Handwerk und Mittelstand.",
+  alternates: { canonical: "/blog" },
 };
 
 export const revalidate = 60;

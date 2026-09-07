@@ -1,16 +1,35 @@
 import type { Metadata } from "next";
 import { ChevronDown } from "lucide-react";
 import { PageHeader } from "@/components/site/page-header";
+import { JsonLd } from "@/components/site/json-ld";
 import { FAQ_CATEGORIES } from "@/lib/faqs";
 
 export const metadata: Metadata = {
   title: "FAQ",
   description: "Häufige Fragen zu Leadfluss, Ablauf, Kosten und Ergebnissen.",
+  alternates: { canonical: "/faq" },
+};
+
+// FAQPage-Schema für Rich Results in der Google-Suche.
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ_CATEGORIES.flatMap((category) => category.items).map(
+    (item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    }),
+  ),
 };
 
 export default function FaqPage() {
   return (
     <>
+      <JsonLd data={faqSchema} />
       <PageHeader
         eyebrow="FAQ"
         title="Häufig gestellte Fragen"

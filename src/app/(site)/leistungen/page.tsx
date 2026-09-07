@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Leistungen",
   description:
     "Von der Kampagne bis zur konvertierenden Landingpage – so gewinnst du mit Leadfluss planbar neue Kunden.",
+  alternates: { canonical: "/leistungen" },
 };
 
 const SERVICES = [

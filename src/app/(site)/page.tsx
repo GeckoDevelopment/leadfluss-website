@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import {
@@ -25,6 +26,15 @@ import { Funnel } from "./anfrage/funnel";
 import { getTeam } from "@/sanity/lib/team";
 import { getCaseStudies } from "@/sanity/lib/case-studies";
 import { getCompanyLogos } from "@/sanity/lib/companies";
+
+export const metadata: Metadata = {
+  // Absoluter Titel (ohne "· Leadfluss"-Template) für die Startseite.
+  title: {
+    absolute:
+      "Leadfluss – Branchenpartner für das Handwerk – Für Fachbetriebe rund ums Haus",
+  },
+  alternates: { canonical: "/" },
+};
 
 const HERO_BENEFITS = [
   "Mache dich unabhängig von der schlechten Qualität der Leads über Portale und Leadhändler",

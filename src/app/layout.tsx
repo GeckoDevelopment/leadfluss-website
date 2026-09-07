@@ -16,15 +16,43 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const DEFAULT_TITLE =
+  "Leadfluss – Branchenpartner für das Handwerk – Für Fachbetriebe rund ums Haus";
+const DEFAULT_DESCRIPTION =
+  "Leadfluss ist die Videomarketing-Agentur für den Mittelstand: Professionelle Werbevideos, die neue Kunden gewinnen und Arbeitsplätze attraktiver machen.";
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.leadfluss.de"),
   title: {
-    default: "Leadfluss – Branchenpartner für das Handwerk – Für Fachbetriebe rund ums Haus",
+    default: DEFAULT_TITLE,
     template: "%s · Leadfluss",
   },
-  description:
-    "Leadfluss ist die Videomarketing-Agentur für den Mittelstand: Professionelle Werbevideos, die neue Kunden gewinnen und Arbeitsplätze attraktiver machen.",
+  description: DEFAULT_DESCRIPTION,
   manifest: "/site.webmanifest",
+  // Social-Vorschau (WhatsApp, LinkedIn, X …). Einzelne Seiten überschreiben
+  // Titel/Beschreibung; Bild und Grunddaten werden vererbt.
+  openGraph: {
+    type: "website",
+    locale: "de_DE",
+    siteName: "Leadfluss",
+    url: "https://www.leadfluss.de",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: [
+      {
+        url: "/og-default.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Leadfluss – Videomarketing für den Mittelstand",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESCRIPTION,
+    images: ["/og-default.jpg"],
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

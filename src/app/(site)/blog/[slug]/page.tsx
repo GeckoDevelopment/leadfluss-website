@@ -10,6 +10,8 @@ import {
   type TocHeading,
 } from "@/components/site/table-of-contents";
 import { Badge } from "@/components/ui/badge";
+import { JsonLd } from "@/components/site/json-ld";
+import { SITE_URL } from "@/lib/structured-data";
 import { formatDate } from "@/lib/format";
 
 export const revalidate = 60;
@@ -28,7 +30,15 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.seoDescription ?? post.excerpt,
-    openGraph: post.coverUrl ? { images: [post.coverUrl] } : undefined,
+    alternates: { canonical: `/blog/${slug}` },
+    openGraph: {
+      type: "article",
+      title: post.title,
+      description: post.seoDescription ?? post.excerpt,
+      url: `/blog/${slug}`,
+      publishedTime: post.publishedAt,
+      images: post.coverUrl ? [post.coverUrl] : ["/og-default.jpg"],
+    },
   };
 }
 
@@ -67,8 +77,30 @@ export default async function PostPage({ params }: PageProps<"/blog/[slug]">) {
     .slice(0, 2)
     .join("");
 
+  // BlogPosting-Schema für Rich Results (Autor, Datum, Bild).
+  const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.seoDescription ?? post.excerpt,
+    image: post.coverUrl ? [post.coverUrl] : [`${SITE_URL}/og-default.jpg`],
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    author: { "@type": "Person", name: authorName },
+    publisher: {
+      "@type": "Organization",
+      name: "Leadfluss GmbH",
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/leadfluss-mark-green.png`,
+      },
+    },
+    mainEntityOfPage: `${SITE_URL}/blog/${slug}`,
+  };
+
   return (
     <article>
+      <JsonLd data={articleSchema} />
       {/* Kopfbereich: zweispaltig – Text links, Beitragsbild rechts. */}
       <header className="border-b border-border bg-muted/30">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16">
