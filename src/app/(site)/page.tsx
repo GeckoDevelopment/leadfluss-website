@@ -22,6 +22,8 @@ import {
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { SolutionAnimation } from "@/components/site/solution-animation";
+import { MuxVideo } from "@/components/site/mux-video";
+import { WERBEFILM_PLAYBACK_ID } from "@/lib/videos";
 import { Funnel } from "./anfrage/funnel";
 import { getTeam } from "@/sanity/lib/team";
 import { getCaseStudies } from "@/sanity/lib/case-studies";
@@ -230,16 +232,12 @@ export default async function HomePage() {
 
           {/* Zweigeteilter Abschnitt: Video links, Text + CTA rechts */}
           <div className="mt-11 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            {/* Werbefilm (Wistia) */}
-            <div className="relative aspect-video w-full overflow-hidden bg-muted">
-              <iframe
-                src="https://fast.wistia.net/embed/iframe/x1h8o61b7b?seo=true&videoFoam=false"
-                title="Leadfluss Werbefilm"
-                allow="autoplay; fullscreen"
-                allowFullScreen
-                className="absolute inset-0 h-full w-full"
-              />
-            </div>
+            {/* Werbefilm (Mux) – stummer Endlos-Loop, Klick pausiert */}
+            <MuxVideo
+              playbackId={WERBEFILM_PLAYBACK_ID}
+              title="Leadfluss Werbefilm"
+              background
+            />
 
             {/* Text + CTA */}
             <div className="text-center lg:text-left">

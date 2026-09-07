@@ -259,13 +259,13 @@ export default function DatenschutzPage() {
             </p>
           </Section>
 
-          <Section id="videos" title="7. Videos (Wistia)">
+          <Section id="videos" title="7. Videos (Mux)">
             <p>
-              Zur Einbindung von Videos nutzen wir den Dienst „Wistia“ der Wistia,
-              Inc. (USA). Beim Abspielen eines Videos wird eine Verbindung zu den
-              Servern von Wistia hergestellt; dabei können Nutzungsdaten (z. B.
-              IP-Adresse, Informationen zum wiedergegebenen Video, Gerät und
-              Browser) verarbeitet werden.
+              Zur Einbindung von Videos nutzen wir den Dienst „Mux“ der Mux, Inc.
+              (USA). Beim Abspielen eines Videos wird eine Verbindung zu den Servern
+              von Mux hergestellt; dabei können Nutzungsdaten (z. B. IP-Adresse,
+              Informationen zum wiedergegebenen Video, Gerät und Browser)
+              verarbeitet werden.
             </p>
             <p>
               Rechtsgrundlage ist – soweit erforderlich – deine Einwilligung nach
@@ -275,12 +275,12 @@ export default function DatenschutzPage() {
               Garantien der Art. 44 ff. DSGVO. Weitere Informationen findest du in
               der{" "}
               <a
-                href="https://wistia.com/privacy"
+                href="https://www.mux.com/privacy"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-foreground"
               >
-                Datenschutzerklärung von Wistia
+                Datenschutzerklärung von Mux
               </a>
               .
             </p>

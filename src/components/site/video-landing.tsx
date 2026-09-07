@@ -1,4 +1,4 @@
-import { WistiaPlayer } from "@/components/site/wistia-player";
+import { MuxVideo } from "@/components/site/mux-video";
 import { CalendlyEmbed } from "@/components/site/calendly-embed";
 import { CALENDLY_URL } from "@/lib/calendly";
 import type { VideomarketingPage } from "@/lib/videomarketing";
@@ -40,10 +40,10 @@ export function VideoLanding({ page }: { page: VideomarketingPage }) {
             {page.step1Sub}
           </p>
           <div className="mt-6">
-            <WistiaPlayer
-              mediaId={page.video.mediaId}
+            <MuxVideo
+              playbackId={page.video.playbackId}
               aspect={page.video.aspect}
-              swatchPadding={page.video.swatchPadding}
+              title={page.h1}
             />
           </div>
         </section>

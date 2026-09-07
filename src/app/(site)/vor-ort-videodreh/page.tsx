@@ -13,7 +13,8 @@ import {
   Megaphone,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { WistiaPlayer } from "@/components/site/wistia-player";
+import { MuxVideo } from "@/components/site/mux-video";
+import { WERBEFILM_PLAYBACK_ID } from "@/lib/videos";
 import { getCompanyLogos } from "@/sanity/lib/companies";
 
 export const metadata: Metadata = {
@@ -106,9 +107,9 @@ export default async function VorOrtVideodrehPage() {
             />
           </div>
         </div>
-        {/* Werbefilm (Wistia) */}
+        {/* Werbefilm (Mux) */}
         <div className="mx-auto max-w-4xl px-4 pt-12 pb-20 sm:px-6 sm:pt-14 sm:pb-24">
-          <WistiaPlayer mediaId="x1h8o61b7b" />
+          <MuxVideo playbackId={WERBEFILM_PLAYBACK_ID} title="Leadfluss Werbefilm" />
         </div>
       </section>
 
