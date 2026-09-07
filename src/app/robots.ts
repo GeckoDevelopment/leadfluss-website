@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const SITE_URL = "https://leadfluss.de";
+const SITE_URL = "https://www.leadfluss.de";
 
 export default function robots(): MetadataRoute.Robots {
   return {

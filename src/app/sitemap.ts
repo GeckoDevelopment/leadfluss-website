@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getPostSlugs } from "@/sanity/lib/posts";
 
-const SITE_URL = "https://leadfluss.de";
+const SITE_URL = "https://www.leadfluss.de";
 
 // Öffentliche, indexierbare Seiten. Bewusst NICHT enthalten:
 // /styleguide und /studio (intern) sowie /impressum & /datenschutz (noindex).
