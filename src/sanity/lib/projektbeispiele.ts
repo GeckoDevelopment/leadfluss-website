@@ -58,3 +58,30 @@ export async function getProjektbeispiele(): Promise<Projektbeispiel[]> {
   if (!isSanityConfigured) return [];
   return client.fetch(PROJEKTBEISPIELE_QUERY);
 }
+
+/**
+ * Kuratierte Kurzvideos für den Startseiten-Slider. Es zählen nur
+ * Video-Projektbeispiele mit gesetztem Flag `showOnHomepage`, sortiert nach
+ * `homepageOrder` (leer = ans Ende) und dann Titel.
+ */
+export const HOMEPAGE_VIDEOS_QUERY = groq`
+  *[_type == "muxVideo" && mediaType != "grafik" && showOnHomepage == true && defined(video.asset)]
+    | order(coalesce(homepageOrder, 9999) asc, title asc)[0...12] {
+    _id,
+    title,
+    "playbackId": video.asset->playbackId,
+    "status": video.asset->status,
+    "aspectRatio": video.asset->data.aspect_ratio,
+    "posterUrl": poster.asset->url,
+    "company": company->{
+      name,
+      branch,
+      "logoUrl": logo.asset->url
+    }
+  }
+`;
+
+export async function getHomepageVideos(): Promise<Projektbeispiel[]> {
+  if (!isSanityConfigured) return [];
+  return client.fetch(HOMEPAGE_VIDEOS_QUERY);
+}

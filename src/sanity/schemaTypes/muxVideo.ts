@@ -117,6 +117,24 @@ export const muxVideo = defineType({
       options: { hotspot: true },
       hidden: ({ parent }) => parent?.mediaType !== "video",
     }),
+    defineField({
+      name: "showOnHomepage",
+      title: "Auf Startseite zeigen",
+      type: "boolean",
+      description:
+        "Wenn aktiv, erscheint dieses Video im Kurzvideo-Slider der Startseite (nach Reihenfolge sortiert).",
+      initialValue: false,
+      hidden: ({ parent }) => parent?.mediaType !== "video",
+    }),
+    defineField({
+      name: "homepageOrder",
+      title: "Reihenfolge auf Startseite",
+      type: "number",
+      description:
+        "Kleinere Zahl = weiter vorne. Leer lassen sortiert nach Titel. Nur relevant, wenn „Auf Startseite zeigen“ aktiv ist.",
+      hidden: ({ parent }) =>
+        parent?.mediaType !== "video" || !parent?.showOnHomepage,
+    }),
   ],
   preview: {
     select: {
@@ -127,15 +145,16 @@ export const muxVideo = defineType({
       mediaType: "mediaType",
       poster: "poster",
       image: "image",
+      showOnHomepage: "showOnHomepage",
     },
-    prepare({ title, company, industries, industry, mediaType, poster, image }) {
+    prepare({ title, company, industries, industry, mediaType, poster, image, showOnHomepage }) {
       const typLabel = mediaType === "grafik" ? "Grafik" : "Video";
       const branchen =
         Array.isArray(industries) && industries.length > 0
           ? industries.join(", ")
           : industry;
       return {
-        title: title || company || "Projektbeispiel",
+        title: `${showOnHomepage ? "★ " : ""}${title || company || "Projektbeispiel"}`,
         subtitle: [company, branchen, typLabel].filter(Boolean).join(" · "),
         media: mediaType === "grafik" ? image : poster || image,
       };

@@ -224,3 +224,15 @@
     transition: none;
   }
 }
+
+/* Endlos-Marquee für die Kurzvideo-Sektion. Der Track enthält die Videos
+   doppelt; eine Verschiebung um 50 % blendet nahtlos zur zweiten Kopie über.
+   Bewegungsrichtung (links↔rechts) wird per animation-direction gesteuert. */
+@keyframes lf-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}

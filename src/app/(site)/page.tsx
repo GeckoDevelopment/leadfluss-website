@@ -23,11 +23,13 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { SolutionAnimation } from "@/components/site/solution-animation";
 import { MuxVideo } from "@/components/site/mux-video";
+import { HomeVideoShowcase } from "@/components/site/home-video-showcase";
 import { WERBEFILM_PLAYBACK_ID } from "@/lib/videos";
 import { Funnel } from "./anfrage/funnel";
 import { getTeam } from "@/sanity/lib/team";
 import { getCaseStudies } from "@/sanity/lib/case-studies";
 import { getCompanyLogos } from "@/sanity/lib/companies";
+import { getHomepageVideos } from "@/sanity/lib/projektbeispiele";
 
 export const metadata: Metadata = {
   // Absoluter Titel (ohne "· Leadfluss"-Template) für die Startseite.
@@ -193,10 +195,11 @@ function initials(name: string) {
 export const revalidate = 60;
 
 export default async function HomePage() {
-  const [team, caseStudies, companyLogos] = await Promise.all([
+  const [team, caseStudies, companyLogos, showcaseVideos] = await Promise.all([
     getTeam(),
     getCaseStudies(),
     getCompanyLogos(),
+    getHomepageVideos(),
   ]);
 
   return (
@@ -581,6 +584,29 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Kurzvideo-Beispiele (kuratiert aus Projektbeispielen) */}
+      {showcaseVideos.length > 0 && (
+        <section className="overflow-hidden border-t border-border py-20 sm:py-28">
+          {/* Überschrift bleibt zentriert/begrenzt, der Slider läuft darunter
+              über die volle Bildschirmbreite. */}
+          <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
+            <p className="text-sm font-semibold uppercase tracking-wider text-signal">
+              Videobeispiele
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+              Kurzvideos aus echten Projekten
+            </h2>
+            <p className="mx-auto mt-4 text-lg text-muted-foreground">
+              Ein Auszug der Videos, die wir für unsere Partnerbetriebe
+              produziert haben.
+            </p>
+          </div>
+          <div className="mt-12">
+            <HomeVideoShowcase items={showcaseVideos} />
+          </div>
+        </section>
+      )}
 
       {/* Google Reviews (Elfsight) */}
       <section>
