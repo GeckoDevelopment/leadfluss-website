@@ -61,7 +61,7 @@ export function SolutionAnimation({
   }, [index]);
 
   return (
-    <div className="mx-auto w-full max-w-sm" style={{ aspectRatio: "600 / 174" }}>
+    <div className="mx-auto w-full max-w-sm" style={{ aspectRatio: "1080 / 312" }}>
       <video
         ref={ref}
         muted

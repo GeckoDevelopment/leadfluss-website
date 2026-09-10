@@ -164,20 +164,20 @@ const SOLUTIONS = [
   {
     title: "Kaufkräftige Kunden gewinnen",
     text: "Wir machen dich in deiner Region online so bekannt, dass sich kaufbereite Interessenten von selbst bei dir melden. Das Budget klären wir vorab – damit du dich nur noch um die lukrativen Aufträge kümmerst.",
-    anim: "/animationen/Terrassendach%20Lead",
-    alt: "Eingehende Anfrage für ein Terrassendach",
+    anim: "/animationen/Kaufkr%C3%A4ftige%20Kunden",
+    alt: "Animation: Kaufkräftige Kunden gewinnen",
   },
   {
     title: "Passende Fachkräfte finden",
     text: "Mit unserer RVM Methode wirst du lokal als attraktiver Arbeitgeber wahrgenommen, sodass du selbst schwierige Stellen wie Dachdecker, Elektriker oder Heizungsmonteure besetzen wirst.",
-    anim: "/animationen/BW%20Dachdecker",
-    alt: "Eingehende Bewerbung eines Dachdeckers",
+    anim: "/animationen/Passende%20Fachkr%C3%A4fte",
+    alt: "Animation: Passende Fachkräfte finden",
   },
   {
     title: "Regionale Bekanntheit",
     text: "Wir sorgen dafür, dass du systematisch in deiner Region als bester Anbieter für deine Produktkategorie angesehen wirst, sodass die hochwertigsten Kunden als allererstes bei dir anfragen.",
-    anim: "/animationen/PV%20Lead%202",
-    alt: "Eingehende Photovoltaik-Anfrage über die Webseite",
+    anim: "/animationen/Regionale%20Bekanntheit",
+    alt: "Animation: Regionale Bekanntheit",
   },
 ];
 
