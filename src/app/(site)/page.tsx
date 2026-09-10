@@ -391,6 +391,29 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Kurzvideo-Beispiele (kuratiert aus Projektbeispielen) */}
+      {showcaseVideos.length > 0 && (
+        <section className="overflow-hidden border-t border-border py-20 sm:py-28">
+          {/* Überschrift bleibt zentriert/begrenzt, der Slider läuft darunter
+              über die volle Bildschirmbreite. */}
+          <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
+            <p className="text-sm font-semibold uppercase tracking-wider text-signal">
+              Videobeispiele
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
+              Kurzvideos aus echten Projekten
+            </h2>
+            <p className="mx-auto mt-4 text-lg text-muted-foreground">
+              Ein Auszug der Videos, die wir für unsere Partnerbetriebe
+              produziert haben.
+            </p>
+          </div>
+          <div className="mt-12">
+            <HomeVideoShowcase items={showcaseVideos} />
+          </div>
+        </section>
+      )}
+
       {/* Lösung */}
       <section className="relative overflow-hidden border-b border-border bg-muted/40">
         {/* Dezentes Hintergrundbild (Armin & Friedrich), oben und unten weich ausgeblendet */}
@@ -584,29 +607,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Kurzvideo-Beispiele (kuratiert aus Projektbeispielen) */}
-      {showcaseVideos.length > 0 && (
-        <section className="overflow-hidden border-t border-border py-20 sm:py-28">
-          {/* Überschrift bleibt zentriert/begrenzt, der Slider läuft darunter
-              über die volle Bildschirmbreite. */}
-          <div className="mx-auto max-w-2xl px-4 text-center sm:px-6">
-            <p className="text-sm font-semibold uppercase tracking-wider text-signal">
-              Videobeispiele
-            </p>
-            <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              Kurzvideos aus echten Projekten
-            </h2>
-            <p className="mx-auto mt-4 text-lg text-muted-foreground">
-              Ein Auszug der Videos, die wir für unsere Partnerbetriebe
-              produziert haben.
-            </p>
-          </div>
-          <div className="mt-12">
-            <HomeVideoShowcase items={showcaseVideos} />
-          </div>
-        </section>
-      )}
 
       {/* Google Reviews (Elfsight) */}
       <section>
