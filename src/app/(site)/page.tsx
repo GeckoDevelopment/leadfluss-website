@@ -21,7 +21,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { SolutionAnimation } from "@/components/site/solution-animation";
+import { LeadNotification } from "@/components/site/lead-notification";
 import { MuxVideo } from "@/components/site/mux-video";
 import { HomeVideoShowcase } from "@/components/site/home-video-showcase";
 import { WERBEFILM_PLAYBACK_ID } from "@/lib/videos";
@@ -162,24 +162,88 @@ function ComparisonCard({
   );
 }
 
-const SOLUTIONS = [
+const SOLUTIONS: {
+  title: string;
+  text: string;
+  notif: {
+    app: "mail" | "imessage" | "whatsapp";
+    messages: { title: string; body: string }[];
+  };
+}[] = [
   {
     title: "Kaufkräftige Kunden gewinnen",
     text: "Wir machen dich in deiner Region online so bekannt, dass sich kaufbereite Interessenten von selbst bei dir melden. Das Budget klären wir vorab – damit du dich nur noch um die lukrativen Aufträge kümmerst.",
-    anim: "/animationen/Kaufkr%C3%A4ftige%20Kunden",
-    alt: "Animation: Kaufkräftige Kunden gewinnen",
+    notif: {
+      app: "mail",
+      messages: [
+        {
+          title: "Neuer Lead über die Anzeige!",
+          body: "Neue Anfrage für Photovoltaikanlage: Budget 20.000€",
+        },
+        {
+          title: "Neuer Lead über die Anzeige!",
+          body: "Neue Anfrage für Badsanierung: Budget 25.000€",
+        },
+        {
+          title: "Neuer Lead über die Anzeige!",
+          body: "Neue Anfrage für Treppenlift: Budget 18.000€",
+        },
+        {
+          title: "Neuer Lead über die Anzeige!",
+          body: "Neue Anfrage für Terrassendach: Budget 30.000€",
+        },
+      ],
+    },
   },
   {
     title: "Passende Fachkräfte finden",
     text: "Mit unserer RVM Methode wirst du lokal als attraktiver Arbeitgeber wahrgenommen, sodass du selbst schwierige Stellen wie Dachdecker, Elektriker oder Heizungsmonteure besetzen wirst.",
-    anim: "/animationen/Passende%20Fachkr%C3%A4fte",
-    alt: "Animation: Passende Fachkräfte finden",
+    notif: {
+      app: "imessage",
+      messages: [
+        {
+          title: "Neue Bewerbung als Dachdecker!",
+          body: "Es gibt einen neuen Kandidaten im Karriereportal (9 Jahre Erfahrung)",
+        },
+        {
+          title: "Neue Bewerbung als Elektriker!",
+          body: "Es gibt einen neuen Kandidaten im Karriereportal (5 Jahre Erfahrung)",
+        },
+        {
+          title: "Neue Bewerbung als Heizungsbauer!",
+          body: "Es gibt einen neuen Kandidaten im Karriereportal (12 Jahre Erfahrung)",
+        },
+        {
+          title: "Neue Bewerbung als Vertriebsmitarbeiter!",
+          body: "Es gibt einen neuen Kandidaten im Karriereportal (10 Jahre Erfahrung)",
+        },
+      ],
+    },
   },
   {
     title: "Regionale Bekanntheit",
     text: "Wir sorgen dafür, dass du systematisch in deiner Region als bester Anbieter für deine Produktkategorie angesehen wirst, sodass die hochwertigsten Kunden als allererstes bei dir anfragen.",
-    anim: "/animationen/Regionale%20Bekanntheit",
-    alt: "Animation: Regionale Bekanntheit",
+    notif: {
+      app: "whatsapp",
+      messages: [
+        {
+          title: "Neue Webseiten-Eintragung",
+          body: "Interessent für Badsanierung, Budget: 28.000€",
+        },
+        {
+          title: "Neue Webseiten-Eintragung",
+          body: "Interessent für Photovoltaik, Budget: 18.000€",
+        },
+        {
+          title: "Neue Webseiten-Eintragung",
+          body: "Interessent für Wärmepumpe, Budget: 30.000€",
+        },
+        {
+          title: "Neue Webseiten-Eintragung",
+          body: "Interessent für Wintergarten, Budget: 37.000€",
+        },
+      ],
+    },
   },
 ];
 
@@ -430,7 +494,11 @@ export default async function HomePage() {
                     </p>
                   </div>
                   <div className={notifFirst ? "md:order-1" : undefined}>
-                    <SolutionAnimation src={s.anim} alt={s.alt} index={i} />
+                    <LeadNotification
+                      app={s.notif.app}
+                      messages={s.notif.messages}
+                      index={i}
+                    />
                   </div>
                 </div>
               );
