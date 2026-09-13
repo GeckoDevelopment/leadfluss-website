@@ -517,7 +517,7 @@ export default async function HomePage() {
               Videobeispiele
             </p>
             <h2 className="mt-3 text-3xl font-bold tracking-tight sm:text-4xl">
-              Kurzvideos aus echten Projekten
+              Werbevideos aus echten Projekten
             </h2>
             <p className="mx-auto mt-4 text-lg text-muted-foreground">
               Ein Auszug der Videos, die wir für unsere Partnerbetriebe
