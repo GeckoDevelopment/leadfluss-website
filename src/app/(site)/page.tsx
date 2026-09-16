@@ -203,19 +203,19 @@ const SOLUTIONS: {
       messages: [
         {
           title: "Neue Bewerbung als Dachdecker!",
-          body: "Es gibt einen neuen Kandidaten im Karriereportal (9 Jahre Erfahrung)",
+          body: "Es gibt einen neuen Kandidaten im Postfach (9 Jahre Erfahrung)",
         },
         {
           title: "Neue Bewerbung als Elektriker!",
-          body: "Es gibt einen neuen Kandidaten im Karriereportal (5 Jahre Erfahrung)",
+          body: "Es gibt einen neuen Kandidaten im Postfach (5 Jahre Erfahrung)",
         },
         {
           title: "Neue Bewerbung als Heizungsbauer!",
-          body: "Es gibt einen neuen Kandidaten im Karriereportal (12 Jahre Erfahrung)",
+          body: "Es gibt einen neuen Kandidaten im Postfach (12 Jahre Erfahrung)",
         },
         {
           title: "Neue Bewerbung als Vertriebsmitarbeiter!",
-          body: "Es gibt einen neuen Kandidaten im Karriereportal (10 Jahre Erfahrung)",
+          body: "Es gibt einen neuen Kandidaten im Postfach (10 Jahre Erfahrung)",
         },
       ],
     },
