@@ -18,7 +18,12 @@ import * as React from "react";
 
 type AppKind = "mail" | "imessage" | "whatsapp";
 
-export type NotifMessage = { title: string; body: string };
+export type NotifMessage = {
+  title: string;
+  body: string;
+  /** Optionale zweite Zeile, steht immer auf einer eigenen Zeile unter `body`. */
+  note?: string;
+};
 
 // Original-App-Icons als Bilddateien (mit transparenten Ecken) in
 // public/animationen/icons/. Alle drei sind Squircle-Icons.
@@ -146,6 +151,12 @@ export function LeadNotification({
           </div>
           <p className="mt-1 text-[14px] leading-snug text-[#48484c]">
             {msg.body}
+            {msg.note && (
+              <>
+                <br />
+                {msg.note}
+              </>
+            )}
           </p>
         </div>
       </div>

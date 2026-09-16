@@ -12,6 +12,18 @@ export type CaseStudy = {
   text?: string;
   imageUrl?: string;
   logoUrl?: string;
+  /** Mux-Playback-ID des Testimonial-Videos (falls hinterlegt). */
+  videoPlaybackId?: string;
+  /** Mux-Status, z. B. "ready". */
+  videoStatus?: string;
+  /** Seitenverhältnis als "b:h", z. B. "16:9". */
+  videoAspectRatio?: string;
+  /** Optionales eigenes Vorschaubild fürs Video. */
+  posterUrl?: string;
+  /** Welches Medium rechts gezeigt wird: automatisch, Foto oder Video. */
+  displayMedia?: "auto" | "image" | "video";
+  /** Bildunterschrift unter dem Video, z. B. Name + Position. */
+  videoCaption?: string;
 };
 
 // Fallstudie referenziert eine Firma; deren Felder werden hier flach
@@ -26,7 +38,13 @@ export const CASE_STUDIES_QUERY = groq`
     "logoUrl": company->logo.asset->url,
     result,
     text,
-    "imageUrl": image.asset->url
+    "imageUrl": image.asset->url,
+    "videoPlaybackId": video.asset->playbackId,
+    "videoStatus": video.asset->status,
+    "videoAspectRatio": video.asset->data.aspect_ratio,
+    "posterUrl": poster.asset->url,
+    displayMedia,
+    videoCaption
   }
 `;
 

@@ -40,6 +40,29 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
+// Wandelt Mux' Seitenverhältnis "b:h" (z. B. "16:9") in die Zahl b/h um,
+// die MuxVideo als `aspect` erwartet. Ohne Angabe bleibt der 16:9-Default.
+function muxAspect(ratio?: string): number | undefined {
+  if (!ratio) return undefined;
+  const [w, h] = ratio.split(":").map(Number);
+  return w && h ? w / h : undefined;
+}
+
+// Bildunterschriften unter den Testimonial-Videos. Der im Studio gepflegte
+// Wert (c.videoCaption) hat Vorrang; diese dienen als Fallback, solange das
+// Feld dort nicht gesetzt ist – gematcht über den Firmennamen.
+const VIDEO_CAPTION_FALLBACKS: { match: RegExp; caption: string }[] = [
+  {
+    match: /schermuly/i,
+    caption:
+      "Johannes Beckert, Geschäftsführer bei Energietechnik Schermuly GmbH",
+  },
+  {
+    match: /rheingau/i,
+    caption: "Markus Wagner, Geschäftsführer bei Solarzentrum Rheingau GmbH",
+  },
+];
+
 const HERO_BENEFITS = [
   "Mache dich unabhängig von der schlechten Qualität der Leads über Portale und Leadhändler",
   "Stabilisiere deine schwankende Auftragslage und werde Monate im Voraus ausgebucht",
@@ -167,7 +190,7 @@ const SOLUTIONS: {
   text: string;
   notif: {
     app: "mail" | "imessage" | "whatsapp";
-    messages: { title: string; body: string }[];
+    messages: { title: string; body: string; note?: string }[];
   };
 }[] = [
   {
@@ -178,19 +201,23 @@ const SOLUTIONS: {
       messages: [
         {
           title: "Neuer Lead über die Anzeige!",
-          body: "Neue Anfrage für Photovoltaikanlage: Budget 20.000€",
+          body: "Neue Anfrage für Photovoltaikanlage:",
+          note: "Budget 20.000€",
         },
         {
           title: "Neuer Lead über die Anzeige!",
-          body: "Neue Anfrage für Badsanierung: Budget 25.000€",
+          body: "Neue Anfrage für Badsanierung:",
+          note: "Budget 25.000€",
         },
         {
           title: "Neuer Lead über die Anzeige!",
-          body: "Neue Anfrage für Treppenlift: Budget 18.000€",
+          body: "Neue Anfrage für Treppenlift:",
+          note: "Budget 18.000€",
         },
         {
           title: "Neuer Lead über die Anzeige!",
-          body: "Neue Anfrage für Terrassendach: Budget 30.000€",
+          body: "Neue Anfrage für Terrassendach:",
+          note: "Budget 30.000€",
         },
       ],
     },
@@ -203,19 +230,23 @@ const SOLUTIONS: {
       messages: [
         {
           title: "Neue Bewerbung als Dachdecker!",
-          body: "Es gibt einen neuen Kandidaten im Postfach (9 Jahre Erfahrung)",
+          body: "Es gibt einen neuen Kandidaten im Postfach",
+          note: "(9 Jahre Erfahrung)",
         },
         {
           title: "Neue Bewerbung als Elektriker!",
-          body: "Es gibt einen neuen Kandidaten im Postfach (5 Jahre Erfahrung)",
+          body: "Es gibt einen neuen Kandidaten im Postfach",
+          note: "(5 Jahre Erfahrung)",
         },
         {
           title: "Neue Bewerbung als Heizungsbauer!",
-          body: "Es gibt einen neuen Kandidaten im Postfach (12 Jahre Erfahrung)",
+          body: "Es gibt einen neuen Kandidaten im Postfach",
+          note: "(12 Jahre Erfahrung)",
         },
         {
           title: "Neue Bewerbung als Vertriebsmitarbeiter!",
-          body: "Es gibt einen neuen Kandidaten im Postfach (10 Jahre Erfahrung)",
+          body: "Es gibt einen neuen Kandidaten im Postfach",
+          note: "(10 Jahre Erfahrung)",
         },
       ],
     },
@@ -548,58 +579,93 @@ export default async function HomePage() {
           </p>
         </div>
         <div className="mt-12 space-y-8">
-          {caseStudies.map((c) => (
-            <article
-              key={c._id}
-              className="overflow-hidden rounded-3xl border border-border bg-card p-6 sm:p-10 lg:p-12"
-            >
-              <div className="grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-12">
-                {/* Text + Badges + Logo */}
-                <div>
-                  <h3 className="text-2xl font-bold tracking-tight sm:text-3xl">
-                    {c.name}
-                  </h3>
-                  {c.role && (
-                    <p className="mt-3 text-lg font-semibold text-signal">
-                      {c.role}
-                    </p>
-                  )}
-                  {c.text && (
-                    <p className="mt-5 leading-relaxed text-muted-foreground">
-                      {c.text}
-                    </p>
-                  )}
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    {c.location && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-4 py-1.5 text-sm font-medium text-foreground">
-                        <MapPin className="size-4 text-signal" />
-                        {c.location}
-                      </span>
+          {caseStudies.map((c) => {
+            // Welches Medium rechts gezeigt wird. Der Modus kommt aus Sanity
+            // ("Rechts anzeigen"); fehlt das gewählte Medium, greift das andere.
+            const mode = c.displayMedia ?? "auto";
+            const canVideo = Boolean(c.videoPlaybackId);
+            const canImage = Boolean(c.imageUrl);
+            const preferVideo = mode === "video" || (mode === "auto" && canVideo);
+            const showVideo = canVideo && (preferVideo || !canImage);
+            const showImage = canImage && !showVideo;
+            const hasMedia = showVideo || showImage;
+            // Studio-Wert hat Vorrang, sonst Fallback per Firmenname.
+            const videoCaption =
+              c.videoCaption ||
+              VIDEO_CAPTION_FALLBACKS.find((f) => f.match.test(c.name))?.caption;
+            return (
+              <article
+                key={c._id}
+                className="overflow-hidden rounded-3xl border border-border bg-card p-6 sm:p-10 lg:p-12"
+              >
+                <div
+                  className={`grid gap-8 lg:gap-12 ${
+                    hasMedia ? "lg:grid-cols-2 lg:items-center" : ""
+                  }`}
+                >
+                  {/* Text + Badges + Logo */}
+                  <div>
+                    <h3 className="flex items-center gap-2 font-heading text-3xl font-bold tracking-tight sm:text-4xl">
+                      <ArrowUpRight className="size-7 shrink-0 text-signal" />
+                      {c.result}
+                    </h3>
+                    {c.role && (
+                      <p className="mt-3 text-lg font-semibold text-signal">
+                        {c.role}
+                      </p>
                     )}
-                    {c.branch && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-4 py-1.5 text-sm font-medium text-foreground">
-                        <Wrench className="size-4 text-signal" />
-                        {c.branch}
-                      </span>
+                    {c.text && (
+                      <p className="mt-5 leading-relaxed text-muted-foreground">
+                        {c.text}
+                      </p>
+                    )}
+                    <div className="mt-6 flex flex-wrap gap-3">
+                      {c.location && (
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-4 py-1.5 text-sm font-medium text-foreground">
+                          <MapPin className="size-4 text-signal" />
+                          {c.location}
+                        </span>
+                      )}
+                      {c.branch && (
+                        <span className="inline-flex items-center gap-1.5 rounded-full border border-border bg-muted px-4 py-1.5 text-sm font-medium text-foreground">
+                          <Wrench className="size-4 text-signal" />
+                          {c.branch}
+                        </span>
+                      )}
+                    </div>
+                    {c.logoUrl && (
+                      <div className="mt-8 h-[72px] w-[315px] max-w-full">
+                        <Image
+                          src={c.logoUrl}
+                          alt={c.name}
+                          width={480}
+                          height={192}
+                          className="h-full w-full object-contain object-left"
+                        />
+                      </div>
                     )}
                   </div>
-                  {c.logoUrl && (
-                    <div className="mt-8 h-[72px] w-[315px] max-w-full">
-                      <Image
-                        src={c.logoUrl}
-                        alt={c.name}
-                        width={480}
-                        height={192}
-                        className="h-full w-full object-contain object-left"
-                      />
-                    </div>
-                  )}
-                </div>
 
-                {/* Kundenfoto mit Ergebnis-Overlay */}
-                {c.imageUrl ? (
-                  <div className="relative overflow-hidden rounded-2xl">
-                    <div className="relative aspect-[4/3] w-full">
+                  {/* Rechts: Video oder Foto – gesteuert über „Rechts anzeigen". */}
+                  {showVideo ? (
+                    <div>
+                      <div className="overflow-hidden rounded-2xl">
+                        <MuxVideo
+                          playbackId={c.videoPlaybackId}
+                          title={`Kundenstimme ${c.name}`}
+                          aspect={muxAspect(c.videoAspectRatio)}
+                          poster={c.posterUrl}
+                          preview
+                        />
+                      </div>
+                      {videoCaption && (
+                        <p className="mt-3 text-center text-sm text-muted-foreground">
+                          {videoCaption}
+                        </p>
+                      )}
+                    </div>
+                  ) : showImage && c.imageUrl ? (
+                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl">
                       <Image
                         src={c.imageUrl}
                         alt={`Leadfluss vor Ort bei ${c.name}`}
@@ -608,34 +674,11 @@ export default async function HomePage() {
                         className="object-cover"
                       />
                     </div>
-                    <div className="absolute inset-x-3 bottom-3 flex items-center gap-4 rounded-xl border border-white/15 bg-black/40 p-4 backdrop-blur-md sm:inset-x-4 sm:bottom-4 sm:p-5">
-                      <ArrowUpRight className="size-8 shrink-0 text-signal" />
-                      <div>
-                        <div className="text-xs text-white/70">
-                          Ergebnis aus der Zusammenarbeit:
-                        </div>
-                        <div className="font-heading text-lg font-bold text-white sm:text-xl">
-                          {c.result}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  <div className="flex items-center gap-4 rounded-2xl border border-border bg-muted p-6">
-                    <ArrowUpRight className="size-8 shrink-0 text-signal" />
-                    <div>
-                      <div className="text-xs text-muted-foreground">
-                        Ergebnis aus der Zusammenarbeit:
-                      </div>
-                      <div className="font-heading text-xl font-bold text-foreground">
-                        {c.result}
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </article>
-          ))}
+                  ) : null}
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 
