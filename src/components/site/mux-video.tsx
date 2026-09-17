@@ -171,25 +171,36 @@ function PreviewMuxVideo({
 
   // Vorschau erst starten, wenn sie im Viewport ist (zuverlässiger als das
   // reine autoplay-Attribut und schont Bandbreite). Beim Verlassen pausieren –
-  // aber nur, solange die volle Wiedergabe noch nicht gestartet wurde.
+  // aber nur, solange die volle Wiedergabe noch nicht gestartet wurde. Der
+  // Startversuch wird zusätzlich wiederholt, sobald das Video abspielbereit
+  // ist (der Player initialisiert asynchron, ein zu früher play() verpufft).
   useEffect(() => {
     const el = ref.current;
     if (!el || reduce) return;
+    let inView = false;
+    const tryPlay = () => {
+      if (!inView || activeRef.current) return;
+      el.muted = true;
+      void el.play().catch(() => {});
+    };
     const io = new IntersectionObserver(
       (entries) => {
         const e = entries[0];
-        if (!e || activeRef.current) return;
-        if (e.isIntersecting) {
-          el.muted = true;
-          void el.play().catch(() => {});
-        } else {
-          el.pause();
-        }
+        if (!e) return;
+        inView = e.isIntersecting;
+        if (inView) tryPlay();
+        else if (!activeRef.current) el.pause();
       },
       { threshold: 0.4 },
     );
     io.observe(el);
-    return () => io.disconnect();
+    el.addEventListener("canplay", tryPlay);
+    el.addEventListener("loadeddata", tryPlay);
+    return () => {
+      io.disconnect();
+      el.removeEventListener("canplay", tryPlay);
+      el.removeEventListener("loadeddata", tryPlay);
+    };
   }, [reduce]);
 
   // Solange die volle Wiedergabe nicht gestartet ist, nur die ersten Sekunden

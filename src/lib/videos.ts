@@ -6,3 +6,6 @@
 
 // Werbefilm – eingebunden auf der Startseite und auf /vor-ort-videodreh.
 export const WERBEFILM_PLAYBACK_ID = "qmNyGP2xcf7ev01At1N014jEOUO0201UEZ5lJ00ywaM3v2HM";
+
+// Franchise-Landingpage (/franchise) – Hero-Video.
+export const FRANCHISE_PLAYBACK_ID = "jox7I006Pn4MgkTDYf6FWDIOOaCA2bff02DqKBakptFXw";

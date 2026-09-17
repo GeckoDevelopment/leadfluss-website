@@ -85,3 +85,33 @@ export async function getHomepageVideos(): Promise<Projektbeispiel[]> {
   if (!isSanityConfigured) return [];
   return client.fetch(HOMEPAGE_VIDEOS_QUERY);
 }
+
+/**
+ * Referenz-Videos für die Franchise-Seite (/franchise). Kuratiert über den
+ * Firmennamen (Extrawurst, Immergrün). Reihenfolge nach Firmenname.
+ */
+export const FRANCHISE_REFERENCES_QUERY = groq`
+  *[_type == "muxVideo" && defined(video.asset) && (
+      company->name match "Extrawurst*" ||
+      company->name match "Immergrün*" ||
+      company->name match "Immergruen*"
+    )]
+    | order(company->name asc, title asc) {
+    _id,
+    title,
+    "playbackId": video.asset->playbackId,
+    "status": video.asset->status,
+    "aspectRatio": video.asset->data.aspect_ratio,
+    "posterUrl": poster.asset->url,
+    "company": company->{
+      name,
+      branch,
+      "logoUrl": logo.asset->url
+    }
+  }
+`;
+
+export async function getFranchiseReferences(): Promise<Projektbeispiel[]> {
+  if (!isSanityConfigured) return [];
+  return client.fetch(FRANCHISE_REFERENCES_QUERY);
+}
