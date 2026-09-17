@@ -139,17 +139,28 @@ export const metadata: Metadata = {
   title: OG_TITLE,
   description: OG_DESCRIPTION,
   alternates: { canonical: "/franchise" },
-  // Eigene Social-Vorschau (Bild kommt aus opengraph-image.tsx).
+  // Eigene Social-Vorschau (Titel/Beschreibung), Bild wie auf der Startseite.
   openGraph: {
+    type: "website",
+    locale: "de_DE",
+    siteName: "Leadfluss",
+    url: "/franchise",
     title: OG_TITLE,
     description: OG_DESCRIPTION,
-    url: "/franchise",
-    type: "website",
+    images: [
+      {
+        url: "/og-default.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Leadfluss – Videomarketing für den Mittelstand",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: OG_TITLE,
     description: OG_DESCRIPTION,
+    images: ["/og-default.jpg"],
   },
 };
 
