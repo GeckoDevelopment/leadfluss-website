@@ -318,8 +318,24 @@ export default async function FranchisePage() {
       })}
 
       {/* CTA */}
-      <section className="border-t border-border bg-primary text-primary-foreground">
-        <div className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6 sm:py-24">
+      <section className="relative overflow-hidden border-t border-border bg-primary text-primary-foreground">
+        {/* Dezentes Hintergrundbild (wie auf der Startseite), oben und unten
+            weich ausgeblendet */}
+        <Image
+          src="/armin-friedrich-plan.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="pointer-events-none absolute inset-0 z-0 object-cover"
+          style={{
+            opacity: 0.22,
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-3xl px-4 py-[219px] text-center sm:px-6 sm:py-[235px]">
           <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl">
             Bereit, dein Franchise-System zu skalieren?
           </h2>
