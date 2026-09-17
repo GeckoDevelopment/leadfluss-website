@@ -130,11 +130,27 @@ function groupByCompany(items: Projektbeispiel[]): ReferenceGroup[] {
   return groups;
 }
 
-// TODO: Texte sind Platzhalter – werden durch die finalen Textbausteine ersetzt.
+const OG_TITLE = "Franchise-Partner gewinnen mit Videomarketing";
+const OG_DESCRIPTION =
+  "Als Franchise- oder Lizenzgeber planbar neue Partner gewinnen – mit regionalem Videomarketing, ohne teure Portale oder hohe Provisionen.";
+
 export const metadata: Metadata = {
-  title: "Franchise-Partner gewinnen mit Videomarketing | Leadfluss",
-  description:
-    "Als Franchise- oder Lizenzgeber mit regionalem Videomarketing 5–10 zusätzliche Partner pro Jahr gewinnen – ohne Mehraufwand.",
+  // Template im Root-Layout ergänzt „· Leadfluss".
+  title: OG_TITLE,
+  description: OG_DESCRIPTION,
+  alternates: { canonical: "/franchise" },
+  // Eigene Social-Vorschau (Bild kommt aus opengraph-image.tsx).
+  openGraph: {
+    title: OG_TITLE,
+    description: OG_DESCRIPTION,
+    url: "/franchise",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: OG_TITLE,
+    description: OG_DESCRIPTION,
+  },
 };
 
 // Platzhalter-Benefits – werden durch die finalen Textbausteine ersetzt.
