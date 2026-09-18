@@ -8,6 +8,9 @@ import {
   Flag,
   AlertCircle,
   Lightbulb,
+  Target,
+  Clapperboard,
+  TrendingUp,
   type LucideIcon,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -170,6 +173,31 @@ const HERO_BENEFITS = [
   "Werde als attraktives Franchise-System regional sichtbar",
   "Fülle deine Pipeline planbar mit 30+ Bewerbungen pro Monat",
   "Erhalte nur Anfragen zielgenau in deinen Wunschregionen",
+];
+
+// Ablauf der Zusammenarbeit – vier Schritte von der Analyse bis zur
+// Gewinnung neuer Gründeranfragen.
+const PROCESS_STEPS: { icon: LucideIcon; title: string; text: string }[] = [
+  {
+    icon: Target,
+    title: "Analyse",
+    text: "Wir definieren genau, welche Zielpersonen wir ansprechen wollen, um qualifizierte Anfragen zu gewinnen.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Strategie",
+    text: "Anhand der RVM-Methode entwickeln wir unvergessliche Videoideen, zur Generierung von qualifizierten Bewerbern.",
+  },
+  {
+    icon: Clapperboard,
+    title: "Videodreh",
+    text: "Unser Kamerateam kommt zum Standort und produziert die geplanten Werbefilme innerhalb von 5-6 Stunden.",
+  },
+  {
+    icon: TrendingUp,
+    title: "Generierung",
+    text: "Basierend auf unseren neuen Werbevideos startet jetzt die gezielte Gewinnung von Gründeranfragen.",
+  },
 ];
 
 export const revalidate = 60;
@@ -343,6 +371,53 @@ export default async function FranchisePage() {
           </section>
         );
       })}
+
+      {/* Ablauf unserer Zusammenarbeit – 4 Schritte */}
+      <section className="relative overflow-hidden border-t border-border bg-muted/40">
+        {/* Dezentes Hintergrundbild, oben und unten weich ausgeblendet */}
+        <Image
+          src="/armin-am-whiteboard.jpg"
+          alt=""
+          fill
+          sizes="100vw"
+          className="pointer-events-none absolute inset-0 z-0 object-cover"
+          style={{
+            opacity: 0.14,
+            maskImage:
+              "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, transparent 0%, black 22%, black 78%, transparent 100%)",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 sm:py-20">
+          <div className="mx-auto max-w-2xl text-center">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+              Ablauf unserer Zusammenarbeit
+            </h2>
+            <p className="mx-auto mt-4 text-lg text-muted-foreground">
+              Von der Analyse bis zur laufenden Gewinnung neuer Partner –
+              wir begleiten dich durch den gesamten Prozess.
+            </p>
+          </div>
+          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {PROCESS_STEPS.map((s, i) => (
+              <div
+                key={s.title}
+                className="relative flex flex-col border border-border bg-card p-6 text-center"
+              >
+                <span className="absolute -top-4 -left-4 flex size-10 items-center justify-center rounded-full bg-signal font-heading text-lg font-bold text-white shadow-md">
+                  {i + 1}
+                </span>
+                <span className="mx-auto flex size-12 items-center justify-center rounded-full bg-icon-bg text-signal">
+                  <s.icon className="size-6" />
+                </span>
+                <h3 className="mt-5 text-xl font-semibold">{s.title}</h3>
+                <p className="mt-2 text-muted-foreground">{s.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* CTA */}
       <section className="relative overflow-hidden border-t border-border bg-primary text-primary-foreground">
