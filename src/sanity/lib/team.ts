@@ -26,7 +26,6 @@ const DEMO_TEAM: TeamMember[] = [
   { _id: "demo-2", name: "Peer Joeressen", role: "Kundenbetreuer" },
   { _id: "demo-3", name: "Jonas Gernhardt", role: "Videoproduzent" },
   { _id: "demo-4", name: "Anna Kischkat", role: "Marketing Expertin" },
-  { _id: "demo-5", name: "Daniel Kreutzer", role: "Expansion Advisor" },
 ];
 
 export async function getTeam(): Promise<TeamMember[]> {
