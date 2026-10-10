@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Jost, Geist_Mono } from "next/font/google";
+import { Montserrat, Geist_Mono } from "next/font/google";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { ConsentMode } from "@/components/site/consent-mode";
 import "./globals.css";
 
-// Jost für die gesamte Website (Headlines + Fließtext), Variable Font.
-const jost = Jost({
+// Montserrat für die gesamte Website (Headlines + Fließtext), Variable Font.
+const montserrat = Montserrat({
   variable: "--font-sans",
   subsets: ["latin"],
   display: "swap",
@@ -59,7 +59,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="de"
-      className={`${jost.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${montserrat.variable} ${geistMono.variable} h-full antialiased`}
       suppressHydrationWarning
     >
       <GoogleTagManager gtmId="GTM-NQ548643" />
