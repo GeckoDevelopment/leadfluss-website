@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 
 export type TocHeading = { id: string; text: string; level: number };
 
-// Schwebendes Inhaltsverzeichnis für Blogartikel. Wird von der Detailseite in
-// eine sticky-Spalte rechts neben dem Text gesetzt und hebt per Scroll-Spy den
-// Abschnitt hervor, den man gerade liest.
+// Inhaltsverzeichnis für Blogartikel. Wird von der Detailseite in ein
+// eingeklapptes <details> über dem Hauptinhalt gesetzt und hebt per Scroll-Spy
+// den Abschnitt hervor, den man gerade liest.
 export function TableOfContents({
   headings,
   className,
@@ -44,9 +44,6 @@ export function TableOfContents({
 
   return (
     <nav aria-label="Inhaltsverzeichnis" className={className}>
-      <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-        Inhalt
-      </p>
       <ul className="border-l border-border">
         {headings.map((h) => {
           const isActive = active === h.id;
