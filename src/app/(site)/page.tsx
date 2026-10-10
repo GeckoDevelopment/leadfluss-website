@@ -25,7 +25,7 @@ import { LeadNotification } from "@/components/site/lead-notification";
 import { MuxVideo } from "@/components/site/mux-video";
 import { HomeVideoShowcase } from "@/components/site/home-video-showcase";
 import { WERBEFILM_PLAYBACK_ID } from "@/lib/videos";
-import { Funnel } from "./anfrage/funnel";
+import { Funnel } from "@/components/site/funnel";
 import { getTeam } from "@/sanity/lib/team";
 import { getCaseStudies } from "@/sanity/lib/case-studies";
 import { getCompanyLogos } from "@/sanity/lib/companies";

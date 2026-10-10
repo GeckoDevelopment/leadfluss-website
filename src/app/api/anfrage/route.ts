@@ -31,6 +31,7 @@ export async function POST(req: Request) {
   const auftraege = str(data.auftraege);
   const problem = str(data.problem);
   const ziel = str(data.ziel);
+  const angebot = str(data.angebot);
 
   // Name, E-Mail und Telefon sind Pflichtfelder.
   if (!name || !email || !phone) {
@@ -50,6 +51,7 @@ export async function POST(req: Request) {
     auftraege,
     problem,
     ziel,
+    angebot,
   };
 
   try {
